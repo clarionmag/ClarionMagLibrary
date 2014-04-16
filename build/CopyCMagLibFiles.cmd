@@ -6,4 +6,3 @@ xcopy CMagLib.dll ..\UnitTests /D /Y
 xcopy CMagLib.dll ..\ClarionTest /D /Y
 xcopy ..\build\obj\debug\CMagLib.lib ..\lib /D /Y
 xcopy ..\build\obj\release\CMagLib.lib ..\lib /D /Y
-del CMagLib.dll

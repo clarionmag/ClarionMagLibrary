@@ -5,6 +5,7 @@ build/map
 build/obj
 build/*.dll
 build/*.exe
+build/compile*.cmd
 build/Scratchpad
 ClarionTest/map
 ClarionTest/obj
