@@ -11,7 +11,7 @@
     <stack_size>16384</stack_size>
     <CopyCore>True</CopyCore>
     <ApplicationIcon>ClarionTest.ico</ApplicationIcon>
-    <DefineConstants>_ABCDllMode_=&gt;0%3b_ABCLinkMode=&gt;1%3b_Compile_DCL_Class_Source_=&gt;1</DefineConstants>
+    <DefineConstants>_ABCDllMode_=&gt;0%3b_ABCLinkMode=&gt;1%3b_Compile_CML_Class_Source_=&gt;1</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>True</DebugSymbols>
@@ -36,7 +36,7 @@
     <Compile Include="clariontest_about.clw" />
     <Compile Include="clariontest_main.clw" />
     <Compile Include="clariontest_settings.clw" />
-    <Compile Include="DCL_CallA.a" />
+    <Compile Include="CML_CallA.a" />
   </ItemGroup>
   <ItemGroup>
     <FileDriver Include="ASCII" />
@@ -49,6 +49,6 @@
   </ItemGroup>
   <Import Project="$(ClarionBinPath)\SoftVelocity.Build.Clarion.targets" />
   <PropertyGroup>
-    <PostBuildEvent>CopyFiles.cmd</PostBuildEvent>
+    <PostBuildEvent>CopyClarionTestFiles.cmd</PostBuildEvent>
   </PropertyGroup>
 </Project>

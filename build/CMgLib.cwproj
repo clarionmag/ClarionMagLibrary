@@ -44,6 +44,6 @@
   <Import Project="$(ClarionBinPath)\SoftVelocity.Build.Clarion.targets" />
   <PropertyGroup>
     <PreBuildEvent>..\build\CreateExportFile CMgLib ..\build</PreBuildEvent>
-    <PostBuildEvent>..\build\copyfiles.cmd</PostBuildEvent>
+    <PostBuildEvent>..\build\CopyCMgLibFiles.cmd</PostBuildEvent>
   </PropertyGroup>
 </Project>

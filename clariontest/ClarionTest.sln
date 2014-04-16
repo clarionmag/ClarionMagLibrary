@@ -11,20 +11,20 @@ Project("{12B76EC0-1D7B-4FA7-A7D0-C524288B48A1}") = "ClarionTest", "ClarionTest.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Classes", "Classes", "{36D512AB-3B6C-4E9C-A60A-731123E13119}"
 	ProjectSection(SolutionItems) = postProject
-		..\libsrc\DCL_ClarionTest_GlobalCodeAndData.inc = ..\libsrc\DCL_ClarionTest_GlobalCodeAndData.inc
-		..\libsrc\DCL_ClarionTest_SQLPlugin.clw = ..\libsrc\DCL_ClarionTest_SQLPlugin.clw
-		..\libsrc\DCL_ClarionTest_SQLPlugin.inc = ..\libsrc\DCL_ClarionTest_SQLPlugin.inc
-		..\libsrc\DCL_ClarionTest_TestResult.clw = ..\libsrc\DCL_ClarionTest_TestResult.clw
-		..\libsrc\DCL_ClarionTest_TestResult.inc = ..\libsrc\DCL_ClarionTest_TestResult.inc
-		..\libsrc\DCL_ClarionTest_TestRunner.clw = ..\libsrc\DCL_ClarionTest_TestRunner.clw
-		..\libsrc\DCL_ClarionTest_TestRunner.inc = ..\libsrc\DCL_ClarionTest_TestRunner.inc
-		..\libsrc\DCL_IncludeInAllClassHeaderFiles.inc = ..\libsrc\DCL_IncludeInAllClassHeaderFiles.inc
-		..\libsrc\DCL_System_Diagnostics_Logger.clw = ..\libsrc\DCL_System_Diagnostics_Logger.clw
-		..\libsrc\DCL_System_Diagnostics_Logger.inc = ..\libsrc\DCL_System_Diagnostics_Logger.inc
-		..\libsrc\DCL_System_Runtime_DirectoryWatcher.clw = ..\libsrc\DCL_System_Runtime_DirectoryWatcher.clw
-		..\libsrc\DCL_System_Runtime_DirectoryWatcher.inc = ..\libsrc\DCL_System_Runtime_DirectoryWatcher.inc
-		..\libsrc\DCL_System_Runtime_DLL.clw = ..\libsrc\DCL_System_Runtime_DLL.clw
-		..\libsrc\DCL_System_Runtime_DLL.inc = ..\libsrc\DCL_System_Runtime_DLL.inc
+		..\libsrc\CML_ClarionTest_GlobalCodeAndData.inc = ..\libsrc\CML_ClarionTest_GlobalCodeAndData.inc
+		..\libsrc\CML_ClarionTest_SQLPlugin.clw = ..\libsrc\CML_ClarionTest_SQLPlugin.clw
+		..\libsrc\CML_ClarionTest_SQLPlugin.inc = ..\libsrc\CML_ClarionTest_SQLPlugin.inc
+		..\libsrc\CML_ClarionTest_TestResult.clw = ..\libsrc\CML_ClarionTest_TestResult.clw
+		..\libsrc\CML_ClarionTest_TestResult.inc = ..\libsrc\CML_ClarionTest_TestResult.inc
+		..\libsrc\CML_ClarionTest_TestRunner.clw = ..\libsrc\CML_ClarionTest_TestRunner.clw
+		..\libsrc\CML_ClarionTest_TestRunner.inc = ..\libsrc\CML_ClarionTest_TestRunner.inc
+		..\libsrc\CML_IncludeInAllClassHeaderFiles.inc = ..\libsrc\CML_IncludeInAllClassHeaderFiles.inc
+		..\libsrc\CML_System_Diagnostics_Logger.clw = ..\libsrc\CML_System_Diagnostics_Logger.clw
+		..\libsrc\CML_System_Diagnostics_Logger.inc = ..\libsrc\CML_System_Diagnostics_Logger.inc
+		..\libsrc\CML_System_Runtime_DirectoryWatcher.clw = ..\libsrc\CML_System_Runtime_DirectoryWatcher.clw
+		..\libsrc\CML_System_Runtime_DirectoryWatcher.inc = ..\libsrc\CML_System_Runtime_DirectoryWatcher.inc
+		..\libsrc\CML_System_Runtime_DLL.clw = ..\libsrc\CML_System_Runtime_DLL.clw
+		..\libsrc\CML_System_Runtime_DLL.inc = ..\libsrc\CML_System_Runtime_DLL.inc
 	EndProjectSection
 EndProject
 Global

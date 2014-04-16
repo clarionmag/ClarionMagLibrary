@@ -2,14 +2,14 @@
 
 										MEMBER('ClarionTest.clw')                               ! This is a MEMBER module
 
-	include('DCL_System_IO_Directory.inc'),once
+	include('CML_System_IO_Directory.inc'),once
 
 
 
 Settings                                PROCEDURE 
 
-DirectoryListing                            DCL_System_IO_Directory
-!DirectoryQ                                  DCL_System_IO_DirectoryQueue
+DirectoryListing                            CML_System_IO_Directory
+!DirectoryQ                                  CML_System_IO_DirectoryQueue
 
 
 !CurrentTab                                  STRING(80)                            !

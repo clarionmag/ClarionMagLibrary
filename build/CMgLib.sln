@@ -112,7 +112,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "System", "System", "{2D4C3D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Files", "Files", "{B0C0381C-28DB-4C2A-97E3-2EA08AF03D80}"
 	ProjectSection(SolutionItems) = postProject
-		copyfiles.cmd = copyfiles.cmd
 		..\libsrc\CML_BaseClass.clw = ..\libsrc\CML_BaseClass.clw
 		..\libsrc\CML_BaseClass.inc = ..\libsrc\CML_BaseClass.inc
 		..\libsrc\CML_Windows_API_Functions.inc = ..\libsrc\CML_Windows_API_Functions.inc
@@ -120,6 +119,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Files", "Files", "{B0C0381C
 		CMgLib_ClassHeadersToExport.txt = CMgLib_ClassHeadersToExport.txt
 		CMgLib_CustomExports.txt = CMgLib_CustomExports.txt
 		CMgLib_Exports.ini = CMgLib_Exports.ini
+		CopyCMgLibFiles.cmd = CopyCMgLibFiles.cmd
 	EndProjectSection
 EndProject
 Global

@@ -2,7 +2,7 @@
 
 
 
-Logger                                  DCL_System_Diagnostics_Logger
+Logger                                  CML_System_Diagnostics_Logger
 
 
 Main                                    PROCEDURE 
@@ -11,10 +11,10 @@ Resizer                                     CLASS(WindowResizeClass)
 Init                                            PROCEDURE(BYTE AppStrategy=AppStrategy:Resize,BYTE SetWindowMinSize=False,BYTE SetWindowMaxSize=False)
                                             END
 
-DirectoryWatcher                            class(DCL_System_Runtime_DirectoryWatcher)
+DirectoryWatcher                            class(CML_System_Runtime_DirectoryWatcher)
 DoTask                                          procedure,VIRTUAL
                                             end
-StdOut                                      DCL_System_IO_StdOut
+StdOut                                      CML_System_IO_StdOut
 
                                             itemize(1),pre(Style)
 Default                                         equate
@@ -47,13 +47,13 @@ ProcedureQIndex                                 LONG
 Type                                            BYTE                                  
                                             END                                   
 
-TestRunner                                  DCL_ClarionTest_TestRunner
-ProceduresQ                                 queue(DCL_ClarionTest_TestProceduresQueue)
+TestRunner                                  CML_ClarionTest_TestRunner
+ProceduresQ                                 queue(CML_ClarionTest_TestProceduresQueue)
                                             end
-TestResult                                  &DCL_ClarionTest_TestResult
-str                                         DCL_System_String
+TestResult                                  &CML_ClarionTest_TestResult
+str                                         CML_System_String
 RunTestsOnDllChange                         bool
-ListOfDlls                                  DCL_System_IO_Directory
+ListOfDlls                                  CML_System_IO_Directory
 
 
 Window                                      WINDOW('ClarionTest'),AT(,,600,170),CENTER,GRAY,IMM,SYSTEM,MAX, |
@@ -328,14 +328,14 @@ RunTests                                ROUTINE
             !ProceduresQ.TestResultStyle = Style:Failed
             if TestResult &= null
                 TestsQ.TestDescription = 'Failed: TestResult object was null'
-                TestsQ.TestStatus = dcl_ClarionTest_Status_Fail
+                TestsQ.TestStatus = CML_ClarionTest_Status_Fail
                 FailedTestCount += 1
             else                
                 TestsQ.TestStatus = TestResult.Status
-                if TestResult.Status = DCL_ClarionTest_Status_Pass
+                if TestResult.Status = CML_ClarionTest_Status_Pass
                     TestsQ.TestResult = 'Passed ' & TestResult.Description
                     TestsQ.TestResultStyle = Style:Passed
-                elsif TestResult.Status = DCL_ClarionTest_Status_Ignore
+                elsif TestResult.Status = CML_ClarionTest_Status_Ignore
                     TestsQ.TestResult = 'Ignored: ' & TestResult.Message
                 else
                     TestsQ.TestResult = 'Failed: ' & TestResult.Message
@@ -992,10 +992,10 @@ DirectoryWatcher.DoTask                 procedure!,VIRTUAL
 !!! Generated from procedure template - Window
 !!! </summary>
 !firstdisplay                                byte(true)
-!TestRunner                                  DCL_ClarionTest_TestRunner
-!ProceduresQ                                 queue(DCL_ClarionTest_ProceduresQueue)
+!TestRunner                                  CML_ClarionTest_TestRunner
+!ProceduresQ                                 queue(CML_ClarionTest_ProceduresQueue)
 !											end
-!TestResult                              &DCL_ClarionTest_TestResult
+!TestResult                              &CML_ClarionTest_TestResult
 !FolderToMonitor                         cstring(500)
 !											itemize(1),pre(Style)
 !Default                                         equate
@@ -1009,7 +1009,7 @@ DirectoryWatcher.DoTask                 procedure!,VIRTUAL
 !
 !RunAllTests                                      byte(true)
 !DllNameAndPath                              cstring(255)
-!!dbg             DCL_system_diagnostics_debugger
+!!dbg             CML_system_diagnostics_debugger
 !
 !
 !LS_SMTPPassword                             CSTRING(120)                          !
@@ -1048,7 +1048,7 @@ DirectoryWatcher.DoTask                 procedure!,VIRTUAL
 !cTarget                                     cstring(220)
 !eMyNotifyCode                               equate(222)
 !eMyNotifyParam                              equate(0)
-!myChg                                       DCL_System_Runtime_DirectoryWatcher
+!myChg                                       CML_System_Runtime_DirectoryWatcher
 !notifyCode                                  unsigned
 !notifyParam                                 long
 

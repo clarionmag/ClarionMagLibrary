@@ -1,12 +1,12 @@
 										PROGRAM
 
-    include('DCL_clariontest_testrunner.inc'),once
-    include('DCL_clariontest_testresult.inc'),once
-    Include('DCL_System_Runtime_DirectoryWatcher.inc'),once
-    include('DCL_System_Diagnostics_Logger.inc'),once
-    include('DCL_System_String.inc'),once
-    include('DCL_System_IO_Directory.inc'),once
-    Include('DCL_System_IO_StdOut.inc'),Once
+    include('CML_clariontest_testrunner.inc'),once
+    include('CML_clariontest_testresult.inc'),once
+    Include('CML_System_Runtime_DirectoryWatcher.inc'),once
+    include('CML_System_Diagnostics_Logger.inc'),once
+    include('CML_System_String.inc'),once
+    include('CML_System_IO_Directory.inc'),once
+    Include('CML_System_IO_StdOut.inc'),Once
     INCLUDE('ABUTIL.INC'),ONCE
 
 
@@ -64,11 +64,11 @@ Settings                                    INIClass                            
 !!!   INCLUDE('JPWBFISH.INC'),ONCE
 !!!!   include('csGPF.Inc'),ONCE
 !!!     include('hyper.inc'),once
-!!!	include('DCL_system_diagnostics_debugger.inc'),once
+!!!	include('CML_system_diagnostics_debugger.inc'),once
 !!!
 !!!
 !!
-!!!gdbg                                    DCL_System_Diagnostics_Debugger,external,dll
+!!!gdbg                                    CML_System_Diagnostics_Debugger,external,dll
 !!    !Include('EventEqu.Clw'),Once
 !!!    INCLUDE('iQXML.INC','Equates')
 !
