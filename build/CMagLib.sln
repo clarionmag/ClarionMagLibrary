@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
 # Clarion 2.1.0.2447
-Project("{12B76EC0-1D7B-4FA7-A7D0-C524288B48A1}") = "CMgLib", "CMgLib.cwproj", "{631666FC-E116-4DBD-AA21-53367CBC6EA0}"
+Project("{12B76EC0-1D7B-4FA7-A7D0-C524288B48A1}") = "CMagLib", "CMagLib.cwproj", "{631666FC-E116-4DBD-AA21-53367CBC6EA0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Classes", "Classes", "{6C5D5C8D-78AD-4C49-BEE2-A0A30D6D6E53}"
 	ProjectSection(SolutionItems) = postProject
@@ -116,10 +116,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Files", "Files", "{B0C0381C
 		..\libsrc\CML_BaseClass.inc = ..\libsrc\CML_BaseClass.inc
 		..\libsrc\CML_Windows_API_Functions.inc = ..\libsrc\CML_Windows_API_Functions.inc
 		..\libsrc\CML_Windows_API_Equates.inc = ..\libsrc\CML_Windows_API_Equates.inc
-		CMgLib_ClassHeadersToExport.txt = CMgLib_ClassHeadersToExport.txt
-		CMgLib_CustomExports.txt = CMgLib_CustomExports.txt
-		CMgLib_Exports.ini = CMgLib_Exports.ini
-		CopyCMgLibFiles.cmd = CopyCMgLibFiles.cmd
+		CMagLib_ClassHeadersToExport.txt = CMagLib_ClassHeadersToExport.txt
+		CMagLib_CustomExports.txt = CMagLib_CustomExports.txt
+		CMagLib_Exports.ini = CMagLib_Exports.ini
+		CopyCMagLibFiles.cmd = CopyCMagLibFiles.cmd
 	EndProjectSection
 EndProject
 Global

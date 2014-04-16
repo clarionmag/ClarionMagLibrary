@@ -3,6 +3,8 @@ UnitTests/*/obj
 cla*.dll
 build/map
 build/obj
+build/*.dll
+build/*.exe
 build/Scratchpad
 ClarionTest/map
 ClarionTest/obj
