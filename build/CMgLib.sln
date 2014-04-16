@@ -1,0 +1,148 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+# Clarion 2.1.0.2447
+Project("{12B76EC0-1D7B-4FA7-A7D0-C524288B48A1}") = "CMgLib", "CMgLib.cwproj", "{631666FC-E116-4DBD-AA21-53367CBC6EA0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Classes", "Classes", "{6C5D5C8D-78AD-4C49-BEE2-A0A30D6D6E53}"
+	ProjectSection(SolutionItems) = postProject
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Windows", "Windows", "{88DE862D-6993-4740-96D1-67199F80F662}"
+	ProjectSection(SolutionItems) = postProject
+		..\libsrc\CML_Windows_API_Equates.inc = ..\libsrc\CML_Windows_API_Equates.inc
+		..\libsrc\CML_Windows_API_Functions.inc = ..\libsrc\CML_Windows_API_Functions.inc
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{3B4D0D90-E85F-4B2A-A8CE-0B822C93BCC4}"
+	ProjectSection(SolutionItems) = postProject
+		..\libsrc\CML_UI_BackgroundProgressDisplay.clw = ..\libsrc\CML_UI_BackgroundProgressDisplay.clw
+		..\libsrc\CML_UI_BackgroundProgressDisplay.inc = ..\libsrc\CML_UI_BackgroundProgressDisplay.inc
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ClarionTest", "ClarionTest", "{B657FC8D-6553-4B17-B75E-8E97D7CDFACC}"
+	ProjectSection(SolutionItems) = postProject
+		..\libsrc\CML_ClarionTest_GlobalCodeAndData.inc = ..\libsrc\CML_ClarionTest_GlobalCodeAndData.inc
+		..\libsrc\CML_ClarionTest_SQLPlugin.clw = ..\libsrc\CML_ClarionTest_SQLPlugin.clw
+		..\libsrc\CML_ClarionTest_SQLPlugin.inc = ..\libsrc\CML_ClarionTest_SQLPlugin.inc
+		..\libsrc\CML_ClarionTest_TestResult.clw = ..\libsrc\CML_ClarionTest_TestResult.clw
+		..\libsrc\CML_ClarionTest_TestResult.inc = ..\libsrc\CML_ClarionTest_TestResult.inc
+		..\libsrc\CML_ClarionTest_TestRunner.clw = ..\libsrc\CML_ClarionTest_TestRunner.clw
+		..\libsrc\CML_ClarionTest_TestRunner.inc = ..\libsrc\CML_ClarionTest_TestRunner.inc
+		..\libsrc\CML_ClarionTest_Equates.inc = ..\libsrc\CML_ClarionTest_Equates.inc
+		..\libsrc\CML_ClarionTest_TestProcedures.clw = ..\libsrc\CML_ClarionTest_TestProcedures.clw
+		..\libsrc\CML_ClarionTest_TestProcedures.inc = ..\libsrc\CML_ClarionTest_TestProcedures.inc
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "System_Threading", "System_Threading", "{302FF6AC-02FD-4FAE-8E9C-950E764C7AE8}"
+	ProjectSection(SolutionItems) = postProject
+		..\libsrc\CML_System_Threading_CriticalSection.clw = ..\libsrc\CML_System_Threading_CriticalSection.clw
+		..\libsrc\CML_System_Threading_CriticalSection.inc = ..\libsrc\CML_System_Threading_CriticalSection.inc
+		..\libsrc\CML_System_Threading_ICriticalSection.inc = ..\libsrc\CML_System_Threading_ICriticalSection.inc
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "System_Diagnostics", "System_Diagnostics", "{4110A792-BA03-4571-BD4A-1E7A8ACBF83C}"
+	ProjectSection(SolutionItems) = postProject
+		..\libsrc\CML_System_Diagnostics_FileLogger.clw = ..\libsrc\CML_System_Diagnostics_FileLogger.clw
+		..\libsrc\CML_System_Diagnostics_FileLogger.inc = ..\libsrc\CML_System_Diagnostics_FileLogger.inc
+		..\libsrc\CML_System_Diagnostics_Logger.clw = ..\libsrc\CML_System_Diagnostics_Logger.clw
+		..\libsrc\CML_System_Diagnostics_Logger.inc = ..\libsrc\CML_System_Diagnostics_Logger.inc
+		..\libsrc\CML_System_Diagnostics_Profiler.clw = ..\libsrc\CML_System_Diagnostics_Profiler.clw
+		..\libsrc\CML_System_Diagnostics_Profiler.inc = ..\libsrc\CML_System_Diagnostics_Profiler.inc
+		..\libsrc\CML_System_Diagnostics_Timer.clw = ..\libsrc\CML_System_Diagnostics_Timer.clw
+		..\libsrc\CML_System_Diagnostics_Timer.inc = ..\libsrc\CML_System_Diagnostics_Timer.inc
+		..\libsrc\CML_System_Diagnostics_Tracer.clw = ..\libsrc\CML_System_Diagnostics_Tracer.clw
+		..\libsrc\CML_System_Diagnostics_Tracer.inc = ..\libsrc\CML_System_Diagnostics_Tracer.inc
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "System_Runtime", "System_Runtime", "{00AFCB14-1243-4E57-B2D1-330B452C67F5}"
+	ProjectSection(SolutionItems) = postProject
+		..\libsrc\CML_System_Runtime_DirectoryWatcher.clw = ..\libsrc\CML_System_Runtime_DirectoryWatcher.clw
+		..\libsrc\CML_System_Runtime_DirectoryWatcher.inc = ..\libsrc\CML_System_Runtime_DirectoryWatcher.inc
+		..\libsrc\CML_System_Runtime_DLL.clw = ..\libsrc\CML_System_Runtime_DLL.clw
+		..\libsrc\CML_System_Runtime_DLL.inc = ..\libsrc\CML_System_Runtime_DLL.inc
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "System_IO", "System_IO", "{6247CB3A-0AE4-4DC8-983E-6CC58A3B2809}"
+	ProjectSection(SolutionItems) = postProject
+		..\libsrc\CML_System_IO_Directory.clw = ..\libsrc\CML_System_IO_Directory.clw
+		..\libsrc\CML_System_IO_Directory.inc = ..\libsrc\CML_System_IO_Directory.inc
+		..\libsrc\CML_System_IO_AsciiFile.clw = ..\libsrc\CML_System_IO_AsciiFile.clw
+		..\libsrc\CML_System_IO_AsciiFile.inc = ..\libsrc\CML_System_IO_AsciiFile.inc
+		..\libsrc\CML_System_IO_FileInfo.clw = ..\libsrc\CML_System_IO_FileInfo.clw
+		..\libsrc\CML_System_IO_FileInfo.inc = ..\libsrc\CML_System_IO_FileInfo.inc
+		..\libsrc\CML_System_IO_File.clw = ..\libsrc\CML_System_IO_File.clw
+		..\libsrc\CML_System_IO_File.inc = ..\libsrc\CML_System_IO_File.inc
+		..\libsrc\CML_System_IO_CaptureStdOutput.clw = ..\libsrc\CML_System_IO_CaptureStdOutput.clw
+		..\libsrc\CML_System_IO_CaptureStdOutput.inc = ..\libsrc\CML_System_IO_CaptureStdOutput.inc
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Text", "Text", "{860617F0-E3D9-4B3D-9997-CE932E652693}"
+	ProjectSection(SolutionItems) = postProject
+		..\libsrc\CML_Text_RTF.clw = ..\libsrc\CML_Text_RTF.clw
+		..\libsrc\CML_Text_RTF.inc = ..\libsrc\CML_Text_RTF.inc
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{57D6D46A-60E7-47C3-A557-C7D86A50BF62}"
+	ProjectSection(SolutionItems) = postProject
+		..\libsrc\CML_Data_Datafier.clw = ..\libsrc\CML_Data_Datafier.clw
+		..\libsrc\CML_Data_Datafier.inc = ..\libsrc\CML_Data_Datafier.inc
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "System", "System", "{2D4C3D7D-429A-4BB2-9972-DDE3063A11C0}"
+	ProjectSection(SolutionItems) = postProject
+		..\libsrc\CML_System_Class.inc = ..\libsrc\CML_System_Class.inc
+		..\libsrc\CML_System_String.clw = ..\libsrc\CML_System_String.clw
+		..\libsrc\CML_System_String.inc = ..\libsrc\CML_System_String.inc
+		..\libsrc\CML_System_Stack.clw = ..\libsrc\CML_System_Stack.clw
+		..\libsrc\CML_System_Stack.inc = ..\libsrc\CML_System_Stack.inc
+		..\libsrc\CML_System_StackNode.inc = ..\libsrc\CML_System_StackNode.inc
+		..\libsrc\CML_System_ErrorManager.clw = ..\libsrc\CML_System_ErrorManager.clw
+		..\libsrc\CML_System_ErrorManager.inc = ..\libsrc\CML_System_ErrorManager.inc
+		..\libsrc\CML_System_Pool.clw = ..\libsrc\CML_System_Pool.clw
+		..\libsrc\CML_System_Pool.inc = ..\libsrc\CML_System_Pool.inc
+		..\libsrc\CML_System_Class.clw = ..\libsrc\CML_System_Class.clw
+		..\libsrc\CML_System_Mangle.clw = ..\libsrc\CML_System_Mangle.clw
+		..\libsrc\CML_System_Mangle.inc = ..\libsrc\CML_System_Mangle.inc
+		..\libsrc\CML_System_ClassParser.clw = ..\libsrc\CML_System_ClassParser.clw
+		..\libsrc\CML_System_ClassParser.inc = ..\libsrc\CML_System_ClassParser.inc
+		..\libsrc\CML_System_ExpFileWriter.clw = ..\libsrc\CML_System_ExpFileWriter.clw
+		..\libsrc\CML_System_ExpFileWriter.inc = ..\libsrc\CML_System_ExpFileWriter.inc
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Files", "Files", "{B0C0381C-28DB-4C2A-97E3-2EA08AF03D80}"
+	ProjectSection(SolutionItems) = postProject
+		copyfiles.cmd = copyfiles.cmd
+		..\libsrc\CML_BaseClass.clw = ..\libsrc\CML_BaseClass.clw
+		..\libsrc\CML_BaseClass.inc = ..\libsrc\CML_BaseClass.inc
+		..\libsrc\CML_Windows_API_Functions.inc = ..\libsrc\CML_Windows_API_Functions.inc
+		..\libsrc\CML_Windows_API_Equates.inc = ..\libsrc\CML_Windows_API_Equates.inc
+		CMgLib_ClassHeadersToExport.txt = CMgLib_ClassHeadersToExport.txt
+		CMgLib_CustomExports.txt = CMgLib_CustomExports.txt
+		CMgLib_Exports.ini = CMgLib_Exports.ini
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{631666FC-E116-4DBD-AA21-53367CBC6EA0}.Debug|Win32.Build.0 = Debug|Win32
+		{631666FC-E116-4DBD-AA21-53367CBC6EA0}.Debug|Win32.ActiveCfg = Debug|Win32
+		{631666FC-E116-4DBD-AA21-53367CBC6EA0}.Release|Win32.Build.0 = Release|Win32
+		{631666FC-E116-4DBD-AA21-53367CBC6EA0}.Release|Win32.ActiveCfg = Release|Win32
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2D4C3D7D-429A-4BB2-9972-DDE3063A11C0} = {6C5D5C8D-78AD-4C49-BEE2-A0A30D6D6E53}
+		{57D6D46A-60E7-47C3-A557-C7D86A50BF62} = {6C5D5C8D-78AD-4C49-BEE2-A0A30D6D6E53}
+		{860617F0-E3D9-4B3D-9997-CE932E652693} = {6C5D5C8D-78AD-4C49-BEE2-A0A30D6D6E53}
+		{6247CB3A-0AE4-4DC8-983E-6CC58A3B2809} = {6C5D5C8D-78AD-4C49-BEE2-A0A30D6D6E53}
+		{00AFCB14-1243-4E57-B2D1-330B452C67F5} = {6C5D5C8D-78AD-4C49-BEE2-A0A30D6D6E53}
+		{4110A792-BA03-4571-BD4A-1E7A8ACBF83C} = {6C5D5C8D-78AD-4C49-BEE2-A0A30D6D6E53}
+		{302FF6AC-02FD-4FAE-8E9C-950E764C7AE8} = {6C5D5C8D-78AD-4C49-BEE2-A0A30D6D6E53}
+		{B657FC8D-6553-4B17-B75E-8E97D7CDFACC} = {6C5D5C8D-78AD-4C49-BEE2-A0A30D6D6E53}
+		{3B4D0D90-E85F-4B2A-A8CE-0B822C93BCC4} = {6C5D5C8D-78AD-4C49-BEE2-A0A30D6D6E53}
+		{88DE862D-6993-4740-96D1-67199F80F662} = {6C5D5C8D-78AD-4C49-BEE2-A0A30D6D6E53}
+	EndGlobalSection
+EndGlobal
