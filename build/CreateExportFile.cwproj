@@ -33,7 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="CreateExportFile.clw" />
-    <None Include="DevRoadmapsClarion.EXP" />
+    <None Include="CMagLib.EXP" />
   </ItemGroup>
   <ItemGroup>
     <FileDriver Include="ASCII" />
