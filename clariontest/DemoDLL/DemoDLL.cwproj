@@ -46,7 +46,7 @@
     <Compile Include="MyTestGroup.clw">
       <Generated>true</Generated>
     </Compile>
-    <Library Include="DevRoadmapsClarion.lib" />
+    <Library Include="CMagLib.lib" />
   </ItemGroup>
   <Import Project="$(ClarionBinPath)\SoftVelocity.Build.Clarion.targets" />
   <PropertyGroup>

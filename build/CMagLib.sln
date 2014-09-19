@@ -120,6 +120,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Files", "Files", "{B0C0381C
 		CMagLib_CustomExports.txt = CMagLib_CustomExports.txt
 		CMagLib_Exports.ini = CMagLib_Exports.ini
 		CopyCMagLibFiles.cmd = CopyCMagLibFiles.cmd
+		..\libsrc\CML_IncludeInAllClassHeaderFiles.inc = ..\libsrc\CML_IncludeInAllClassHeaderFiles.inc
 	EndProjectSection
 EndProject
 Global

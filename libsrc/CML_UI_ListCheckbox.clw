@@ -44,17 +44,69 @@
 
     Include('CML_UI_ListCheckbox.inc'),Once
     !include('CML_System_Diagnostics_Logger.inc'),once
+    include('keycodes.clw'),once
 
-!dbg                                     CML_System_Diagnostics_Logger
 
-CML_UI_ListCheckbox.Initialize                  procedure(long listFEQ)
+!dbg                                             CML_System_Diagnostics_Logger
+TrueValue                                       equate(1)
+FalseValue                                      equate(2)
+ToggleValue                                     equate(3)
+
+CML_UI_ListCheckbox.CheckAll                    procedure
+x                                                   long
     code
+    self.SetAll(TrueValue)
+    
+CML_UI_ListCheckbox.SetAll                    procedure(bool flag)
+x                                                   long
+    code
+    loop x = 1 to records(self.ListQ)
+        get(self.ListQ,x)
+        if flag = ToggleValue
+            self.ToggleValue(self.ListQIconField)
+            else
+            self.ListQIconField = flag
+        end
+        put(self.ListQ)
+    end
+    
+CML_UI_ListCheckbox.UncheckAll                  procedure
+    code
+    self.SetAll(FalseValue)
+    
+CML_UI_ListCheckbox.ToggleAll                  procedure
+    code
+    self.SetAll(ToggleValue)
+    
+
+CML_UI_ListCheckbox.Initialize                  procedure(*Queue listQ,*long listQIconField,long listFEQ,long listQCheckboxFieldNumber=1)
+    code
+    self.ListQ &= listQ
     self.ListFEQ = ListFeq
-    self.ListFEQ{PROPLIST:Icon,1} = 1
-    self.ListFEQ{PROP:IconList,1} = '~CML_UnChecked.ico'
-    self.ListFEQ{PROP:IconList,2} = '~CML_Checked.ico'  
-    self.ListFEQ{PROPLIST:Picture,1} = '@p p'
-    pragma('link (CML_Checked.ico)')
+    self.ListQCheckboxFieldNumber = listQCheckboxFieldNumber
+    self.ListQIconField &= listQIconField
+    self.ListFEQ{PROPLIST:Icon,self.ListQCheckboxFieldNumber} = FalseValue
+    self.ListFEQ{PROP:IconList,TrueValue} = '~CML_Checked.ico'
+    self.ListFEQ{PROP:IconList,FalseValue} = '~CML_UnChecked.ico'  
+    self.ListFEQ{PROPLIST:Picture,self.ListQCheckboxFieldNumber} = '@p p'
     pragma('link (CML_UnChecked.ico)')
+    pragma('link (CML_Checked.ico)')
+    register(Event:accepted,address(self.TakeMouseClick),address(self))
+    
+CML_UI_ListCheckbox.TakeMouseClick              procedure
+    code
+    if field() = self.ListFEQ
+        if keycode() = MouseLeft |
+            and self.ListFEQ{proplist:mouseuprow} = self.ListFEQ{proplist:mousedownrow} |
+            and self.ListFEQ{proplist:mouseupfield} = self.ListFEQ{proplist:mousedownfield} |
+            and self.ListFEQ{proplist:mousedownfield} = self.ListQCheckboxFieldNumber
+            get(self.ListQ,choice(self.ListFEQ))
+            self.ListQIconField = choose(self.ListQIconField=TrueValue,FalseValue,TrueValue)
+            put(self.ListQ)
+        end
+    end
+    
+    
+    
 
 

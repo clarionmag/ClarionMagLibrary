@@ -16,13 +16,15 @@
    INCLUDE('ABRESIZE.INC'),ONCE
    INCLUDE('ABTOOLBA.INC'),ONCE
    INCLUDE('ABUTIL.INC'),ONCE
+   INCLUDE('ABUSERCONTROL.INC'),ONCE
    INCLUDE('ABWINDOW.INC'),ONCE
    INCLUDE('ABWMFPAR.INC'),ONCE
-   INCLUDE('ANYASCII.INC'),ONCE
    INCLUDE('CSIDLFOLDER.INC'),ONCE
+   INCLUDE('CLAMAIL.INC'),ONCE
+   INCLUDE('CLARUNEXT.INC'),ONCE
    INCLUDE('ERRORS.CLW'),ONCE
+   INCLUDE('JSON.INC'),ONCE
    INCLUDE('KEYCODES.CLW'),ONCE
-   INCLUDE('NETCRIT.INC'),ONCE
    INCLUDE('SPECIALFOLDER.INC'),ONCE
    INCLUDE('ABBREAK.INC'),ONCE
    INCLUDE('ABCPTHD.INC'),ONCE
@@ -37,8 +39,8 @@
    INCLUDE('ABRPATMG.INC'),ONCE
    INCLUDE('ABRPPSEL.INC'),ONCE
    INCLUDE('ABRULE.INC'),ONCE
+   INCLUDE('ABSQL.INC'),ONCE
    INCLUDE('ABVCRFRM.INC'),ONCE
-   INCLUDE('CCICS.INC'),ONCE
    INCLUDE('CFILTBASE.INC'),ONCE
    INCLUDE('CFILTERLIST.INC'),ONCE
    INCLUDE('CWSYNCHC.INC'),ONCE
@@ -68,7 +70,7 @@ CompareTwoStrings      FUNCTION(*long addr),long,pascal   !
      MODULE('DEMODLL001.CLW')
 CompareEmptyString     FUNCTION(*long addr),long,pascal   !
      END
-       include('DCL_ClarionTest_GlobalCodeAndData.inc','GlobalMap'),once
+       include('CML_ClarionTest_GlobalCodeAndData.inc','GlobalMap'),once
 ClarionTest_GetListOfTestProcedures PROCEDURE(*LONG Addr),LONG,PASCAL
     ! Declare functions defined in this DLL
 DemoDLL:Init           PROCEDURE(<ErrorClass curGlobalErrors>, <INIClass curINIMgr>)
@@ -80,9 +82,9 @@ SilentRunning        BYTE(0)                               ! Set true when appli
 !region File Declaration
 !endregion
 
-  include('DCL_ClarionTest_GlobalCodeAndData.inc','GlobalData'),once
-  include('DCL_ClarionTest_TestProcedures.inc'),once
-ClarionTest_ctpl    DCL_ClarionTest_TestProcedures
+  include('CML_ClarionTest_GlobalCodeAndData.inc','GlobalData'),once
+  include('CML_ClarionTest_TestProcedures.inc'),once
+ClarionTest_ctpl    CML_ClarionTest_TestProcedures
 
 TestClass   CLASS
 Construct       PROCEDURE
@@ -124,7 +126,7 @@ DLLInitializer.Construct PROCEDURE
   FuzzyMatcher.SetOption(MatchOption:NoCase, 1)            ! Configure case matching
   FuzzyMatcher.SetOption(MatchOption:WordOnly, 0)          ! Configure 'word only' matching
   
-  INCLUDE('DCL_ClarionTest_GlobalCodeAndData.inc','ProgramProcedures')
+  INCLUDE('CML_ClarionTest_GlobalCodeAndData.inc','ProgramProcedures')
 ClarionTest_GetListOfTestProcedures PROCEDURE(*LONG Addr)
     CODE
     Addr = ADDRESS(ClarionTest_ctpl)

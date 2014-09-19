@@ -36,7 +36,7 @@
     include('CML_IncludeInAllClassHeaderFiles.inc'),once
 
 CML_System_Diagnostics_Logger class,type,module('CML_System_Diagnostics_Logger.clw'),link('CML_System_Diagnostics_Logger.clw',_CML_Classes_LinkMode_),DLL(_CML_Classes_DllMode_)
-Prefix                              cstring(50)
+Prefix                              Pstring(52)   !Carl was CSTRING(50) +2 allow rm for ': '
 _CompareGroup                       procedure(*group g1,*group g2,bool compareStructure, bool compareContent, bool write=false),long,protected
 CompareGroupContent                 procedure(*group g1,*group g2,bool write=false),long,proc
 CompareGroupStructures              procedure(*group g1,*group g2,bool write=false),long,proc

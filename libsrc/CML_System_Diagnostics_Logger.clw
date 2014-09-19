@@ -41,7 +41,8 @@
 
                     MAP
                         MODULE('Winapi')
-                            OutputDebugSTRING(*CSTRING),PASCAL,RAW,NAME('OutputDebugStringA')
+   OutputDebugSTRING(*CSTRING),PASCAL,RAW,NAME('OutputDebugStringA'),DLL(_CML_Classes_DllMode_)
+        !For DLL(1) see _declspec(dllimport) at http://support.microsoft.com/kb/132044/en-us
                         END
                     END
 
@@ -125,29 +126,37 @@ x                                                           long
     
 CML_System_Diagnostics_Logger.SetPrefix        procedure(string prefix)
     CODE
-    self.Prefix = prefix
-
-
+!!  self.Prefix = prefix  !Carl; I would append the ': ' here rather than every .Write
+    self.Prefix = clip(sub(prefix,1,SIZE(self.Prefix)-2)) &': '  !Truncate passed prefix at 50 so : fits
+    RETURN                                    
+    
 CML_System_Diagnostics_Logger.Write     procedure(string msg)
-cstr                      &cstring
+cstr                      &cstring 
+cLen                      long,auto  !prefix & msg could be blank
     CODE
-    cstr &= new cstring(len(self.prefix) + len(clip(msg))+3)
-    cstr = self.prefix & ': ' & clip(msg)
-    OutputDebugSTRING(cstr)
-                               
+!!    cstr &= new cstring(len(self.prefix) + len(clip(msg))+3)
+!!    cstr = self.prefix & ': ' & msg  !Carl: was clip(msg) but CSTR is exact right size so no need to clip?
+    cLen=val(self.prefix[0]) + len(clip(msg)) + 1    !Prefix is Pstring with Len in [0]
+    if cLen > 1 then                                 !is Prefix+Msg not blank
+       cstr &= new cstring(cLen)
+       cstr = self.prefix & msg         !Carl: was clip(msg) but CSTR is exact right size so no need to clip?
+       OutputDebugSTRING(cstr)
+       dispose(cStr)                    !Carl added DISPOSE or memory leak                          
+    end
+    RETURN                           !Carl explicit return always a good idea, see Cmag Gordon Smith
     
 CML_System_Diagnostics_Logger.WriteProperties  procedure(*Group g)    
-x                                                   long
+x                                                   long,auto !Carl +auto
 ref                                                 any
     code
-    x = 0
-    loop 500 times
-        x += 1
+    !carl x = 0
+    loop x = 1 to 500   !carl 500 times
+        !carl x += 1
         if who(g,x) = '' then cycle.
         ref &= what(g,x)
         self.Write(who(g,x) & ' ' & ref)
     end
-    
+    !Carl ? Do you need to check for DIM and skip those?
     
     
     
