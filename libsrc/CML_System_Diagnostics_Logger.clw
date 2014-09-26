@@ -41,7 +41,7 @@
 
                     MAP
                         MODULE('Winapi')
-   OutputDebugSTRING(*CSTRING),PASCAL,RAW,NAME('OutputDebugStringA'),DLL(_CML_Classes_DllMode_)
+   OutputDebugSTRING(*CSTRING),PASCAL,RAW,NAME('OutputDebugStringA'),DLL(1) !Carl add DLL(1)
         !For DLL(1) see _declspec(dllimport) at http://support.microsoft.com/kb/132044/en-us
                         END
                     END

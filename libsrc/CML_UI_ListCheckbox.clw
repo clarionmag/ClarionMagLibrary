@@ -43,41 +43,19 @@
 
 
     Include('CML_UI_ListCheckbox.inc'),Once
-    !include('CML_System_Diagnostics_Logger.inc'),once
+    include('CML_System_Diagnostics_Logger.inc'),once
     include('keycodes.clw'),once
 
 
-!dbg                                             CML_System_Diagnostics_Logger
-TrueValue                                       equate(1)
+dbg                                             CML_System_Diagnostics_Logger
 FalseValue                                      equate(2)
+TrueValue                                       equate(1)
 ToggleValue                                     equate(3)
 
 CML_UI_ListCheckbox.CheckAll                    procedure
 x                                                   long
     code
     self.SetAll(TrueValue)
-    
-CML_UI_ListCheckbox.SetAll                    procedure(bool flag)
-x                                                   long
-    code
-    loop x = 1 to records(self.ListQ)
-        get(self.ListQ,x)
-        if flag = ToggleValue
-            self.ToggleValue(self.ListQIconField)
-            else
-            self.ListQIconField = flag
-        end
-        put(self.ListQ)
-    end
-    
-CML_UI_ListCheckbox.UncheckAll                  procedure
-    code
-    self.SetAll(FalseValue)
-    
-CML_UI_ListCheckbox.ToggleAll                  procedure
-    code
-    self.SetAll(ToggleValue)
-    
 
 CML_UI_ListCheckbox.Initialize                  procedure(*Queue listQ,*long listQIconField,long listFEQ,long listQCheckboxFieldNumber=1)
     code
@@ -86,27 +64,69 @@ CML_UI_ListCheckbox.Initialize                  procedure(*Queue listQ,*long lis
     self.ListQCheckboxFieldNumber = listQCheckboxFieldNumber
     self.ListQIconField &= listQIconField
     self.ListFEQ{PROPLIST:Icon,self.ListQCheckboxFieldNumber} = FalseValue
-    self.ListFEQ{PROP:IconList,TrueValue} = '~CML_Checked.ico'
     self.ListFEQ{PROP:IconList,FalseValue} = '~CML_UnChecked.ico'  
+    self.ListFEQ{PROP:IconList,TrueValue} = '~CML_Checked.ico'
     self.ListFEQ{PROPLIST:Picture,self.ListQCheckboxFieldNumber} = '@p p'
     pragma('link (CML_UnChecked.ico)')
     pragma('link (CML_Checked.ico)')
-    register(Event:accepted,address(self.TakeMouseClick),address(self))
-    
-CML_UI_ListCheckbox.TakeMouseClick              procedure
-    code
-    if field() = self.ListFEQ
-        if keycode() = MouseLeft |
-            and self.ListFEQ{proplist:mouseuprow} = self.ListFEQ{proplist:mousedownrow} |
-            and self.ListFEQ{proplist:mouseupfield} = self.ListFEQ{proplist:mousedownfield} |
-            and self.ListFEQ{proplist:mousedownfield} = self.ListQCheckboxFieldNumber
-            get(self.ListQ,choice(self.ListFEQ))
-            self.ListQIconField = choose(self.ListQIconField=TrueValue,FalseValue,TrueValue)
-            put(self.ListQ)
-        end
+    register(Event:accepted,address(self.TakeMouseClick),address(self),,self.ListFEQ)
+    if self.ToggleAndAdvanceWithSpaceKey
+        self.ListFEQ{PROP:Alrt} = SpaceKey
+        register(EVENT:AlertKey,address(self.TakeSpaceKey),address(self),,self.ListFEQ)
     end
     
-    
-    
+CML_UI_ListCheckbox.SetAll                      procedure(bool flag)
+x                                                   long
+    code
+    loop x = 1 to records(self.ListQ)
+        get(self.ListQ,x)
+        if flag = ToggleValue
+            self.ToggleCurrentCheckbox()
+        else
+            self.ListQIconField = flag
+        end
+        put(self.ListQ)
+    end
 
+CML_UI_ListCheckbox.TakeMouseClick              procedure!,byte
+    code
+    if keycode() = MouseLeft |
+        and self.ListFEQ{PROPLIST:MouseUpZone} = LISTZONE:icon | ! Contributed by Mike Hanson
+        and self.ListFEQ{PROPLIST:MouseDownZone} = LISTZONE:icon | ! Contributed by Mike Hanson
+        and self.ListFEQ{PROPLIST:MouseUpRow} = self.ListFEQ{PROPLIST:MouseDownRow} |
+        and self.ListFEQ{PROPLIST:MouseUpField} = self.ListFEQ{PROPLIST:MouseDownField} |
+        and self.ListFEQ{PROPLIST:MouseDownField} = self.ListQCheckboxFieldNumber                 
+        get(self.ListQ,choice(self.ListFEQ))
+        self.ToggleCurrentCheckbox()
+        put(self.ListQ)
+    end
+    return Level:Benign
+
+CML_UI_ListCheckbox.TakeSpaceKey                procedure!,byte
+    code
+    dbg.write('CML_UI_ListCheckbox.TakeSpaceKey')
+    if keycode() = SpaceKey
+        get(self.ListQ,choice(self.ListFEQ))
+        self.ToggleCurrentCheckbox()
+        put(self.ListQ)
+        if pointer(self.ListQ) < records(self.ListQ)
+            select(self.ListFEQ,choice(self.ListFEQ)+1)
+        end
+    end
+    return Level:Benign
+    
+CML_UI_ListCheckbox.ToggleCurrentCheckbox       procedure
+    code
+    dbg.write(format(pointer(self.ListQ),@n02) & ' self.ListQIconField was ' & self.ListQIconField)
+    self.ListQIconField = choose(self.ListQIconField=TrueValue,FalseValue,TrueValue)
+    dbg.write(                                 '                           set to ' & self.ListQIconField)
+    
+CML_UI_ListCheckbox.ToggleAll                   procedure
+    code
+    self.SetAll(ToggleValue)
+
+CML_UI_ListCheckbox.UncheckAll                  procedure
+    code
+    self.SetAll(FalseValue)
+    
 
