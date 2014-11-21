@@ -4,7 +4,6 @@
 !---------------------------------------------------------------------------------------------!
 !region
 !
-!
 ! Redistribution and use in source and binary forms, with or without
 ! modification, are permitted provided that the following conditions are met:
 !
@@ -37,32 +36,60 @@
 !---------------------------------------------------------------------------------------------!
 !endregion
 
-    include('CML_IncludeInAllClassHeaderFiles.inc'),once
-    Include('CML_Data_ManyToManyLinks.inc'),Once
+                                            Member
+                                            Map
+                                            End
 
 
-CML_UI_ListCheckbox                             Class,Type,Module('CML_UI_ListCheckbox.CLW'),Link('CML_UI_ListCheckbox.CLW',_CML_Classes_LinkMode_),Dll(_CML_Classes_DllMode_)
-ToggleAndAdvanceWithSpaceKey                        bool
-ListFEQ                                             long
-ListQ                                               &queue
-ListQCheckboxFieldNumber                            long
-ListQIconField                                      &long
-ListQRightRecordID                                  &long
-ManyToManyLinks                                     &CML_Data_ManyToManyLinks,protected
-Initialized                                         bool,private
-CheckAll                                            procedure
-Initialize                                          procedure(*Queue listQ,*long listQIconField,long listFEQ,long listQCheckboxFieldNumber=1)
-Initialize                                          procedure(*Queue listQ,*long listQIconField,*long listQRightRecordID, long listFEQ,long listQCheckboxFieldNumber=1,CML_Data_ManyToManyLinks ManyToManyLinks)
-LoadCheckboxData                                    procedure
-SetAll                                              procedure(bool flag)
-SetManyToManyLinkForCurrentQRecord                  procedure
-TakeMouseClick                                      procedure,byte
-TakeSpaceKey                                        procedure,byte
-ToggleAll                                           procedure
-ToggleCurrentCheckbox                               procedure,private
-UncheckAll                                          procedure
-                                                End
 
-CML_UI_ListCheckbox_TrueValue                   equate(1)
-CML_UI_ListCheckbox_FalseValue                  equate(2)
+    Include('CML_Data_ManyToManyLinksPersister.inc'),Once
+    include('CML_System_Diagnostics_Logger.inc'),once
+
+dbg                                     CML_System_Diagnostics_Logger
+
+CML_Data_ManyToManyLinksPersister.Construct                     Procedure()
+    code
+    !self.Errors &= new CML_System_ErrorManager
+
+
+CML_Data_ManyToManyLinksPersister.Destruct                      Procedure()
+    code
+    !dispose(self.Errors)
+
+CML_Data_ManyToManyLinksPersister.CloseDataFile procedure
+    code
+    if not self.DataFile &= null
+        close(self.DataFile)
+    end
+    
+CML_Data_ManyToManyLinksPersister.Load          procedure(long leftRecordID,CML_Data_ManyToManyLinksData linksData)
+    code
+    
+CML_Data_ManyToManyLinksPersister.OpenDataFile  procedure!,bool
+    code
+    dbg.write('CML_Data_ManyToManyLinksPersister.OpenDataFile')
+    self.CloseDataFile()
+    if not self.DataFile &= null
+        share(self.DataFile)
+        if errorcode()
+            create(self.DataFile)
+            if errorcode()
+                message('Unable to create data file ' & self.DataFile{prop:name} & ' ' & error())
+                return false
+            end
+            share(self.DataFile)
+            if errorcode()
+                message('Unable to open data file ' & self.DataFile{prop:name} & ' ' & error())
+                return false
+            end
+        end
+    end
+    dbg.write('returning true')
+    return true
+
+CML_Data_ManyToManyLinksPersister.Save          procedure(long leftRecordID,CML_Data_ManyToManyLinksData linksData)
+    code
+    dbg.write('CML_Data_ManyToManyLinksPersister.Save')
+
+
 

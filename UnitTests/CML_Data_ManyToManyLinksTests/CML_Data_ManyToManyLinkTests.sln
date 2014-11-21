@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+# Clarion 2.1.0.2447
+Project("{12B76EC0-1D7B-4FA7-A7D0-C524288B48A1}") = "CML_Data_ManyToManyLinkTests", "CML_Data_ManyToManyLinkTests.cwproj", "{80352F9F-616C-4ED5-A3E3-FC96F4700E58}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{{2150E333-8FDC-42A3-9474-1A3956D46DE8}}"
+	ProjectSection(SolutionItems) = postProject
+		CML_Data_ManyToManyLinkTests.app = CML_Data_ManyToManyLinkTests.app
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Classes", "Classes", "{C714CA9D-DA5D-4B85-8C95-ECF8A056BE27}"
+	ProjectSection(SolutionItems) = postProject
+		..\..\libsrc\CML_UI_ListCheckbox.clw = ..\..\libsrc\CML_UI_ListCheckbox.clw
+		..\..\libsrc\CML_UI_ListCheckbox.inc = ..\..\libsrc\CML_UI_ListCheckbox.inc
+		..\..\libsrc\CML_UI_ManyToManyLinksPersister.clw = ..\..\libsrc\CML_UI_ManyToManyLinksPersister.clw
+		..\..\libsrc\CML_UI_ManyToManyLinksPersister.inc = ..\..\libsrc\CML_UI_ManyToManyLinksPersister.inc
+		..\..\libsrc\CML_UI_ManyToManyLinks.clw = ..\..\libsrc\CML_UI_ManyToManyLinks.clw
+		..\..\libsrc\CML_UI_ManyToManyLinks.inc = ..\..\libsrc\CML_UI_ManyToManyLinks.inc
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{80352F9F-616C-4ED5-A3E3-FC96F4700E58}.Debug|Win32.Build.0 = Debug|Win32
+		{80352F9F-616C-4ED5-A3E3-FC96F4700E58}.Debug|Win32.ActiveCfg = Debug|Win32
+		{80352F9F-616C-4ED5-A3E3-FC96F4700E58}.Release|Win32.Build.0 = Release|Win32
+		{80352F9F-616C-4ED5-A3E3-FC96F4700E58}.Release|Win32.ActiveCfg = Release|Win32
+	EndGlobalSection
+EndGlobal

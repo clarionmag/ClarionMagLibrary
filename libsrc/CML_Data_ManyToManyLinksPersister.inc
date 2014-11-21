@@ -1,5 +1,5 @@
 !---------------------------------------------------------------------------------------------!
-! Copyright (c) 2014, CoveComm Inc.
+! Copyright (c) 2013, CoveComm Inc.
 ! All rights reserved.
 !---------------------------------------------------------------------------------------------!
 !region
@@ -38,31 +38,16 @@
 !endregion
 
     include('CML_IncludeInAllClassHeaderFiles.inc'),once
-    Include('CML_Data_ManyToManyLinks.inc'),Once
+    Include('CML_Data_ManyToManyLinksData.inc'),Once
 
-
-CML_UI_ListCheckbox                             Class,Type,Module('CML_UI_ListCheckbox.CLW'),Link('CML_UI_ListCheckbox.CLW',_CML_Classes_LinkMode_),Dll(_CML_Classes_DllMode_)
-ToggleAndAdvanceWithSpaceKey                        bool
-ListFEQ                                             long
-ListQ                                               &queue
-ListQCheckboxFieldNumber                            long
-ListQIconField                                      &long
-ListQRightRecordID                                  &long
-ManyToManyLinks                                     &CML_Data_ManyToManyLinks,protected
-Initialized                                         bool,private
-CheckAll                                            procedure
-Initialize                                          procedure(*Queue listQ,*long listQIconField,long listFEQ,long listQCheckboxFieldNumber=1)
-Initialize                                          procedure(*Queue listQ,*long listQIconField,*long listQRightRecordID, long listFEQ,long listQCheckboxFieldNumber=1,CML_Data_ManyToManyLinks ManyToManyLinks)
-LoadCheckboxData                                    procedure
-SetAll                                              procedure(bool flag)
-SetManyToManyLinkForCurrentQRecord                  procedure
-TakeMouseClick                                      procedure,byte
-TakeSpaceKey                                        procedure,byte
-ToggleAll                                           procedure
-ToggleCurrentCheckbox                               procedure,private
-UncheckAll                                          procedure
+CML_Data_ManyToManyLinksPersister               Class,Type,Module('CML_Data_ManyToManyLinksPersister.CLW'),Link('CML_Data_ManyToManyLinksPersister.CLW',_CML_Classes_LinkMode_),Dll(_CML_Classes_DllMode_)
+Construct                                           Procedure()
+Destruct                                            Procedure()
+DataFile                                            &File
+CloseDataFile                                       procedure
+Load                                                procedure(long leftRecordID,CML_Data_ManyToManyLinksData linksData),virtual
+OpenDataFile                                        procedure,bool
+Save                                                procedure(long leftRecordID,CML_Data_ManyToManyLinksData linksData),virtual
                                                 End
 
-CML_UI_ListCheckbox_TrueValue                   equate(1)
-CML_UI_ListCheckbox_FalseValue                  equate(2)
 

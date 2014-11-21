@@ -1,0 +1,44 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{80352F9F-616C-4ED5-A3E3-FC96F4700E58}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">Win32</Platform>
+    <OutputType>Library</OutputType>
+    <RootNamespace>CML_Data_ManyToManyLinkTests</RootNamespace>
+    <AssemblyName>CML_Data_ManyToManyLinkTests</AssemblyName>
+    <OutputName>CML_Data_ManyToManyLinkTests</OutputName>
+    <CWOutputType>Exe</CWOutputType>
+    <DefineConstants>_Compile_CML_Class_Source_=&gt;1%3b_ABCDllMode_=&gt;0%3b_ABCLinkMode_=&gt;1</DefineConstants>
+    <Model>Dll</Model>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <vid>full</vid>
+    <check_stack>True</check_stack>
+    <check_index>True</check_index>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <vid>off</vid>
+    <check_stack>False</check_stack>
+    <check_index>False</check_index>
+  </PropertyGroup>
+  <ItemGroup>
+    <FileDriver Include="ASCII" />
+    <Compile Include="CML_Data_ManyToManyLinkTests.clw">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="CML_Data_ManyToManyLinkTests001.clw">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="CML_DATA_MANYTOMANYLINKTESTS_BC.CLW">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="CML_Data_ManyToManyLinkTests_BC0.CLW">
+      <Generated>true</Generated>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(ClarionBinPath)\SoftVelocity.Build.Clarion.targets" />
+</Project>

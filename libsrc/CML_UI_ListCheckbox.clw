@@ -41,21 +41,18 @@
                                             End
 
 
-
     Include('CML_UI_ListCheckbox.inc'),Once
     include('CML_System_Diagnostics_Logger.inc'),once
     include('keycodes.clw'),once
 
 
 dbg                                             CML_System_Diagnostics_Logger
-FalseValue                                      equate(2)
-TrueValue                                       equate(1)
-ToggleValue                                     equate(3)
+ToggleValue                                     equate(-1)
 
 CML_UI_ListCheckbox.CheckAll                    procedure
 x                                                   long
     code
-    self.SetAll(TrueValue)
+    self.SetAll(CML_UI_ListCheckbox_TrueValue)
 
 CML_UI_ListCheckbox.Initialize                  procedure(*Queue listQ,*long listQIconField,long listFEQ,long listQCheckboxFieldNumber=1)
     code
@@ -63,9 +60,9 @@ CML_UI_ListCheckbox.Initialize                  procedure(*Queue listQ,*long lis
     self.ListFEQ = ListFeq
     self.ListQCheckboxFieldNumber = listQCheckboxFieldNumber
     self.ListQIconField &= listQIconField
-    self.ListFEQ{PROPLIST:Icon,self.ListQCheckboxFieldNumber} = FalseValue
-    self.ListFEQ{PROP:IconList,FalseValue} = '~CML_UnChecked.ico'  
-    self.ListFEQ{PROP:IconList,TrueValue} = '~CML_Checked.ico'
+    self.ListFEQ{PROPLIST:Icon,self.ListQCheckboxFieldNumber} = CML_UI_ListCheckbox_FalseValue
+    self.ListFEQ{PROP:IconList,CML_UI_ListCheckbox_TrueValue} = '~CML_Checked.ico'
+    self.ListFEQ{PROP:IconList,CML_UI_ListCheckbox_FalseValue} = '~CML_UnChecked.ico'  
     self.ListFEQ{PROPLIST:Picture,self.ListQCheckboxFieldNumber} = '@p p'
     pragma('link (CML_UnChecked.ico)')
     pragma('link (CML_Checked.ico)')
@@ -75,6 +72,29 @@ CML_UI_ListCheckbox.Initialize                  procedure(*Queue listQ,*long lis
         register(EVENT:AlertKey,address(self.TakeSpaceKey),address(self),,self.ListFEQ)
     end
     
+CML_UI_ListCheckbox.Initialize                  procedure(*Queue listQ,*long listQIconField,*long listQRightRecordID,long listFEQ,long listQCheckboxFieldNumber=1,CML_Data_ManyToManyLinks ManyToManyLinks)
+    code
+    self.Initialize(listQ,ListQIconField,ListFEQ,ListQCheckboxFieldNumber)
+    self.ListQRightRecordID &= ListQRightRecordID
+    self.ManyToManyLinks &= ManyToManyLinks                                                    
+    
+CML_UI_ListCheckbox.LoadCheckboxData            procedure
+x                                                   long
+    code
+    if not self.ManyToManyLinks &= null
+        loop x = 1 to records(self.ListQ)
+            get(self.ListQ,x)
+            if self.ManyToManyLinks.IsLinkedTo(x)
+                self.ListQIconField = CML_UI_ListCheckbox_TrueValue
+                dbg.write(x & ' true')
+            else
+                self.ListQIconField = CML_UI_ListCheckbox_FalseValue
+                dbg.write(x & ' false')
+            end
+            put(self.ListQ)
+        end
+    end
+
 CML_UI_ListCheckbox.SetAll                      procedure(bool flag)
 x                                                   long
     code
@@ -86,7 +106,20 @@ x                                                   long
             self.ListQIconField = flag
         end
         put(self.ListQ)
+        self.SetManyToManyLinkForCurrentQRecord()
     end
+    
+CML_UI_ListCheckbox.SetManyToManyLinkForCurrentQRecord  procedure
+    code
+    if not self.ManyToManyLinks &= NULL
+        if self.ListQIconField = CML_UI_ListCheckbox_TrueValue
+            self.ManyToManyLinks.SetLinkTo(self.ListQRightRecordID)
+        else
+            self.ManyToManyLinks.ClearLinkTo(self.ListQRightRecordID)
+        end
+    end
+    
+        
 
 CML_UI_ListCheckbox.TakeMouseClick              procedure!,byte
     code
@@ -99,6 +132,7 @@ CML_UI_ListCheckbox.TakeMouseClick              procedure!,byte
         get(self.ListQ,choice(self.ListFEQ))
         self.ToggleCurrentCheckbox()
         put(self.ListQ)
+        self.SetManyToManyLinkForCurrentQRecord()
     end
     return Level:Benign
 
@@ -109,6 +143,7 @@ CML_UI_ListCheckbox.TakeSpaceKey                procedure!,byte
         get(self.ListQ,choice(self.ListFEQ))
         self.ToggleCurrentCheckbox()
         put(self.ListQ)
+        self.SetManyToManyLinkForCurrentQRecord()
         if pointer(self.ListQ) < records(self.ListQ)
             select(self.ListFEQ,choice(self.ListFEQ)+1)
         end
@@ -117,9 +152,9 @@ CML_UI_ListCheckbox.TakeSpaceKey                procedure!,byte
     
 CML_UI_ListCheckbox.ToggleCurrentCheckbox       procedure
     code
-    dbg.write(format(pointer(self.ListQ),@n02) & ' self.ListQIconField was ' & self.ListQIconField)
-    self.ListQIconField = choose(self.ListQIconField=TrueValue,FalseValue,TrueValue)
-    dbg.write(                                 '                           set to ' & self.ListQIconField)
+    !dbg.write(format(pointer(self.ListQ),@n02) & ' self.ListQIconField was ' & self.ListQIconField)
+    self.ListQIconField = choose(self.ListQIconField=CML_UI_ListCheckbox_TrueValue,CML_UI_ListCheckbox_FalseValue,CML_UI_ListCheckbox_TrueValue)
+    !dbg.write(                                 '                           set to ' & self.ListQIconField)
     
 CML_UI_ListCheckbox.ToggleAll                   procedure
     code
@@ -127,6 +162,6 @@ CML_UI_ListCheckbox.ToggleAll                   procedure
 
 CML_UI_ListCheckbox.UncheckAll                  procedure
     code
-    self.SetAll(FalseValue)
+    self.SetAll(CML_UI_ListCheckbox_FalseValue)
     
 

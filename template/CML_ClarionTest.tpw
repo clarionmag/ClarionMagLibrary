@@ -51,26 +51,36 @@
 #!*****************************************************************************
 #EXTENSION(TestSupportIncludes,'Add global includes for test support'),APPLICATION,DESCRIPTION('[ClarionTest] Global Includes for Test Support')
 #DISPLAY
-#Prompt('Include the ClarionMag library',check),%IncludeClarionMagLib,default(%true),At(10,,180)
+#Prompt('Compile ClarionMag Library source',Check),%CompileClarionMagLibrarySource,At(10,,180) #!,WhenAccepted(%ClearCompileClarionMagLibrarySourceIfNecessary(%CompileClarionMagLibrarySource,%IncludeClarionMagLib))
+#Boxed,Where(%CompileClarionMagLibrarySource=%false)
+    #Prompt('Include the ClarionMag library',check),%IncludeClarionMagLib,default(%true),At(10,,180)
+#EndBoxed
 #PROMPT('Generate help comments',CHECK),%ShowHelpComments,Default(%False),At(10,,180)
 #DISPLAY('You can add the name of your Class .INC files below.  The INCLUDE directive will be added for you.'),AT(10,,180,24)
 #BOXED('Class .INC Files')
-  #PROMPT('Class .INC File:',@S200),%TestClasses,MULTI('Class .INC File')
+    #PROMPT('Class .INC File:',@S200),%TestClasses,MULTI('Class .INC File')
 #ENDBOXED
 #!**********
+#ATSTART
+    #IF(VAREXISTS(%TestGroups) AND ITEMS(%TestGroups) = 0)
+        #ADD(%TestGroups,'Default')
+    #ENDIF
+    #If(%CompileClarionMagLibrarySource)
+        #Set(%IncludeClarionMagLib,%False)
+        #PDefine('_Compile_CML_Class_Source_',1)
+    #Else
+        #PDefine('_Compile_CML_Class_Source_',0)
+    #EndIf
+    
+#ENDAT
 #AT(%CustomGlobalDeclarations),where(%IncludeClarionMagLib)
 	#PROJECT('CMagLib.lib')
 #ENDAT
-#ATSTART
-  #IF(VAREXISTS(%TestGroups) AND ITEMS(%TestGroups) = 0)
-    #ADD(%TestGroups,'Default')
-  #ENDIF
-#ENDAT
 #!**********
 #AT(%CustomGlobalDeclarations)
-  #FOR(%TestClasses)
-    #ADD(%GlobalIncludeList, %TestClasses)
-  #ENDFOR
+    #FOR(%TestClasses)
+        #ADD(%GlobalIncludeList, %TestClasses)
+    #ENDFOR
 #ENDAT
 #!**********
 #AT(%GlobalData),DESCRIPTION(%ApplicationTemplateInstanceDescription)
@@ -487,3 +497,7 @@ END
       #ENDFOR
     #ENDIF
 #!*****************************************************************************
+#Group(%ClearCompileClarionMagLibrarySourceIfNecessary,*%pCompileClarionMagLibrarySource,*%pIncludeClarionMagLib)
+#If(%pCompileClarionMagLibrarySource=%true)
+    #Set(%pIncludeClarionMagLib,%False)
+#EndIf

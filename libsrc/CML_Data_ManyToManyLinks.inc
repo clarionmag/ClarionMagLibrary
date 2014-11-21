@@ -38,31 +38,25 @@
 !endregion
 
     include('CML_IncludeInAllClassHeaderFiles.inc'),once
-    Include('CML_Data_ManyToManyLinks.inc'),Once
+    Include('CML_Data_ManyToManyLinksPersister.inc'),Once
+    Include('CML_Data_ManyToManyLinksData.inc'),Once
 
 
-CML_UI_ListCheckbox                             Class,Type,Module('CML_UI_ListCheckbox.CLW'),Link('CML_UI_ListCheckbox.CLW',_CML_Classes_LinkMode_),Dll(_CML_Classes_DllMode_)
-ToggleAndAdvanceWithSpaceKey                        bool
-ListFEQ                                             long
-ListQ                                               &queue
-ListQCheckboxFieldNumber                            long
-ListQIconField                                      &long
-ListQRightRecordID                                  &long
-ManyToManyLinks                                     &CML_Data_ManyToManyLinks,protected
-Initialized                                         bool,private
-CheckAll                                            procedure
-Initialize                                          procedure(*Queue listQ,*long listQIconField,long listFEQ,long listQCheckboxFieldNumber=1)
-Initialize                                          procedure(*Queue listQ,*long listQIconField,*long listQRightRecordID, long listFEQ,long listQCheckboxFieldNumber=1,CML_Data_ManyToManyLinks ManyToManyLinks)
-LoadCheckboxData                                    procedure
-SetAll                                              procedure(bool flag)
-SetManyToManyLinkForCurrentQRecord                  procedure
-TakeMouseClick                                      procedure,byte
-TakeSpaceKey                                        procedure,byte
-ToggleAll                                           procedure
-ToggleCurrentCheckbox                               procedure,private
-UncheckAll                                          procedure
+CML_Data_ManyToManyLinks                        Class,Type,Module('CML_Data_ManyToManyLinks.CLW'),Link('CML_Data_ManyToManyLinks.CLW',_CML_Classes_LinkMode_),Dll(_CML_Classes_DllMode_)
+LinksData                                           &CML_Data_ManyToManyLinksData
+LeftRecordID                                        long
+Persister                                           &CML_Data_ManyToManyLinksPersister
+Construct                                           Procedure()
+Destruct                                            Procedure()
+ClearLinkBetween                                    procedure(long leftRecordID,long rightRecordID)
+ClearLinkTo                                         procedure(long rightRecordID)
+IsLinkBetween                                       procedure(long leftRecordID,long rightRecordID),bool
+IsLinkedTo                                          procedure(long rightRecordID),bool
+Load                                                procedure(long leftRecordID=0)
+Reset                                               procedure
+Save                                                procedure(long leftRecordID=0)
+SetLinkBetween                                      procedure(long leftRecordID,long rightRecordID)
+SetLinkTo                                           procedure(long rightRecordID)
                                                 End
 
-CML_UI_ListCheckbox_TrueValue                   equate(1)
-CML_UI_ListCheckbox_FalseValue                  equate(2)
 
