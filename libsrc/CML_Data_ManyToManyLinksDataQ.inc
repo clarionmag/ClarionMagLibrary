@@ -1,5 +1,5 @@
 !---------------------------------------------------------------------------------------------!
-! Copyright (c) 2013, CoveComm Inc.
+! Copyright (c) 2014, CoveComm Inc.
 ! All rights reserved.
 !---------------------------------------------------------------------------------------------!
 !region
@@ -37,19 +37,13 @@
 !---------------------------------------------------------------------------------------------!
 !endregion
 
-    include('CML_IncludeInAllClassHeaderFiles.inc'),once
-    Include('CML_Data_ManyToManyLinksDataQ.inc'),Once
+CML_Data_ManyToManyLinksDataQ                   queue,TYPE
+LeftRecordID                                        long
+RightRecordID                                       long
+IsLinked                                            bool
+IsPersisted                                         bool
+                                                end
 
-CML_Data_ManyToManyLinksPersister               Class,Type,Module('CML_Data_ManyToManyLinksPersister.CLW'),Link('CML_Data_ManyToManyLinksPersister.CLW',_CML_Classes_LinkMode_),Dll(_CML_Classes_DllMode_)
-Construct                                           Procedure()
-Destruct                                            Procedure()
-DataFile                                            &File
-AddLinkRecord                                       procedure(long leftRecordID,long rightRecordID),virtual
-CloseDataFile                                       procedure,virtual
-Load                                                procedure(long leftRecordID,CML_Data_ManyToManyLinksDataQ linksDataQ),virtual
-OpenDataFile                                        procedure,bool,virtual
-RemoveLinkRecord                                    procedure(long leftRecordID,long rightRecordID),virtual
-Save                                                procedure(long leftRecordID,CML_Data_ManyToManyLinksDataQ linksDataQ),virtual
-                                                End
+
 
 

@@ -10,7 +10,7 @@
 !!! <summary>
 !!! Generated from procedure template - TestProcedure
 !!! </summary>
-DeleteSaveAndLoadData PROCEDURE  (*long addr)              ! Declare Procedure
+SaveAndLoadData      PROCEDURE  (*long addr)               ! Declare Procedure
 ManytoMany                  CML_Data_ManyToManyLinks 
                             itemize(),pre()
 RightRecordX                    equate
@@ -24,12 +24,8 @@ Filename                    cstring(500)
 
   CODE
   addr = address(UnitTestResult)
-  BeginUnitTest('DeleteSaveAndLoadData')
+  BeginUnitTest('SaveAndLoadData')
     Filename = longpath() & '\CML_Data_ManyToManyLinksTests\LinksData.tps'
-    !if exists(filename)
-    !    remove(filename)
-    !end
-    !AssertThat(exists(filename),IsEqualTo(false),'Could not delete ' & filename)
     
     Persister.SetFilename(Filename)
     ManytoMany.Persister &= Persister
@@ -54,7 +50,12 @@ Filename                    cstring(500)
     AssertThat(ManyToMany.IsLinkedTo(RightRecordX),IsEqualTo(true), 'after load, record X should be linked')
     AssertThat(ManyToMany.IsLinkedTo(RightRecordY),IsEqualTo(false),'after load, record Y should not be linked')
     AssertThat(ManyToMany.IsLinkedTo(RightRecordZ),IsEqualTo(true), 'after load, record Z should be linked')
+
+    ManyToMany.ClearLinkTo(RightRecordX)
+    ManyToMany.ClearLinkTo(RightRecordZ)
     
+    ManyToMany.Save()
+
   DO ProcedureReturn ! dgh
 ProcedureReturn   ROUTINE
   RETURN 0

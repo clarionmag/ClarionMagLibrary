@@ -37,17 +37,19 @@
 !---------------------------------------------------------------------------------------------!
 !endregion
 
-    include('CML_IncludeInAllClassHeaderFiles.inc'),once
-
-CML_Data_ManyToManyLinksDataQ                   queue,TYPE
-LeftRecordID                                        long
-RightRecordID                                       long
-                                                end
-
-CML_Data_ManyToManyLinksData                    Class,Type,Module('CML_Data_ManyToManyLinksData.CLW'),Link('CML_Data_ManyToManyLinksData.CLW',_CML_Classes_LinkMode_),Dll(_CML_Classes_DllMode_)
-LinksQ                                              &CML_Data_ManyToManyLinksDataQ
-Construct                                           Procedure()
-Destruct                                            Procedure()
-                                                End
-
-
+!    include('CML_IncludeInAllClassHeaderFiles.inc'),once
+!
+!CML_Data_ManyToManyLinksDataQ                   queue,TYPE
+!LeftRecordID                                        long
+!RightRecordID                                       long
+!IsLinked                                            bool
+!IsPersisted                                         bool
+!                                                end
+!
+!CML_Data_ManyToManyLinksData                    Class,Type,Module('CML_Data_ManyToManyLinksData.CLW'),Link('CML_Data_ManyToManyLinksData.CLW',_CML_Classes_LinkMode_),Dll(_CML_Classes_DllMode_)
+!LinksQ                                              &CML_Data_ManyToManyLinksDataQ
+!Construct                                           Procedure()
+!Destruct                                            Procedure()
+!                                                End
+!
+!

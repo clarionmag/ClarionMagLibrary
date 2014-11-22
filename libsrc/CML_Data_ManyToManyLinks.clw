@@ -47,11 +47,12 @@ dbg                                     CML_System_Diagnostics_Logger
 
 CML_Data_ManyToManyLinks.Construct              Procedure()
     code
-    self.LinksData &= new CML_Data_ManyToManyLinksData
+    self.LinksDataQ &= new CML_Data_ManyToManyLinksDataQ
     
 CML_Data_ManyToManyLinks.Destruct               Procedure()
     code
-    dispose(self.LinksData)
+    free(self.LinksDataQ)
+    dispose(self.LinksDataQ)
 
 CML_Data_ManyToManyLinks.ClearLinkTo              procedure(long rightRecordID)
     code
@@ -59,11 +60,19 @@ CML_Data_ManyToManyLinks.ClearLinkTo              procedure(long rightRecordID)
 
 CML_Data_ManyToManyLinks.ClearLinkBetween         procedure(long leftRecordID,long rightRecordID)
     code
-    clear(self.LinksData.LinksQ)
-    self.LinksData.LinksQ.LeftRecordID = LeftRecordID
-    self.LinksData.LinksQ.RightRecordID = rightRecordID
-    get(self.LinksData.LinksQ,self.LinksData.LinksQ.LeftRecordID,self.LinksData.LinksQ.RightRecordID)    
-    if not errorcode() then delete(self.linksData.LinksQ).
+    if self.GetLinkRecord(leftRecordID,rightRecordID)
+        self.LinksDataQ.IsLinked = FALSE
+        put(self.LinksDataQ)
+    end
+    
+CML_Data_ManyToManyLinks.GetLinkRecord          procedure(long leftRecordID,long rightRecordID)!,bool
+    code
+    clear(self.LinksDataQ)
+    self.LinksDataQ.LeftRecordID = LeftRecordID
+    self.LinksDataQ.RightRecordID = rightRecordID
+    get(self.LinksDataQ,self.LinksDataQ.LeftRecordID,self.LinksDataQ.RightRecordID)    
+    if not errorcode() then return true.
+    return false
     
 CML_Data_ManyToManyLinks.IsLinkedTo             procedure(long rightRecordID)!,bool
     code
@@ -71,29 +80,28 @@ CML_Data_ManyToManyLinks.IsLinkedTo             procedure(long rightRecordID)!,b
     
 CML_Data_ManyToManyLinks.IsLinkBetween          procedure(long leftRecordID,long rightRecordID)!,bool
     code
-    self.LinksData.LinksQ.LeftRecordID = LeftRecordID
-    self.LinksData.LinksQ.RightRecordID = rightRecordID
-    get(self.LinksData.LinksQ,self.LinksData.LinksQ.LeftRecordID,self.LinksData.LinksQ.RightRecordID)
-    if not errorcode() then return true.
+    if self.GetLinkRecord(LeftRecordID,RightRecordID)
+        if self.LinksDataQ.IsLinked then return true.
+    end
     return false
     
 CML_Data_ManyToManyLinks.Load                   procedure(long leftRecordID=0)
     code
     if not self.Persister &= null
         if leftRecordID = 0 then leftRecordID = self.LeftRecordID.
-        self.Persister.Load(leftRecordID,self.LinksData)
+        self.Persister.Load(leftRecordID,self.LinksDataQ)
     end
     
 CML_Data_ManyToManyLinks.Reset                  procedure
     code
-    free(self.LinksData.LinksQ)
+    free(self.LinksDataQ)
     
 CML_Data_ManyToManyLinks.Save                   procedure(long leftRecordID=0)
     code    
     dbg.write('CML_Data_ManyToManyLinks.Save')
     if not self.Persister &= null
         if leftRecordID = 0 then leftRecordID = self.LeftRecordID.
-        self.Persister.Save(leftRecordID,self.LinksData)
+        self.Persister.Save(leftRecordID,self.LinksDataQ)
     end
 
 CML_Data_ManyToManyLinks.SetLinkTo              procedure(long rightRecordID)
@@ -102,7 +110,14 @@ CML_Data_ManyToManyLinks.SetLinkTo              procedure(long rightRecordID)
 
 CML_Data_ManyToManyLinks.SetLinkBetween         procedure(long leftRecordID,long rightRecordID)
     code
-    clear(self.LinksData.LinksQ)
-    self.LinksData.LinksQ.LeftRecordID = LeftRecordID
-    self.LinksData.LinksQ.RightRecordID = rightRecordID
-    add(self.LinksData.LinksQ,self.LinksData.LinksQ.LeftRecordID,self.LinksData.LinksQ.RightRecordID)
+    if not self.GetLinkRecord(LeftRecordID,RightRecordID)
+        clear(self.LinksDataQ)
+        self.LinksDataQ.LeftRecordID = LeftRecordID
+        self.LinksDataQ.RightRecordID = rightRecordID
+        self.LinksDataQ.IsLinked = true
+        add(self.LinksDataQ)
+    else
+        self.LinksDataQ.IsLinked = true
+        put(self.LinksDataQ)
+    end
+        

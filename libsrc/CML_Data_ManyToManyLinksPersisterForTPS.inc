@@ -44,8 +44,10 @@ CML_Data_ManyToManyLinksPersisterForTPS         Class(CML_Data_ManyToManyLinksPe
 Filename                                            cstring(500),protected
 Construct                                           Procedure()
 Destruct                                            Procedure()
-Load                                                procedure(long leftRecordID,CML_Data_ManyToManyLinksData linksData),derived
-Save                                                procedure(long leftRecordID,CML_Data_ManyToManyLinksData linksData),derived
+AddLinkRecord                                    procedure(long leftRecordID,long rightRecordID),derived
+Load                                                procedure(long leftRecordID,CML_Data_ManyToManyLinksDataQ linksDataQ),derived
+RemoveLinkRecord                                 procedure(long leftRecordID,long rightRecordID),derived
+!Save                                                procedure(long leftRecordID,CML_Data_ManyToManyLinksDataQ linksDataQ),derived
 SetFilename                                         procedure(string filename)
                                                 End
 

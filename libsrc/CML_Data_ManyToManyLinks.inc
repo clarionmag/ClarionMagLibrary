@@ -39,17 +39,18 @@
 
     include('CML_IncludeInAllClassHeaderFiles.inc'),once
     Include('CML_Data_ManyToManyLinksPersister.inc'),Once
-    Include('CML_Data_ManyToManyLinksData.inc'),Once
+    Include('CML_Data_ManyToManyLinksDataQ.inc'),Once
 
 
 CML_Data_ManyToManyLinks                        Class,Type,Module('CML_Data_ManyToManyLinks.CLW'),Link('CML_Data_ManyToManyLinks.CLW',_CML_Classes_LinkMode_),Dll(_CML_Classes_DllMode_)
-LinksData                                           &CML_Data_ManyToManyLinksData
+LinksDataQ                                           &CML_Data_ManyToManyLinksDataQ
 LeftRecordID                                        long
 Persister                                           &CML_Data_ManyToManyLinksPersister
 Construct                                           Procedure()
 Destruct                                            Procedure()
 ClearLinkBetween                                    procedure(long leftRecordID,long rightRecordID)
 ClearLinkTo                                         procedure(long rightRecordID)
+GetLinkRecord                                       procedure(long leftRecordID,long rightRecordID),bool
 IsLinkBetween                                       procedure(long leftRecordID,long rightRecordID),bool
 IsLinkedTo                                          procedure(long rightRecordID),bool
 Load                                                procedure(long leftRecordID=0)

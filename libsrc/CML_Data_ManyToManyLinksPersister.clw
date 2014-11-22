@@ -49,20 +49,20 @@ dbg                                     CML_System_Diagnostics_Logger
 
 CML_Data_ManyToManyLinksPersister.Construct                     Procedure()
     code
-    !self.Errors &= new CML_System_ErrorManager
-
 
 CML_Data_ManyToManyLinksPersister.Destruct                      Procedure()
     code
-    !dispose(self.Errors)
 
+CML_Data_ManyToManyLinksPersister.AddLinkRecord      procedure(long leftRecordID,long rightRecordID)!,virtual
+    code
+    
 CML_Data_ManyToManyLinksPersister.CloseDataFile procedure
     code
     if not self.DataFile &= null
         close(self.DataFile)
     end
     
-CML_Data_ManyToManyLinksPersister.Load          procedure(long leftRecordID,CML_Data_ManyToManyLinksData linksData)
+CML_Data_ManyToManyLinksPersister.Load          procedure(long leftRecordID,CML_Data_ManyToManyLinksDataQ linksDataQ)
     code
     
 CML_Data_ManyToManyLinksPersister.OpenDataFile  procedure!,bool
@@ -87,9 +87,30 @@ CML_Data_ManyToManyLinksPersister.OpenDataFile  procedure!,bool
     dbg.write('returning true')
     return true
 
-CML_Data_ManyToManyLinksPersister.Save          procedure(long leftRecordID,CML_Data_ManyToManyLinksData linksData)
+CML_Data_ManyToManyLinksPersister.RemoveLinkRecord   procedure(long leftRecordID,long rightRecordID)!,virtual
     code
-    dbg.write('CML_Data_ManyToManyLinksPersister.Save')
+
+CML_Data_ManyToManyLinksPersister.Save          procedure(long leftRecordID,CML_Data_ManyToManyLinksDataQ linksDataQ)
+x                                                   long
+    code
+    if self.OpenDataFile()
+        dbg.write('CML_Data_ManyToManyLinksPersister.Save')
+        loop x = 1 to records(linksDataQ)
+            get(LinksDataQ,x)
+            if LinksDataQ.IsLinked and not LinksDataQ.IsPersisted
+                self.AddLinkRecord(LinksDataQ.LeftRecordID,LinksDataQ.RightRecordID)
+                LinksDataQ.IsPersisted = true
+                put(linksDataQ)
+            elsif not LinksDataQ.IsLinked and LinksDataQ.IsPersisted
+                self.RemoveLinkRecord(LinksDataQ.LeftRecordID,LinksDataQ.RightRecordID)
+                LinksDataQ.IsPersisted = false
+                put(linksDataQ)
+            end
+        end
+        self.CloseDataFile()
+    end
+    
+    
 
 
 

@@ -2276,7 +2276,7 @@ EXPORTS
 ;End of initialisation functions
 
 ;Start of Exported Procedures
-  DELETESAVEANDLOADDATA                                   @?
+  SAVEANDLOADDATA                                         @?
   SETLINKBETWEENVERIFYLINKBETWEEN                         @?
   SETLINKTOVERIFYLINKTO                                   @?
 ;End of Exported Procedures

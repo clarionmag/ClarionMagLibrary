@@ -51,9 +51,6 @@ RightRecordID                                           long
                                                 end
 
 
-
-
-
     Include('CML_Data_ManyToManyLinksPersisterForTPS.inc'),Once
     include('CML_System_Diagnostics_Logger.inc'),once
 
@@ -66,9 +63,22 @@ CML_Data_ManyToManyLinksPersisterForTPS.Construct                     Procedure(
 CML_Data_ManyToManyLinksPersisterForTPS.Destruct                      Procedure()
     code
 
-CML_Data_ManyToManyLinksPersisterForTPS.Load    procedure(long leftRecordID,CML_Data_ManyToManyLinksData linksData)
+CML_Data_ManyToManyLinksPersisterForTPS.AddLinkRecord        procedure(long leftRecordID,long rightRecordID)!,derived
     code
-    free(linksData.LinksQ)
+    dbg.write('AddLinkRecord(' & leftRecordID & ',' & rightRecordID & ')')
+    clear(Links:Record)
+    Links:LeftRecordID = LeftRecordID
+    Links:RightRecordID = rightRecordID
+    add(LinksDataFile)
+    if errorcode() 
+        dbg.write('Error adding record: ' & error())
+    else
+        dbg.write('Success adding record')
+    end
+    
+CML_Data_ManyToManyLinksPersisterForTPS.Load    procedure(long leftRecordID,CML_Data_ManyToManyLinksDataQ linksDataQ)
+    code
+    free(linksDataQ)
     if self.OpenDataFile()
         clear(Links:Record)
         Links:LeftRecordID = LeftRecordID
@@ -76,46 +86,26 @@ CML_Data_ManyToManyLinksPersisterForTPS.Load    procedure(long leftRecordID,CML_
         loop
             next(LinksDataFile)
             if errorcode() or Links:LeftRecordID <> LeftRecordID then break.
-            clear(LinksData.LinksQ)
-            LinksData.LinksQ.LeftRecordID = Links:LeftRecordID
-            LinksData.LinksQ.rightRecordID = Links:RightRecordID
-            add(LinksData.LinksQ)
+            clear(linksDataQ)
+            linksDataQ.LeftRecordID = Links:LeftRecordID
+            linksDataQ.rightRecordID = Links:RightRecordID
+            linksDataQ.IsPersisted = true
+            linksDataQ.IsLinked = true
+            add(linksDataQ)
         end
         self.CloseDataFile()
     end
     
-CML_Data_ManyToManyLinksPersisterForTPS.Save    procedure(long leftRecordID,CML_Data_ManyToManyLinksData linksData)
-x                                                   long
-    code
-    dbg.write('CML_Data_ManyToManyLinksPersisterForTPS.Save')
-    ! Warning - the following code, although workable, is highly inefficient and will be rewritten
-    if self.OpenDataFile()
-        ! Clear out any existing 
-        clear(Links:Record)
-        Links:LeftRecordID = LeftRecordID
-        set(Links:kLeftRight,Links:kLeftRight)
-        loop
-            next(LinksDataFile)
-            if errorcode() or Links:LeftRecordID <> LeftRecordID then break.
-            dbg.write('deleting existing LinksDataFile record with Links:LeftRecordID ' & Links:LeftRecordID & ', Links:RightRecordID ' & Links:RightRecordID & ': ' & error())
-            delete(LinksDataFile)
-        end
-
-        dbg.write('records(LinksData.LinksQ) ' & records(LinksData.LinksQ))
-        loop x = 1 to records(LinksData.LinksQ)
-            get(LinksData.LinksQ,x)
-            clear(Links:Record)
-            Links:LeftRecordID = LinksData.LinksQ.LeftRecordID
-            Links:RightRecordID = LinksData.LinksQ.rightRecordID
-            dbg.write('adding LinksDataFile record with Links:LeftRecordID ' & Links:LeftRecordID & ', Links:RightRecordID ' & Links:RightRecordID & ': ' & error())
-            add(LinksDataFile)
-            if errorcode() 
-                dbg.write('Error adding record: ' & error())
-            else
-                dbg.write('Success adding record')
-            end
-        end
-        self.CloseDataFile()
+CML_Data_ManyToManyLinksPersisterForTPS.RemoveLinkRecord     procedure(long leftRecordID,long rightRecordID)!,derived
+    code    
+    dbg.write('RemoveLinkRecord(' & leftRecordID & ',' & rightRecordID & ')')
+    clear(Links:Record)
+    Links:LeftRecordID  = LeftRecordID
+    Links:RightRecordID = rightRecordID
+    get(LinksDataFile,Links:kLeftRight)
+    if not errorcode()
+        dbg.write('deleting record')
+        delete(LinksDataFile)
     end
 
 CML_Data_ManyToManyLinksPersisterForTPS.SetFilename     procedure(string filename)   

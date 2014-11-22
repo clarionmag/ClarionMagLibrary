@@ -15,10 +15,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Classes", "Classes", "{C09E
 		..\..\libsrc\CML_Data_ManyToManyLinksPersister.inc = ..\..\libsrc\CML_Data_ManyToManyLinksPersister.inc
 		..\..\libsrc\CML_Data_ManyToManyLinks.clw = ..\..\libsrc\CML_Data_ManyToManyLinks.clw
 		..\..\libsrc\CML_Data_ManyToManyLinks.inc = ..\..\libsrc\CML_Data_ManyToManyLinks.inc
-		..\..\libsrc\CML_Data_ManyToManyLinksData.clw = ..\..\libsrc\CML_Data_ManyToManyLinksData.clw
-		..\..\libsrc\CML_Data_ManyToManyLinksData.inc = ..\..\libsrc\CML_Data_ManyToManyLinksData.inc
 		..\..\libsrc\CML_Data_ManyToManyLinksPersisterForTPS.clw = ..\..\libsrc\CML_Data_ManyToManyLinksPersisterForTPS.clw
 		..\..\libsrc\CML_Data_ManyToManyLinksPersisterForTPS.inc = ..\..\libsrc\CML_Data_ManyToManyLinksPersisterForTPS.inc
+		..\..\libsrc\CML_Data_ManyToManyLinksDataQ.inc = ..\..\libsrc\CML_Data_ManyToManyLinksDataQ.inc
 	EndProjectSection
 EndProject
 Global

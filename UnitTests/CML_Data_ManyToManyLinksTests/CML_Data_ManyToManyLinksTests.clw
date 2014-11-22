@@ -65,7 +65,7 @@ SetLinkBetweenVerifyLinkBetween FUNCTION(*long addr),long,pascal   !
 SetLinkToVerifyLinkTo  FUNCTION(*long addr),long,pascal   !
      END
      MODULE('CML_DATA_MANYTOMANYLINKSTESTS003.CLW')
-DeleteSaveAndLoadData  FUNCTION(*long addr),long,pascal   !
+SaveAndLoadData        FUNCTION(*long addr),long,pascal   !
      END
        include('CML_ClarionTest_GlobalCodeAndData.inc','GlobalMap'),once
 ClarionTest_GetListOfTestProcedures PROCEDURE(*LONG Addr),LONG,PASCAL
@@ -125,7 +125,7 @@ ClarionTest_GetListOfTestProcedures PROCEDURE(*LONG Addr)
     Addr = ADDRESS(ClarionTest_ctpl)
     FREE(ClarionTest_ctpl.List)
     ClarionTest_ctpl.List.TestPriority       = 10
-    ClarionTest_ctpl.List.TestName       = 'DeleteSaveAndLoadData'
+    ClarionTest_ctpl.List.TestName       = 'SaveAndLoadData'
     ClarionTest_ctpl.List.TestGroupName      = '_000_Default'
     ClarionTest_ctpl.List.TestGroupPriority = 0
     ADD(ClarionTest_ctpl.List)

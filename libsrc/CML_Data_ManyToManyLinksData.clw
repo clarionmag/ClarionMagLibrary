@@ -46,13 +46,13 @@
     !include('CML_System_Diagnostics_Logger.inc'),once
 
 !dbg                                     CML_System_Diagnostics_Logger
-
-CML_Data_ManyToManyLinksData.Construct                     Procedure()
-    code
-    self.LinksQ &= new CML_Data_ManyToManyLinksDataQ
-
-
-CML_Data_ManyToManyLinksData.Destruct                      Procedure()
-    code
-    free(self.LinksQ)
-    dispose(self.LinksQ)
+!
+!CML_Data_ManyToManyLinksData.Construct                     Procedure()
+!    code
+!    self.LinksQ &= new CML_Data_ManyToManyLinksDataQ
+!
+!
+!CML_Data_ManyToManyLinksData.Destruct                      Procedure()
+!    code
+!    free(self.LinksQ)
+!    dispose(self.LinksQ)
