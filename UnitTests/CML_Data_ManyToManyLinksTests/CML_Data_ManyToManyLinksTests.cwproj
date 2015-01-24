@@ -37,6 +37,9 @@
     <Compile Include="CML_Data_ManyToManyLinksTests003.clw">
       <Generated>true</Generated>
     </Compile>
+    <Compile Include="CML_Data_ManyToManyLinksTests004.clw">
+      <Generated>true</Generated>
+    </Compile>
     <Compile Include="CML_DATA_MANYTOMANYLINKSTESTS_BC.CLW">
       <Generated>true</Generated>
     </Compile>

@@ -1,5 +1,5 @@
 !---------------------------------------------------------------------------------------------!
-! Copyright (c) 2014,2015 CoveComm Inc.
+! Copyright (c) 2015, CoveComm Inc.
 ! All rights reserved.
 !---------------------------------------------------------------------------------------------!
 !region
@@ -38,18 +38,14 @@
 !endregion
 
     include('CML_IncludeInAllClassHeaderFiles.inc'),once
-    Include('CML_Data_ManyToManyLinksDataQ.inc'),Once
+    Include('CML_Data_ManyToManyLinksPersister.inc'),Once
 
-CML_Data_ManyToManyLinksPersister               Class,Type,Module('CML_Data_ManyToManyLinksPersister.CLW'),Link('CML_Data_ManyToManyLinksPersister.CLW',_CML_Classes_LinkMode_),Dll(_CML_Classes_DllMode_)
+CML_Data_ManyToManyLinksPersisterForFile         Class(CML_Data_ManyToManyLinksPersister),Type,Module('CML_Data_ManyToManyLinksPersisterForFile.CLW'),Link('CML_Data_ManyToManyLinksPersisterForFile.CLW',_CML_Classes_LinkMode_),Dll(_CML_Classes_DllMode_)
 Construct                                           Procedure()
 Destruct                                            Procedure()
-DataFile                                            &File
-AddLinkRecord                                       procedure(long leftRecordID,long rightRecordID),bool,proc,virtual
-CloseDataFile                                       procedure,bool,proc,virtual
-LoadAllLinkingData                                  procedure(long leftRecordID,CML_Data_ManyToManyLinksDataQ linksDataQ),bool,proc,virtual
-OpenDataFile                                        procedure,bool,proc,virtual
-RemoveLinkRecord                                    procedure(long leftRecordID,long rightRecordID),bool,proc,virtual
-Save                                                procedure(long leftRecordID,CML_Data_ManyToManyLinksDataQ linksDataQ),bool,proc,virtual
+AddLinkRecord                                       procedure(long leftRecordID,long rightRecordID),derived
+LoadAllLinkingData                                  procedure(long leftRecordID,CML_Data_ManyToManyLinksDataQ linksDataQ),derived
+RemoveLinkRecord                                    procedure(long leftRecordID,long rightRecordID),derived
                                                 End
 
 

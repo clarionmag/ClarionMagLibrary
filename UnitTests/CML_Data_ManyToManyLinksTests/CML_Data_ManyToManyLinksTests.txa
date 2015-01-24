@@ -1,0 +1,266 @@
+[PROCEDURE]
+NAME Dummy
+CATEGORY 'Browse'
+[COMMON]
+DESCRIPTION 'Browse the ManyToMany file'
+FROM ABC Window
+[DATA]
+CurrentTab                STRING(80)
+[FILES]
+[PRIMARY]
+ManyToMany
+[INSTANCE]
+1
+[PROMPTS]
+%ButtonAction DEPEND %Control STRING TIMES 0
+
+%ButtonRunName DEPEND %Control STRING TIMES 0
+
+%ButtonRunParameters DEPEND %Control STRING TIMES 0
+
+%ButtonProcedure DEPEND %Control PROCEDURE TIMES 0
+
+%ButtonThread DEPEND %Control LONG TIMES 0
+
+%ButtonThreadStack DEPEND %Control @n7 TIMES 0
+
+%ButtonParameters DEPEND %Control STRING TIMES 0
+
+%ButtonRequest DEPEND %Control STRING TIMES 0
+
+%PreLookupKey DEPEND %Control KEY TIMES 0
+
+%PreLookupField DEPEND %Control COMPONENT TIMES 0
+
+%PreLookupProcedure DEPEND %Control PROCEDURE TIMES 0
+
+%PostLookupKey DEPEND %Control KEY TIMES 0
+
+%PostLookupField DEPEND %Control COMPONENT TIMES 0
+
+%PostLookupProcedure DEPEND %Control PROCEDURE TIMES 0
+
+%ForceWindowRefresh DEPEND %Control LONG TIMES 0
+[ADDITION]
+NAME ABC BrowseBox
+[INSTANCE]
+INSTANCE 1
+PROCPROP
+[PROMPTS]
+%AcceptToolbarControl LONG (0)
+%EnableQuickScan LONG  (0)
+
+%LocatorType DEFAULT  ('')
+%OverrideDefaultLocator DEFAULT ('')
+%OverrideLocator DEFAULT ('')
+
+%RecordFilter @S255  ('')
+
+%RangeField COMPONENT  ()
+
+%RangeLimitType DEFAULT  ('')
+%RangeLimit FIELD  ()
+%RangeLow FIELD  ()
+%RangeHigh FIELD  ()
+%RangeFile FILE  ()
+%ScrollBehavior DEFAULT  ('Movable Thumb')
+%ScrollKeyDistribution STRING  ('Runtime')
+%CustomKeyDistribution MULTI LONG  ()
+%KeyDistributionValue DEPEND %CustomKeyDistribution @S10 TIMES 0
+
+%ScrollAlpha LONG  (1)
+%ScrollNumeric LONG  (0)
+%ScrollAlt LONG  (0)
+%SortOrder MULTI LONG  ()
+%SortCondition DEPEND %SortOrder @S255 TIMES 0
+%SortKey DEPEND %SortOrder KEY TIMES 0
+%SortLocatorType DEPEND %SortOrder DEFAULT TIMES 0
+%SortOverrideDefaultLocator DEPEND %SortOrder DEFAULT TIMES 0
+%SortOverrideLocator DEPEND %SortOrder DEFAULT TIMES 0
+%SortRecordFilter DEPEND %SortOrder @S255 TIMES 0
+%SortRangeField DEPEND %SortOrder COMPONENT TIMES 0 !HOLA 0
+%SortRangeLimit DEPEND %SortOrder FIELD TIMES 0
+%SortRangeLow DEPEND %SortOrder FIELD TIMES 0
+%SortRangeHigh DEPEND %SortOrder FIELD TIMES 0
+%SortRangeFile DEPEND %SortOrder FILE TIMES 0
+%SortRangeLimitType DEPEND %SortOrder DEFAULT TIMES 0
+%SortScrollBehavior DEPEND %SortOrder DEFAULT TIMES 0
+%SortScrollKeyDistribution DEPEND %SortOrder STRING TIMES 0
+%SortCustomKeyDistribution DEPEND %SortOrder MULTI LONG TIMES 0
+%SortKeyDistributionValue DEPEND %SortCustomKeyDistribution @S10 TIMES 0
+%SortScrollAlpha DEPEND %SortOrder LONG TIMES 0
+%SortScrollNumeric DEPEND %SortOrder LONG TIMES 0
+%SortScrollAlt DEPEND %SortOrder LONG TIMES 0
+[ADDITION]
+NAME ABC BrowseSelectButton
+[INSTANCE]
+INSTANCE 2
+PARENT 1
+[PROMPTS]
+%HideIfDisabled LONG  (1)
+[ADDITION]
+NAME ABC BrowseViewButton
+[INSTANCE]
+INSTANCE 3
+PARENT 1
+[ADDITION]
+NAME ABC BrowseUpdateButtons
+[INSTANCE]
+INSTANCE 4
+PARENT 1
+PROCPROP
+[PROMPTS]
+%UpdateProcedure PROCEDURE  (UpdateManyToMany)
+%EditViaPopup LONG  (1)
+[ADDITION]
+NAME ABC CloseButton
+[INSTANCE]
+INSTANCE 5
+[ADDITION]
+NAME ABC HelpButton
+[INSTANCE]
+INSTANCE 6
+[ADDITION]
+NAME ABC WindowResize
+[INSTANCE]
+INSTANCE 7
+[PROMPTS]
+%UseAppStrategy    DEFAULT (1)
+%AppStrategy       DEFAULT ('Surface')
+%RestrictMinSize   DEFAULT (1)
+%WindowMinWidth    DEFAULT (0)
+%WindowMaxWidth    DEFAULT (0)
+[WINDOW]
+QuickWindow WINDOW('Browse the ManyToMany file'),AT(,,277,198),IMM,RESIZE,GRAY,MDI,HLP('Dummy'),FONT('Microsoft Sans Serif',8,,400,1),CENTER,SYSTEM
+    LIST,AT(8,30,261,124),USE(?Browse:1),MSG('Browsing the ManyToMany file'),IMM,HVSCROLL,|
+      FORMAT('64R(2)|M~Left Record ID~C(0)@n-14@64R(2)|M~Right Record ID~C(0)@n-14@'),|
+      FROM(Queue:Browse:1),#SEQ(1),#ORIG(?List),#FIELDS(M2M:LeftRecordID,M2M:RightRecordID)
+    BUTTON('&Select'),AT(8,158,49,14),USE(?Select:2),ICON('WASELECT.ICO'),FLAT,MSG('Select the Record'),TIP('Select the Record'),LEFT,#SEQ(2),#ORIG(?Select)
+    BUTTON('&View'),AT(61,158,49,14),USE(?View:3),ICON('WAVIEW.ICO'),FLAT,MSG('View Record'),TIP('View Record'),LEFT,#SEQ(3),#ORIG(?View)
+    BUTTON('&Insert'),AT(114,158,49,14),USE(?Insert:4),ICON('WAINSERT.ICO'),FLAT,MSG('Insert a Record'),TIP('Insert a Record'),LEFT,#SEQ(4),#ORIG(?Insert),#LINK(?Change:4)
+    BUTTON('&Change'),AT(167,158,49,14),USE(?Change:4),ICON('WACHANGE.ICO'),FLAT,MSG('Change the Record'),TIP('Change the Record'),LEFT,DEFAULT,#SEQ(4),#ORIG(?Change),#LINK(?Delete:4)
+    BUTTON('&Delete'),AT(220,158,49,14),USE(?Delete:4),ICON('WADELETE.ICO'),FLAT,MSG('Delete the Record'),TIP('Delete the Record'),LEFT,#SEQ(4),#ORIG(?Delete),#LINK(?Insert:4)
+  SHEET,AT(4,4,269,172),USE(?CurrentTab),#ORIG(CurrentTab)
+    TAB('&1) Record Order'),USE(?Tab:2)
+    END
+  END
+  BUTTON('&Close'),AT(171,180,49,14),USE(?Close),ICON('WACLOSE.ICO'),FLAT,MSG('Close Window'),TIP('Close Window'),LEFT,#SEQ(5),#ORIG(?Close)
+  BUTTON('&Help'),AT(224,180,49,14),USE(?Help),ICON('WAHELP.ICO'),FLAT,MSG('See Help Window'),TIP('See Help Window'),LEFT,STD(STD:Help),#SEQ(6),#ORIG(?Help)
+ END
+[PROCEDURE]
+NAME UpdateManyToMany
+CATEGORY 'Form'
+[COMMON]
+DESCRIPTION 'Form ManyToMany'
+FROM ABC Window
+[DATA]
+CurrentTab                STRING(80)
+[FILES]
+[PRIMARY]
+ManyToMany
+[INSTANCE]
+2
+[PROMPTS]
+%ButtonAction DEPEND %Control STRING TIMES 0
+
+%ButtonRunName DEPEND %Control STRING TIMES 0
+
+%ButtonRunParameters DEPEND %Control STRING TIMES 0
+
+%ButtonProcedure DEPEND %Control PROCEDURE TIMES 0
+
+%ButtonThread DEPEND %Control LONG TIMES 0
+
+%ButtonThreadStack DEPEND %Control @n7 TIMES 0
+
+%ButtonParameters DEPEND %Control STRING TIMES 0
+
+%ButtonRequest DEPEND %Control STRING TIMES 0
+
+%PreLookupKey DEPEND %Control KEY TIMES 0
+
+%PreLookupField DEPEND %Control COMPONENT TIMES 0
+
+%PreLookupProcedure DEPEND %Control PROCEDURE TIMES 0
+
+%PostLookupKey DEPEND %Control KEY TIMES 0
+
+%PostLookupField DEPEND %Control COMPONENT TIMES 0
+
+%PostLookupProcedure DEPEND %Control PROCEDURE TIMES 0
+
+%ForceWindowRefresh DEPEND %Control LONG TIMES 0
+[ADDITION]
+NAME ABC RecordValidation
+[INSTANCE]
+INSTANCE 1
+PROCPROP
+[PROMPTS]
+%ValidateOnAccept LONG  (1)
+%ValidateOnNonStopSelect LONG  (1)
+%ControlsExcluded MULTI LONG  ()
+%ControlToExclude DEPEND %ControlsExcluded STRING TIMES 0
+[ADDITION]
+NAME ABC SaveButton
+[INSTANCE]
+INSTANCE 2
+PROCPROP
+[PROMPTS]
+%InsertAllowed LONG  (1)
+%InsertMessage @S40  ('Record Will Be Added')
+%ChangeAllowed LONG  (1)
+%ChangeMessage @S40  ('Record Will Be Changed')
+%DeleteAllowed LONG  (1)
+%DeleteMessage @S40  ('Record Will Be Deleted')
+%ViewMessage @S40  ('View Record')
+%MessageHeader LONG  (0)
+%ActionOnDelete STRING  ('Standard Warning')
+%PrimingFields MULTI LONG  ()
+%PrimedField DEPEND %PrimingFields FIELD TIMES 0
+
+%PrimedValue DEPEND %PrimingFields @S255 TIMES 0
+
+%ActionOnCancel STRING  ('Confirm cancel')
+%MessageLocation STRING  ('Title Bar')
+%MessageStatusSection @n1  (0)
+
+%HistoryKey        DEFAULT (CtrlH)
+
+%AppendToTitle LONG  ()
+%AppendToTitleID @S255  ('')
+[ADDITION]
+NAME ABC CancelButton
+[INSTANCE]
+INSTANCE 3
+[ADDITION]
+NAME ABC HelpButton
+[INSTANCE]
+INSTANCE 4
+[ADDITION]
+NAME ABC ViewFormActions
+[INSTANCE]
+INSTANCE 5
+[ADDITION]
+NAME ABC WindowResize
+[INSTANCE]
+INSTANCE 6
+[PROMPTS]
+%UseAppStrategy    DEFAULT (1)
+%AppStrategy       DEFAULT ('Surface')
+%RestrictMinSize   DEFAULT (1)
+%WindowMinWidth    DEFAULT (0)
+%WindowMaxWidth    DEFAULT (0)
+[WINDOW]
+QuickWindow WINDOW('Form ManyToMany'),AT(,,163,70),RESIZE,IMM,GRAY,MDI,HLP('UpdateManyToMany'),FONT('Microsoft Sans Serif',8,,400,1),CENTER,SYSTEM
+  SHEET,AT(4,4,155,44),USE(?CurrentTab),#ORIG(CurrentTab)
+    TAB('&1) General'),USE(?Tab:1)
+         PROMPT('Left Record ID:'),USE(?M2M:LeftRecordID:Prompt),TRN,AT(8,20),#ORIG(?M2M:LeftRecordID:Prompt),#LINK(M2M:LeftRecordID)
+         ENTRY(@n-14),USE(M2M:LeftRecordID),RIGHT(1),AT(76,20,64,10),#ORIG(M2M:LeftRecordID),#LINK(?M2M:LeftRecordID:Prompt)
+         PROMPT('Right Record ID:'),USE(?M2M:RightRecordID:Prompt),TRN,AT(8,34),#ORIG(?M2M:RightRecordID:Prompt),#LINK(M2M:RightRecordID)
+         ENTRY(@n-14),USE(M2M:RightRecordID),RIGHT(1),AT(76,34,64,10),#ORIG(M2M:RightRecordID),#LINK(?M2M:RightRecordID:Prompt)
+    END
+  END
+  BUTTON('&OK'),AT(4,52,49,14),USE(?OK),ICON('WAOK.ICO'),FLAT,MSG('Accept data and close the window'),TIP('Accept data and close the window'),LEFT,DEFAULT,#SEQ(2),#ORIG(?OK)
+  BUTTON('&Cancel'),AT(57,52,49,14),USE(?Cancel),ICON('WACANCEL.ICO'),FLAT,MSG('Cancel operation'),TIP('Cancel operation'),LEFT,#SEQ(3),#ORIG(?Cancel)
+  BUTTON('&Help'),AT(110,52,49,14),USE(?Help),ICON('WAHELP.ICO'),FLAT,MSG('See Help Window'),TIP('See Help Window'),LEFT,STD(STD:Help),#SEQ(4),#ORIG(?Help)
+ END

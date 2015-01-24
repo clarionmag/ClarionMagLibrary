@@ -49,6 +49,9 @@
    INCLUDE('RTFCTL.INC'),ONCE
    INCLUDE('TRIGGER.INC'),ONCE
    INCLUDE('WINEXT.INC'),ONCE
+include('CML_System_Diagnostics_Logger.inc'),once
+log                                             CML_System_Diagnostics_Logger
+include('CML_Data_ManyToManyLinksPersisterForABC.inc'),once
 include('CML_Data_ManyToManyLinksPersisterForTPS.inc'),once
 include('CML_Data_ManyToManyLinks.inc'),once
 
@@ -67,6 +70,9 @@ SetLinkToVerifyLinkTo  FUNCTION(*long addr),long,pascal   !
      MODULE('CML_DATA_MANYTOMANYLINKSTESTS003.CLW')
 SaveAndLoadData        FUNCTION(*long addr),long,pascal   !
      END
+     MODULE('CML_DATA_MANYTOMANYLINKSTESTS004.CLW')
+SaveAndLoadDataUsingABCFile FUNCTION(*long addr),long,pascal   !
+     END
        include('CML_ClarionTest_GlobalCodeAndData.inc','GlobalMap'),once
 ClarionTest_GetListOfTestProcedures PROCEDURE(*LONG Addr),LONG,PASCAL
     ! Declare functions defined in this DLL
@@ -77,11 +83,21 @@ CML_Data_ManyToManyLinksTests:Kill PROCEDURE
 SilentRunning        BYTE(0)                               ! Set true when application is running in 'silent mode'
 
 !region File Declaration
+M2MLinkData          FILE,DRIVER('TOPSPEED'),PRE(M2M),CREATE,BINDABLE,THREAD !                    
+kLeftRecordIDRightRecordID KEY(M2M:LeftRecordID,M2M:RightRecordID),NOCASE !                    
+Record                   RECORD,PRE()
+LeftRecordID                LONG                           !                    
+RightRecordID               LONG                           !                    
+                         END
+                     END                       
+
 !endregion
 
   include('CML_ClarionTest_GlobalCodeAndData.inc','GlobalData'),once
   include('CML_ClarionTest_TestProcedures.inc'),once
 ClarionTest_ctpl    CML_ClarionTest_TestProcedures
+Access:M2MLinkData   &FileManager,THREAD                   ! FileManager for M2MLinkData
+Relate:M2MLinkData   &RelationManager,THREAD               ! RelationManager for M2MLinkData
 
 GlobalRequest        BYTE(0),THREAD                        ! Set when a browse calls a form, to let it know action to perform
 GlobalResponse       BYTE(0),THREAD                        ! Set to the response from the form
@@ -137,6 +153,12 @@ ClarionTest_GetListOfTestProcedures PROCEDURE(*LONG Addr)
     ADD(ClarionTest_ctpl.List)
         
     ClarionTest_ctpl.List.TestPriority       = 10
+    ClarionTest_ctpl.List.TestName       = 'SaveAndLoadDataUsingABCFile'
+    ClarionTest_ctpl.List.TestGroupName      = '_000_Default'
+    ClarionTest_ctpl.List.TestGroupPriority = 0
+    ADD(ClarionTest_ctpl.List)
+        
+    ClarionTest_ctpl.List.TestPriority       = 10
     ClarionTest_ctpl.List.TestName       = 'SetLinkToVerifyLinkTo'
     ClarionTest_ctpl.List.TestGroupName      = '_000_Default'
     ClarionTest_ctpl.List.TestGroupPriority = 0
@@ -159,6 +181,7 @@ CML_Data_ManyToManyLinksTests:Init_Called    BYTE,STATIC
   IF ~curINIMgr &= NULL
     INIMgr &= curINIMgr
   END
+  Access:M2MLinkData.SetErrors(GlobalErrors)
 
 !This procedure is used to shutdown the DLL. It must be called by the main executable before it closes down
 

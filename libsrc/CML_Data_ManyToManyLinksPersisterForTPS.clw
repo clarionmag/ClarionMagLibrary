@@ -1,5 +1,5 @@
 !---------------------------------------------------------------------------------------------!
-! Copyright (c) 2014, CoveComm Inc.
+! Copyright (c) 2014,2015 CoveComm Inc.
 ! All rights reserved.
 !---------------------------------------------------------------------------------------------!
 !region
@@ -72,11 +72,21 @@ CML_Data_ManyToManyLinksPersisterForTPS.AddLinkRecord        procedure(long left
     add(LinksDataFile)
     if errorcode() 
         dbg.write('Error adding record: ' & error())
+        return false
     else
         dbg.write('Success adding record')
     end
+    return true
     
-CML_Data_ManyToManyLinksPersisterForTPS.Load    procedure(long leftRecordID,CML_Data_ManyToManyLinksDataQ linksDataQ)
+CML_Data_ManyToManyLinksPersisterForTPS.CloseDataFile procedure
+    code
+    if not self.DataFile &= null
+        close(self.DataFile)
+        if errorcode() then return false.
+    end
+    return true
+    
+CML_Data_ManyToManyLinksPersisterForTPS.LoadAllLinkingData    procedure(long leftRecordID,CML_Data_ManyToManyLinksDataQ linksDataQ)
     code
     free(linksDataQ)
     if self.OpenDataFile()
@@ -93,8 +103,31 @@ CML_Data_ManyToManyLinksPersisterForTPS.Load    procedure(long leftRecordID,CML_
             linksDataQ.IsLinked = true
             add(linksDataQ)
         end
-        self.CloseDataFile()
+        return self.CloseDataFile()
     end
+    return false
+    
+CML_Data_ManyToManyLinksPersisterForTPS.OpenDataFile  procedure!,bool
+    code
+    dbg.write('CML_Data_ManyToManyLinksPersister.OpenDataFile')
+    self.CloseDataFile()
+    if not self.DataFile &= null
+        share(self.DataFile)
+        if errorcode()
+            create(self.DataFile)
+            if errorcode()
+                message('Unable to create data file ' & self.DataFile{prop:name} & ' ' & error())
+                return false
+            end
+            share(self.DataFile)
+            if errorcode()
+                message('Unable to open data file ' & self.DataFile{prop:name} & ' ' & error())
+                return false
+            end
+        end
+    end
+    dbg.write('returning true')
+    return true
     
 CML_Data_ManyToManyLinksPersisterForTPS.RemoveLinkRecord     procedure(long leftRecordID,long rightRecordID)!,derived
     code    
@@ -106,7 +139,9 @@ CML_Data_ManyToManyLinksPersisterForTPS.RemoveLinkRecord     procedure(long left
     if not errorcode()
         dbg.write('deleting record')
         delete(LinksDataFile)
+        if errorcode() then return false.
     end
+    return true
 
 CML_Data_ManyToManyLinksPersisterForTPS.SetFilename     procedure(string filename)   
     code

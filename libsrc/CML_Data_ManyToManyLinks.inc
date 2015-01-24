@@ -43,7 +43,7 @@
 
 
 CML_Data_ManyToManyLinks                        Class,Type,Module('CML_Data_ManyToManyLinks.CLW'),Link('CML_Data_ManyToManyLinks.CLW',_CML_Classes_LinkMode_),Dll(_CML_Classes_DllMode_)
-LinksDataQ                                           &CML_Data_ManyToManyLinksDataQ
+LinksDataQ                                          &CML_Data_ManyToManyLinksDataQ
 LeftRecordID                                        long
 Persister                                           &CML_Data_ManyToManyLinksPersister
 Construct                                           Procedure()
@@ -53,11 +53,12 @@ ClearLinkTo                                         procedure(long rightRecordID
 GetLinkRecord                                       procedure(long leftRecordID,long rightRecordID),bool
 IsLinkBetween                                       procedure(long leftRecordID,long rightRecordID),bool
 IsLinkedTo                                          procedure(long rightRecordID),bool
-Load                                                procedure(long leftRecordID=0)
+LoadAllLinkingData                                  procedure(long leftRecordID=0)
 Reset                                               procedure
-Save                                                procedure(long leftRecordID=0)
+SaveAllLinkingData                                  procedure(long leftRecordID=0)
 SetLinkBetween                                      procedure(long leftRecordID,long rightRecordID)
 SetLinkTo                                           procedure(long rightRecordID)
+SetPersister                                        procedure(CML_Data_ManyToManyLinksPersister persister)
                                                 End
 
 

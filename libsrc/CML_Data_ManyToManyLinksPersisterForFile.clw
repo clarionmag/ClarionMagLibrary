@@ -1,5 +1,5 @@
 !---------------------------------------------------------------------------------------------!
-! Copyright (c) 2014,2015 CoveComm Inc.
+! Copyright (c) 2015, CoveComm Inc.
 ! All rights reserved.
 !---------------------------------------------------------------------------------------------!
 !region
@@ -36,68 +36,66 @@
 !---------------------------------------------------------------------------------------------!
 !endregion
 
-                                                Member
-                                                Map
-                                                End
+                                            Member
+                                            Map
+                                            End
 
 
 
-    Include('CML_Data_ManyToManyLinksPersister.inc'),Once
+    Include('CML_Data_ManyToManyLinksPersisterForFile.inc'),Once
     include('CML_System_Diagnostics_Logger.inc'),once
 
-dbg                                                     CML_System_Diagnostics_Logger
+dbg                                     CML_System_Diagnostics_Logger
 
-CML_Data_ManyToManyLinksPersister.Construct             Procedure()
-    code
-
-CML_Data_ManyToManyLinksPersister.Destruct              Procedure()
+CML_Data_ManyToManyLinksPersisterForFile.Construct                     Procedure()
     code
 
-CML_Data_ManyToManyLinksPersister.AddLinkRecord         procedure(long leftRecordID,long rightRecordID)!,bool,proc,virtual
+CML_Data_ManyToManyLinksPersisterForFile.Destruct                      Procedure()
     code
-    return false
-    
-CML_Data_ManyToManyLinksPersister.CloseDataFile         procedure!,bool,proc,virtual
-    code
-    return false
-    
-CML_Data_ManyToManyLinksPersister.LoadAllLinkingData    procedure(long leftRecordID,CML_Data_ManyToManyLinksDataQ linksDataQ)!,bool,proc,virtual
-    code
-    return false
-    
-CML_Data_ManyToManyLinksPersister.OpenDataFile          procedure!,bool,proc,virtual
-    code
-    return false
 
-CML_Data_ManyToManyLinksPersister.RemoveLinkRecord      procedure(long leftRecordID,long rightRecordID)!,bool,proc,virtual
+CML_Data_ManyToManyLinksPersisterForFile.AddLinkRecord        procedure(long leftRecordID,long rightRecordID)!,derived
     code
-    return false
-
-CML_Data_ManyToManyLinksPersister.Save                  procedure(long leftRecordID,CML_Data_ManyToManyLinksDataQ linksDataQ)!,bool,proc,virtual
-x                                                   long
-    code
-    if self.OpenDataFile()
-        !dbg.write('CML_Data_ManyToManyLinksPersister.Save')
-        loop x = 1 to records(linksDataQ)
-            get(LinksDataQ,x)
-            !dbg.write('Got LinksDataQ record ' & x)
-            !dbg.write('LinksDataQ.IsLinked ' & LinksDataQ.IsLinked)
-            !dbg.write('LinksDataQ.IsPersisted ' & LinksDataQ.IsPersisted)
-            if LinksDataQ.IsLinked and not LinksDataQ.IsPersisted
-                self.AddLinkRecord(LinksDataQ.LeftRecordID,LinksDataQ.RightRecordID)
-                LinksDataQ.IsPersisted = true
-                put(linksDataQ)
-            elsif not LinksDataQ.IsLinked and LinksDataQ.IsPersisted
-                self.RemoveLinkRecord(LinksDataQ.LeftRecordID,LinksDataQ.RightRecordID)
-                LinksDataQ.IsPersisted = false
-                put(linksDataQ)
-            end
-        end
-        return self.CloseDataFile()
+    dbg.write('AddLinkRecord(' & leftRecordID & ',' & rightRecordID & ')')
+    clear(Links:Record)
+    Links:LeftRecordID = LeftRecordID
+    Links:RightRecordID = rightRecordID
+    add(LinksDataFile)
+    if errorcode() 
+        dbg.write('Error adding record: ' & error())
+    else
+        dbg.write('Success adding record')
     end
-    return false
     
+CML_Data_ManyToManyLinksPersisterForFile.LoadAllLinkingData    procedure(long leftRecordID,CML_Data_ManyToManyLinksDataQ linksDataQ)
+    code
+    free(linksDataQ)
+    if self.OpenDataFile()
+        clear(Links:Record)
+        Links:LeftRecordID = LeftRecordID
+        set(Links:kLeftRight,Links:kLeftRight)
+        loop
+            next(LinksDataFile)
+            if errorcode() or Links:LeftRecordID <> LeftRecordID then break.
+            clear(linksDataQ)
+            linksDataQ.LeftRecordID = Links:LeftRecordID
+            linksDataQ.rightRecordID = Links:RightRecordID
+            linksDataQ.IsPersisted = true
+            linksDataQ.IsLinked = true
+            add(linksDataQ)
+        end
+        self.CloseDataFile()
+    end
     
+CML_Data_ManyToManyLinksPersisterForFile.RemoveLinkRecord     procedure(long leftRecordID,long rightRecordID)!,derived
+    code    
+    dbg.write('RemoveLinkRecord(' & leftRecordID & ',' & rightRecordID & ')')
+    clear(Links:Record)
+    Links:LeftRecordID  = LeftRecordID
+    Links:RightRecordID = rightRecordID
+    get(LinksDataFile,Links:kLeftRight)
+    if not errorcode()
+        dbg.write('deleting record')
+        delete(LinksDataFile)
+    end
 
-
-
+    

@@ -78,18 +78,19 @@ CML_UI_ListCheckbox.Initialize                  procedure(*Queue listQ,*long lis
     self.ListQRightRecordID &= ListQRightRecordID
     self.ManyToManyLinks &= ManyToManyLinks                                                    
     
-CML_UI_ListCheckbox.LoadCheckboxData            procedure
+CML_UI_ListCheckbox.LoadDisplayableCheckboxData procedure
 x                                                   long
     code
+    dbg.write('CML_UI_ListCheckbox.LoadDisplayableCheckboxData')
     if not self.ManyToManyLinks &= null
         loop x = 1 to records(self.ListQ)
             get(self.ListQ,x)
-            if self.ManyToManyLinks.IsLinkedTo(x)
+            if self.ManyToManyLinks.IsLinkedTo(self.ListQRightRecordID)
                 self.ListQIconField = CML_UI_ListCheckbox_TrueValue
-                dbg.write(x & ' true')
+                !dbg.write(x & ' true')
             else
                 self.ListQIconField = CML_UI_ListCheckbox_FalseValue
-                dbg.write(x & ' false')
+                !dbg.write(x & ' false')
             end
             put(self.ListQ)
         end
@@ -138,7 +139,7 @@ CML_UI_ListCheckbox.TakeMouseClick              procedure!,byte
 
 CML_UI_ListCheckbox.TakeSpaceKey                procedure!,byte
     code
-    dbg.write('CML_UI_ListCheckbox.TakeSpaceKey')
+    !dbg.write('CML_UI_ListCheckbox.TakeSpaceKey')
     if keycode() = SpaceKey
         get(self.ListQ,choice(self.ListFEQ))
         self.ToggleCurrentCheckbox()
@@ -152,8 +153,11 @@ CML_UI_ListCheckbox.TakeSpaceKey                procedure!,byte
     
 CML_UI_ListCheckbox.ToggleCurrentCheckbox       procedure
     code
+    !dbg.write('CML_UI_ListCheckbox.ToggleCurrentCheckbox')
     !dbg.write(format(pointer(self.ListQ),@n02) & ' self.ListQIconField was ' & self.ListQIconField)
+    !dbg.write('self.ListQIconField was ' & self.ListQIconField)
     self.ListQIconField = choose(self.ListQIconField=CML_UI_ListCheckbox_TrueValue,CML_UI_ListCheckbox_FalseValue,CML_UI_ListCheckbox_TrueValue)
+    !dbg.write('self.ListQIconField is  ' & self.ListQIconField)
     !dbg.write(                                 '                           set to ' & self.ListQIconField)
     
 CML_UI_ListCheckbox.ToggleAll                   procedure

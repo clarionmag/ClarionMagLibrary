@@ -18,6 +18,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Classes", "Classes", "{C09E
 		..\..\libsrc\CML_Data_ManyToManyLinksPersisterForTPS.clw = ..\..\libsrc\CML_Data_ManyToManyLinksPersisterForTPS.clw
 		..\..\libsrc\CML_Data_ManyToManyLinksPersisterForTPS.inc = ..\..\libsrc\CML_Data_ManyToManyLinksPersisterForTPS.inc
 		..\..\libsrc\CML_Data_ManyToManyLinksDataQ.inc = ..\..\libsrc\CML_Data_ManyToManyLinksDataQ.inc
+		..\..\libsrc\CML_Data_ManyToManyLinksPersisterForABC.inc = ..\..\libsrc\CML_Data_ManyToManyLinksPersisterForABC.inc
+		..\..\libsrc\CML_Data_ManyToManyLinksPersisterForABC.clw = ..\..\libsrc\CML_Data_ManyToManyLinksPersisterForABC.clw
+		..\..\libsrc\CML_System_Diagnostics_Logger.clw = ..\..\libsrc\CML_System_Diagnostics_Logger.clw
+		..\..\libsrc\CML_System_Diagnostics_Logger.inc = ..\..\libsrc\CML_System_Diagnostics_Logger.inc
 	EndProjectSection
 EndProject
 Global

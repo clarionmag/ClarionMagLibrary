@@ -1,5 +1,5 @@
 !---------------------------------------------------------------------------------------------!
-! Copyright (c) 2014, CoveComm Inc.
+! Copyright (c) 2014,2015 CoveComm Inc.
 ! All rights reserved.
 !---------------------------------------------------------------------------------------------!
 !region
@@ -44,10 +44,11 @@ CML_Data_ManyToManyLinksPersisterForTPS         Class(CML_Data_ManyToManyLinksPe
 Filename                                            cstring(500),protected
 Construct                                           Procedure()
 Destruct                                            Procedure()
-AddLinkRecord                                    procedure(long leftRecordID,long rightRecordID),derived
-Load                                                procedure(long leftRecordID,CML_Data_ManyToManyLinksDataQ linksDataQ),derived
-RemoveLinkRecord                                 procedure(long leftRecordID,long rightRecordID),derived
-!Save                                                procedure(long leftRecordID,CML_Data_ManyToManyLinksDataQ linksDataQ),derived
+AddLinkRecord                                       procedure(long leftRecordID,long rightRecordID),bool,proc,derived
+CloseDataFile                                       procedure,bool,proc,derived
+LoadAllLinkingData                                  procedure(long leftRecordID,CML_Data_ManyToManyLinksDataQ linksDataQ),bool,proc,derived
+OpenDataFile                                        procedure,bool,proc,derived
+RemoveLinkRecord                                    procedure(long leftRecordID,long rightRecordID),bool,proc,derived
 SetFilename                                         procedure(string filename)
                                                 End
 

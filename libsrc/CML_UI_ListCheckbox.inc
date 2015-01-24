@@ -53,7 +53,7 @@ Initialized                                         bool,private
 CheckAll                                            procedure
 Initialize                                          procedure(*Queue listQ,*long listQIconField,long listFEQ,long listQCheckboxFieldNumber=1)
 Initialize                                          procedure(*Queue listQ,*long listQIconField,*long listQRightRecordID, long listFEQ,long listQCheckboxFieldNumber=1,CML_Data_ManyToManyLinks ManyToManyLinks)
-LoadCheckboxData                                    procedure
+LoadDisplayableCheckboxData                         procedure
 SetAll                                              procedure(bool flag)
 SetManyToManyLinkForCurrentQRecord                  procedure
 TakeMouseClick                                      procedure,byte
