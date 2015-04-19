@@ -83,14 +83,16 @@ x                                                   long
     code
     dbg.write('CML_UI_ListCheckbox.LoadDisplayableCheckboxData')
     if not self.ManyToManyLinks &= null
+        dbg.write('records(self.ListQ)')
         loop x = 1 to records(self.ListQ)
             get(self.ListQ,x)
+            dbg.write('self.ListQRightRecordID ' & self.ListQRightRecordID)
             if self.ManyToManyLinks.IsLinkedTo(self.ListQRightRecordID)
                 self.ListQIconField = CML_UI_ListCheckbox_TrueValue
-                !dbg.write(x & ' true')
+                dbg.write('record is linked')
             else
                 self.ListQIconField = CML_UI_ListCheckbox_FalseValue
-                !dbg.write(x & ' false')
+                dbg.write('record is not linked')
             end
             put(self.ListQ)
         end

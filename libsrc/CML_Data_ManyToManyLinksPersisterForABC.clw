@@ -88,10 +88,12 @@ CML_Data_ManyToManyLinksPersisterForABC.Init                                    
 CML_Data_ManyToManyLinksPersisterForABC.LoadAllLinkingData    procedure(long leftIDField,CML_Data_ManyToManyLinksDataQ linksDataQ)
     code
     if not self.Initialized then return false.
+    dbg.write('CML_Data_ManyToManyLinksPersisterForABC.LoadAllLinkingData')
     free(linksDataQ)
     if self.OpenDataFile()
         clear(self.LinkFileManager.File)
         self.LinkFileLeftIDField = LeftIDField
+        dbg.write('Loading data for LeftIDField ' & leftIDField)
         set(self.LinkFileKey,self.LinkFileKey)
         loop
             next(self.LinkFileManager.File)
@@ -102,6 +104,7 @@ CML_Data_ManyToManyLinksPersisterForABC.LoadAllLinkingData    procedure(long lef
             linksDataQ.IsPersisted = true
             linksDataQ.IsLinked = true
             add(linksDataQ)
+            dbg.write('Added record')
         end
         return self.CloseDataFile()
     end

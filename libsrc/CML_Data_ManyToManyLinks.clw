@@ -87,8 +87,11 @@ CML_Data_ManyToManyLinks.IsLinkBetween          procedure(long leftRecordID,long
     
 CML_Data_ManyToManyLinks.LoadAllLinkingData     procedure(long leftRecordID=0)
     code
+    dbg.write('CML_Data_ManyToManyLinks.LoadAllLinkingData')
     if not self.Persister &= null
+        dbg.write('leftRecordID ' & leftRecordID)
         if leftRecordID = 0 then leftRecordID = self.LeftRecordID.
+        dbg.write('leftRecordID ' & leftRecordID)
         if leftRecordID
             dbg.write('Loading linking data for leftRecordID ' & leftRecordID)
             self.Persister.LoadAllLinkingData(leftRecordID,self.LinksDataQ)
