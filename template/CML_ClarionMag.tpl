@@ -60,8 +60,7 @@ If Self.Response = RequestCompleted
 End
 #ENDAT
 #!----------------------------------------------------------------------------
-#! #Extension(ManyToManyCheckboxForABCBrowse,'Many-to-many checkboxes for an ABC browse'),REQ(BrowseBox(ABC)),PROCEDURE,WINDOW
-#Extension(ManyToManyCheckboxForABCBrowse,'Many-to-many checkboxes for an ABC browse'),PROCEDURE,WINDOW
+#Extension(ManyToManyCheckboxForABCBrowse,'Many-to-many checkboxes for an ABC browse'),REQ(BrowseBox(ABC)),PROCEDURE,WINDOW
 #Prompt('Class name',@s40),%M2MClassInstanceName,Default('M2MCheckboxList')
 #Boxed('"Left file"')
     #Prompt('File',FILE),%LeftFile
