@@ -60,7 +60,7 @@ If Self.Response = RequestCompleted
 End
 #ENDAT
 #!----------------------------------------------------------------------------
-#Extension(ManyToManyCheckboxForABCBrowse,'Many-to-many checkboxes for an ABC browse'),REQ(BrowseBox(ABC)),PROCEDURE,WINDOW
+#Extension(ManyToManyCheckboxForABCBrowse,'Many-to-many checkboxes for an ABC browse'),REQ(BrowseBox(ABC)),PROCEDURE
 #Prompt('Class name',@s40),%M2MClassInstanceName,Default('M2MCheckboxList')
 #Boxed('"Left file"')
     #Prompt('File',FILE),%LeftFile
@@ -84,36 +84,31 @@ End
 #Boxed('Other settings')
     #Prompt('Icon field',FIELD),%IconField
 #EndBoxed
-#Boxed('Hidden fields'),HIDE
-    #Prompt('Left browse template instance',@s100),%LeftBrowseTemplateInstance
-    #Prompt('Right browse template instance',@s100),%RightBrowseTemplateInstance
-    #Prompt('Left browse instance name',@s100),%LeftBrowseTemplateName
-    #Prompt('Right browse instance name',@s100),%RightBrowseTemplateName
-#EndBoxed
-#PREPARE
-#!    #Declare(%LeftBrowseTemplateName)
-#ENDPREPARE
 #AtStart
-    #Set(%RightBrowseTemplateInstance,%GetTemplateInstanceForControl(%RightBrowseControl))
-    #Set(%LeftBrowseTemplateInstance,%GetTemplateInstanceForControl(%LeftBrowseControl))
+    #Declare(%LeftBrowseControlInstance)
+    #Declare(%RightBrowseControlInstance)
+    #Declare(%LeftBrowseControlName)
+#!    #Declare(%RightBrowseControlName)
+    #Set(%RightBrowseControlInstance,%GetTemplateInstanceForControl(%RightBrowseControl))
+    #Set(%LeftBrowseControlInstance,%GetTemplateInstanceForControl(%LeftBrowseControl))
     #If(%LeftFileIsInBrowse)
-        #Set(%LeftBrowseTemplateName,%GetBrowseManagerName(%LeftBrowseControl))
+        #Set(%LeftBrowseControlName,%GetBrowseManagerName(%LeftBrowseControl))
     #EndIf
-    #Set(%RightBrowseTemplateName,%GetBrowseManagerName(%RightBrowseControl))   
+#!    #Set(%RightBrowseControlName,%GetBrowseManagerName(%RightBrowseControl))   
 #EndAt
 #At(%DataSection),Priority(3100)
-%M2MClassInstanceName        class
-ListCheckbox            &CML_UI_ListCheckbox
-Persister               &CML_Data_ManyToManyLinksPersisterForABC
-Links                   &CML_Data_ManyToManyLinks
-Construct               procedure
-Destruct                procedure
-DisplayCheckboxData     procedure
-Init                    procedure
-LoadEnrollmentData      procedure
-SaveEnrollmentData      procedure
-SetCheckboxIcon         procedure
-                    end                   
+%[20]M2MClassInstanceName class
+ListCheckbox           &CML_UI_ListCheckbox
+Persister              &CML_Data_ManyToManyLinksPersisterForABC
+Links                  &CML_Data_ManyToManyLinks
+Construct              procedure
+Destruct               procedure
+DisplayCheckboxData    procedure
+Init                   procedure
+LoadEnrollmentData     procedure
+SaveEnrollmentData     procedure
+SetCheckboxIcon        procedure
+                     end                   
 #EndAt
 #At(%WindowManagerMethodCodeSection,'Init','(),BYTE'),PRIORITY(8005),DESCRIPTION('Initialize M2MCheckboxList')
 %M2MClassInstanceName.Init()
@@ -125,16 +120,12 @@ SetCheckboxIcon         procedure
 %M2MClassInstanceName.SaveEnrollmentData()
 #EndAt
 #AT(%BrowserMethodCodeSection,,'TakeNewSelection','()'),PRIORITY(9000)
-#!    ! ControlInstance             : %ControlInstance
-#!    ! ActiveTemplateInstance      : %ActiveTemplateInstance
-#!    ! LeftBrowseTemplateInstance  : %LeftBrowseTemplateInstance
-#!    ! RightBrowseTemplateInstance : %RightBrowseTemplateInstance
     #If(%LeftFileIsInBrowse)
-        #If(%ControlInstance = %LeftBrowseTemplateInstance)
+        #If(%ControlInstance = %LeftBrowseControlInstance)
 %M2MClassInstanceName.LoadEnrollmentData()  
         #EndIf
     #EndIf
-    #If(%ControlInstance = %RightBrowseTemplateInstance)
+    #If(%ControlInstance = %RightBrowseControlInstance)
 %M2MClassInstanceName.DisplayCheckboxData()
     #EndIf
 #EndAt
@@ -172,7 +163,7 @@ SetCheckboxIcon         procedure
     code
     #If(%LeftFileIsInBrowse)
     self.SaveEnrollmentData()
-    %LeftBrowseTemplateName.UpdateBuffer()
+    %LeftBrowseControlName.UpdateBuffer()
     #EndIf
     self.links.LeftRecordID = %LeftFileUniqueField
     self.Links.LoadAllLinkingData()
@@ -190,30 +181,20 @@ SetCheckboxIcon         procedure
     else
         self.ListCheckbox.ListQIconField = CML_UI_ListCheckbox_FalseValue
     end
-#!    ! ActiveTemplateInstance     : %ActiveTemplateInstance
-#!    ! LeftBrowseTemplateInstance : %(%GetControlInstance(%LeftBrowseControl))
-#!    ! LeftBrowseTemplateName     : %LeftBrowseTemplateName
-#!    ! RightBrowseTemplateName    : %RightBrowseTemplateName
-#!    ! Linking file               : %LinkingFile
-#!    ! Linking FileManager: Access:%LinkingFile
-#!    ! Queue: %ListQueue
-#!    #Insert(%GenerateSourceForLeftBrowse)
 #EndAt
-#!----------------------------------------------------------------------------
-#GROUP(%GetBrowseManagerName,%pControl),PRESERVE
-    #FIX(%Control, %pControl)
-    #CONTEXT(%Procedure, %ControlInstance)
-        #RETURN(%ManagerName)
-    #ENDCONTEXT
 #!----------------------------------------------------------------------------
 #GROUP(%GetTemplateInstanceForControl,%pControl),PRESERVE
     #FIX(%Control, %pControl)
     #Return(%ControlInstance)
 #!----------------------------------------------------------------------------
-#GROUP(%GenerateSourceForLeftBrowse),PRESERVE
-      #FIX(%Control,%LeftBrowseControl)
-      #FIX(%ActiveTemplate,%ControlTemplate)
-      #FIX(%ActiveTemplateInstance,%ControlInstance)
-    ! LeftBrowseTemplateInstance     : %ActiveTemplateInstance
-      
+#GROUP(%GetBrowseManagerName,%pControl),PRESERVE
+    #CONTEXT(%Procedure, %GetTemplateInstanceForControl(%pControl))
+        #RETURN(%ManagerName)
+    #ENDCONTEXT
+#!----------------------------------------------------------------------------
+#!#GROUP(%GetBrowseManagerName,%pControl),PRESERVE
+#!    #FIX(%Control, %pControl)
+#!    #CONTEXT(%Procedure, %ControlInstance)
+#!        #RETURN(%ManagerName)
+#!    #ENDCONTEXT
     
