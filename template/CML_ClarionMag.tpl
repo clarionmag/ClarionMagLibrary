@@ -84,19 +84,26 @@ End
 #Boxed('Other settings')
     #Prompt('Icon field',FIELD),%IconField
 #EndBoxed
+#Prompt('Use custom icons',CHECK),%UseCustomIcons,Default(%False)
+#Enable(%UseCustomIcons)
+    #Prompt('Checked icon',ICON),%CheckedIconFileName,REQ
+    #Prompt('Unchecked icon',ICON),%UncheckedIconFileName,REQ
+#EndEnable
 #AtStart
     #Declare(%LeftBrowseControlInstance)
     #Declare(%RightBrowseControlInstance)
     #Declare(%LeftBrowseControlName)
-#!    #Declare(%RightBrowseControlName)
     #Set(%RightBrowseControlInstance,%GetTemplateInstanceForControl(%RightBrowseControl))
     #Set(%LeftBrowseControlInstance,%GetTemplateInstanceForControl(%LeftBrowseControl))
     #If(%LeftFileIsInBrowse)
         #Set(%LeftBrowseControlName,%GetBrowseManagerName(%LeftBrowseControl))
     #EndIf
-#!    #Set(%RightBrowseControlName,%GetBrowseManagerName(%RightBrowseControl))   
 #EndAt
 #At(%DataSection),Priority(3100)
+    #If(%UseCustomIcons)
+    pragma('link (%CheckedIconFileName)')
+    pragma('link (%UncheckedIconFileName)')
+    #EndIf
 %[20]M2MClassInstanceName class
 ListCheckbox           &CML_UI_ListCheckbox
 Persister              &CML_Data_ManyToManyLinksPersisterForABC
@@ -140,6 +147,10 @@ SetCheckboxIcon        procedure
     self.ListCheckbox &= new CML_UI_ListCheckbox
     self.Persister    &= new CML_Data_ManyToManyLinksPersisterForABC
     self.Links        &= new CML_Data_ManyToManyLinks
+    #If(%UseCustomIcons)
+    self.ListCheckbox.CheckedIconFileName = '~%CheckedIconFileName'
+    self.ListCheckbox.UncheckedIconFileName = '~%UncheckedIconFileName'
+    #EndIf
     
 %M2MClassInstanceName.Destruct                            procedure
     code

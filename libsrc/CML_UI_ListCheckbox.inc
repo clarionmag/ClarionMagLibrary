@@ -42,14 +42,17 @@
 
 
 CML_UI_ListCheckbox                             Class,Type,Module('CML_UI_ListCheckbox.CLW'),Link('CML_UI_ListCheckbox.CLW',_CML_Classes_LinkMode_),Dll(_CML_Classes_DllMode_)
-ToggleAndAdvanceWithSpaceKey                        bool
+CheckedIconFileName                                 cstring(500)
+Initialized                                         bool,private
 ListFEQ                                             long
 ListQ                                               &queue
 ListQCheckboxFieldNumber                            long
 ListQIconField                                      &long
 ListQRightRecordID                                  &long
 ManyToManyLinks                                     &CML_Data_ManyToManyLinks,protected
-Initialized                                         bool,private
+ToggleAndAdvanceWithSpaceKey                        bool
+UncheckedIconFileName                               cstring(500)
+Construct                                           procedure
 CheckAll                                            procedure
 Initialize                                          procedure(*Queue listQ,*long listQIconField,long listFEQ,long listQCheckboxFieldNumber=1)
 Initialize                                          procedure(*Queue listQ,*long listQIconField,*long listQRightRecordID, long listFEQ,long listQCheckboxFieldNumber=1,CML_Data_ManyToManyLinks ManyToManyLinks)

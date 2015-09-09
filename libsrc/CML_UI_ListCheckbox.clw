@@ -45,9 +45,17 @@
     include('CML_System_Diagnostics_Logger.inc'),once
     include('keycodes.clw'),once
 
+    pragma('link (CML_UnChecked.ico)')
+    pragma('link (CML_Checked.ico)')
+
 
 dbg                                             CML_System_Diagnostics_Logger
 ToggleValue                                     equate(-1)
+
+CML_UI_ListCheckbox.Construct                   procedure
+    code
+    self.CheckedIconFileName = '~CML_Checked.ico'
+    self.UncheckedIconFileName = '~CML_UnChecked.ico'  
 
 CML_UI_ListCheckbox.CheckAll                    procedure
 x                                                   long
@@ -61,11 +69,9 @@ CML_UI_ListCheckbox.Initialize                  procedure(*Queue listQ,*long lis
     self.ListQCheckboxFieldNumber = listQCheckboxFieldNumber
     self.ListQIconField &= listQIconField
     self.ListFEQ{PROPLIST:Icon,self.ListQCheckboxFieldNumber} = CML_UI_ListCheckbox_FalseValue
-    self.ListFEQ{PROP:IconList,CML_UI_ListCheckbox_TrueValue} = '~CML_Checked.ico'
-    self.ListFEQ{PROP:IconList,CML_UI_ListCheckbox_FalseValue} = '~CML_UnChecked.ico'  
+    self.ListFEQ{PROP:IconList,CML_UI_ListCheckbox_TrueValue} = self.CheckedIconFileName
+    self.ListFEQ{PROP:IconList,CML_UI_ListCheckbox_FalseValue} = self.UncheckedIconFileName
     self.ListFEQ{PROPLIST:Picture,self.ListQCheckboxFieldNumber} = '@p p'
-    pragma('link (CML_UnChecked.ico)')
-    pragma('link (CML_Checked.ico)')
     register(Event:accepted,address(self.TakeMouseClick),address(self),,self.ListFEQ)
     if self.ToggleAndAdvanceWithSpaceKey
         self.ListFEQ{PROP:Alrt} = SpaceKey
