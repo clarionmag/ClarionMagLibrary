@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+# Clarion 2.1.0.2447
+Project("{12B76EC0-1D7B-4FA7-A7D0-C524288B48A1}") = "ClarionTestRunner", "ClarionTestRunner.cwproj", "{4616D2A7-7DAF-48E3-ADDA-70EAD51613F0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Classes", "Classes", "{EC11628B-5CB0-4F0E-8664-876B8A2554FE}"
+	ProjectSection(SolutionItems) = postProject
+		..\libsrc\CML_ClarionTest_GlobalCodeAndData.inc = ..\libsrc\CML_ClarionTest_GlobalCodeAndData.inc
+		..\libsrc\CML_ClarionTest_Procedures.clw = ..\libsrc\CML_ClarionTest_Procedures.clw
+		..\libsrc\CML_ClarionTest_Procedures.inc = ..\libsrc\CML_ClarionTest_Procedures.inc
+		..\libsrc\CML_ClarionTest_SQLPlugin.clw = ..\libsrc\CML_ClarionTest_SQLPlugin.clw
+		..\libsrc\CML_ClarionTest_SQLPlugin.inc = ..\libsrc\CML_ClarionTest_SQLPlugin.inc
+		..\libsrc\CML_ClarionTest_TestProcedures.clw = ..\libsrc\CML_ClarionTest_TestProcedures.clw
+		..\libsrc\CML_ClarionTest_TestProcedures.inc = ..\libsrc\CML_ClarionTest_TestProcedures.inc
+		..\libsrc\CML_ClarionTest_TestResult.clw = ..\libsrc\CML_ClarionTest_TestResult.clw
+		..\libsrc\CML_ClarionTest_TestResult.inc = ..\libsrc\CML_ClarionTest_TestResult.inc
+		..\libsrc\CML_ClarionTest_TestRunner.clw = ..\libsrc\CML_ClarionTest_TestRunner.clw
+		..\libsrc\CML_ClarionTest_TestRunner.inc = ..\libsrc\CML_ClarionTest_TestRunner.inc
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4616D2A7-7DAF-48E3-ADDA-70EAD51613F0}.Debug|Win32.Build.0 = Debug|Win32
+		{4616D2A7-7DAF-48E3-ADDA-70EAD51613F0}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4616D2A7-7DAF-48E3-ADDA-70EAD51613F0}.Release|Win32.Build.0 = Release|Win32
+		{4616D2A7-7DAF-48E3-ADDA-70EAD51613F0}.Release|Win32.ActiveCfg = Release|Win32
+	EndGlobalSection
+EndGlobal

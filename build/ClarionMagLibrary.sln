@@ -1,0 +1,137 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+# Clarion 2.1.0.2447
+Project("{12B76EC0-1D7B-4FA7-A7D0-C524288B48A1}") = "CMagLib", "CMagLib.cwproj", "{631666FC-E116-4DBD-AA21-53367CBC6EA0}"
+EndProject
+Project("{12B76EC0-1D7B-4FA7-A7D0-C524288B48A1}") = "CreateExportFile", "CreateExportFile.cwproj", "{5AE64ABF-A0E3-4E37-BA48-3C84A7C4E7BC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Classes", "Classes", "{DCE1B46D-7E26-4EF6-A99F-23CF25F9E6BD}"
+	ProjectSection(SolutionItems) = postProject
+		..\libsrc\CML_BaseClass.clw = ..\libsrc\CML_BaseClass.clw
+		..\libsrc\CML_BaseClass.inc = ..\libsrc\CML_BaseClass.inc
+		..\libsrc\CML_BaseClass_AlwaysCompile.clw = ..\libsrc\CML_BaseClass_AlwaysCompile.clw
+		..\libsrc\CML_BaseClass_AlwaysCompile.inc = ..\libsrc\CML_BaseClass_AlwaysCompile.inc
+		..\libsrc\CML_CallA.a = ..\libsrc\CML_CallA.a
+		..\libsrc\CML_Clarion_TXAParser.clw = ..\libsrc\CML_Clarion_TXAParser.clw
+		..\libsrc\CML_Clarion_TXAParser.inc = ..\libsrc\CML_Clarion_TXAParser.inc
+		..\libsrc\CML_ClarionTest_Equates.inc = ..\libsrc\CML_ClarionTest_Equates.inc
+		..\libsrc\CML_ClarionTest_GlobalCodeAndData.inc = ..\libsrc\CML_ClarionTest_GlobalCodeAndData.inc
+		..\libsrc\CML_ClarionTest_Procedures.clw = ..\libsrc\CML_ClarionTest_Procedures.clw
+		..\libsrc\CML_ClarionTest_Procedures.inc = ..\libsrc\CML_ClarionTest_Procedures.inc
+		..\libsrc\CML_ClarionTest_SQLPlugin.clw = ..\libsrc\CML_ClarionTest_SQLPlugin.clw
+		..\libsrc\CML_ClarionTest_SQLPlugin.inc = ..\libsrc\CML_ClarionTest_SQLPlugin.inc
+		..\libsrc\CML_ClarionTest_TestProcedures.clw = ..\libsrc\CML_ClarionTest_TestProcedures.clw
+		..\libsrc\CML_ClarionTest_TestProcedures.inc = ..\libsrc\CML_ClarionTest_TestProcedures.inc
+		..\libsrc\CML_ClarionTest_TestResult.clw = ..\libsrc\CML_ClarionTest_TestResult.clw
+		..\libsrc\CML_ClarionTest_TestResult.inc = ..\libsrc\CML_ClarionTest_TestResult.inc
+		..\libsrc\CML_ClarionTest_TestRunner.clw = ..\libsrc\CML_ClarionTest_TestRunner.clw
+		..\libsrc\CML_ClarionTest_TestRunner.inc = ..\libsrc\CML_ClarionTest_TestRunner.inc
+		..\libsrc\CML_Data_Datafier.clw = ..\libsrc\CML_Data_Datafier.clw
+		..\libsrc\CML_Data_Datafier.inc = ..\libsrc\CML_Data_Datafier.inc
+		..\libsrc\CML_Data_ManyToManyLinks.clw = ..\libsrc\CML_Data_ManyToManyLinks.clw
+		..\libsrc\CML_Data_ManyToManyLinks.inc = ..\libsrc\CML_Data_ManyToManyLinks.inc
+		..\libsrc\CML_Data_ManyToManyLinksData.clw = ..\libsrc\CML_Data_ManyToManyLinksData.clw
+		..\libsrc\CML_Data_ManyToManyLinksData.inc = ..\libsrc\CML_Data_ManyToManyLinksData.inc
+		..\libsrc\CML_Data_ManyToManyLinksDataQ.inc = ..\libsrc\CML_Data_ManyToManyLinksDataQ.inc
+		..\libsrc\CML_Data_ManyToManyLinksPersister.clw = ..\libsrc\CML_Data_ManyToManyLinksPersister.clw
+		..\libsrc\CML_Data_ManyToManyLinksPersister.inc = ..\libsrc\CML_Data_ManyToManyLinksPersister.inc
+		..\libsrc\CML_Data_ManyToManyLinksPersisterForABC.clw = ..\libsrc\CML_Data_ManyToManyLinksPersisterForABC.clw
+		..\libsrc\CML_Data_ManyToManyLinksPersisterForABC.inc = ..\libsrc\CML_Data_ManyToManyLinksPersisterForABC.inc
+		..\libsrc\CML_Data_ManyToManyLinksPersisterForFile.clw = ..\libsrc\CML_Data_ManyToManyLinksPersisterForFile.clw
+		..\libsrc\CML_Data_ManyToManyLinksPersisterForFile.inc = ..\libsrc\CML_Data_ManyToManyLinksPersisterForFile.inc
+		..\libsrc\CML_Data_ManyToManyLinksPersisterForTPS.clw = ..\libsrc\CML_Data_ManyToManyLinksPersisterForTPS.clw
+		..\libsrc\CML_Data_ManyToManyLinksPersisterForTPS.inc = ..\libsrc\CML_Data_ManyToManyLinksPersisterForTPS.inc
+		..\libsrc\CML_IncludeInAllClassHeaderFiles.inc = ..\libsrc\CML_IncludeInAllClassHeaderFiles.inc
+		..\libsrc\CML_System_Class.clw = ..\libsrc\CML_System_Class.clw
+		..\libsrc\CML_System_Class.inc = ..\libsrc\CML_System_Class.inc
+		..\libsrc\CML_System_ClassParser.clw = ..\libsrc\CML_System_ClassParser.clw
+		..\libsrc\CML_System_ClassParser.inc = ..\libsrc\CML_System_ClassParser.inc
+		..\libsrc\CML_System_Diagnostics_FileLogger.clw = ..\libsrc\CML_System_Diagnostics_FileLogger.clw
+		..\libsrc\CML_System_Diagnostics_FileLogger.inc = ..\libsrc\CML_System_Diagnostics_FileLogger.inc
+		..\libsrc\CML_System_Diagnostics_Logger.clw = ..\libsrc\CML_System_Diagnostics_Logger.clw
+		..\libsrc\CML_System_Diagnostics_Logger.inc = ..\libsrc\CML_System_Diagnostics_Logger.inc
+		..\libsrc\CML_System_Diagnostics_Profiler.clw = ..\libsrc\CML_System_Diagnostics_Profiler.clw
+		..\libsrc\CML_System_Diagnostics_Profiler.inc = ..\libsrc\CML_System_Diagnostics_Profiler.inc
+		..\libsrc\CML_System_Diagnostics_Timer.clw = ..\libsrc\CML_System_Diagnostics_Timer.clw
+		..\libsrc\CML_System_Diagnostics_Timer.inc = ..\libsrc\CML_System_Diagnostics_Timer.inc
+		..\libsrc\CML_System_Diagnostics_Tracer.clw = ..\libsrc\CML_System_Diagnostics_Tracer.clw
+		..\libsrc\CML_System_Diagnostics_Tracer.inc = ..\libsrc\CML_System_Diagnostics_Tracer.inc
+		..\libsrc\CML_System_ErrorManager.clw = ..\libsrc\CML_System_ErrorManager.clw
+		..\libsrc\CML_System_ErrorManager.inc = ..\libsrc\CML_System_ErrorManager.inc
+		..\libsrc\CML_System_ExpFileWriter.clw = ..\libsrc\CML_System_ExpFileWriter.clw
+		..\libsrc\CML_System_ExpFileWriter.inc = ..\libsrc\CML_System_ExpFileWriter.inc
+		..\libsrc\CML_System_IO_AsciiFile.clw = ..\libsrc\CML_System_IO_AsciiFile.clw
+		..\libsrc\CML_System_IO_AsciiFile.inc = ..\libsrc\CML_System_IO_AsciiFile.inc
+		..\libsrc\CML_System_IO_CaptureStdOutput.clw = ..\libsrc\CML_System_IO_CaptureStdOutput.clw
+		..\libsrc\CML_System_IO_CaptureStdOutput.inc = ..\libsrc\CML_System_IO_CaptureStdOutput.inc
+		..\libsrc\CML_System_IO_Directory.clw = ..\libsrc\CML_System_IO_Directory.clw
+		..\libsrc\CML_System_IO_Directory.inc = ..\libsrc\CML_System_IO_Directory.inc
+		..\libsrc\CML_System_IO_File.clw = ..\libsrc\CML_System_IO_File.clw
+		..\libsrc\CML_System_IO_File.inc = ..\libsrc\CML_System_IO_File.inc
+		..\libsrc\CML_System_IO_FileInfo.clw = ..\libsrc\CML_System_IO_FileInfo.clw
+		..\libsrc\CML_System_IO_FileInfo.inc = ..\libsrc\CML_System_IO_FileInfo.inc
+		..\libsrc\CML_System_IO_StdOut.clw = ..\libsrc\CML_System_IO_StdOut.clw
+		..\libsrc\CML_System_IO_StdOut.inc = ..\libsrc\CML_System_IO_StdOut.inc
+		..\libsrc\CML_System_Mangle.clw = ..\libsrc\CML_System_Mangle.clw
+		..\libsrc\CML_System_Mangle.inc = ..\libsrc\CML_System_Mangle.inc
+		..\libsrc\CML_System_Pool.clw = ..\libsrc\CML_System_Pool.clw
+		..\libsrc\CML_System_Pool.inc = ..\libsrc\CML_System_Pool.inc
+		..\libsrc\CML_System_Runtime_DirectoryWatcher.clw = ..\libsrc\CML_System_Runtime_DirectoryWatcher.clw
+		..\libsrc\CML_System_Runtime_DirectoryWatcher.inc = ..\libsrc\CML_System_Runtime_DirectoryWatcher.inc
+		..\libsrc\CML_System_Runtime_DLL.clw = ..\libsrc\CML_System_Runtime_DLL.clw
+		..\libsrc\CML_System_Runtime_DLL.inc = ..\libsrc\CML_System_Runtime_DLL.inc
+		..\libsrc\CML_System_Stack.clw = ..\libsrc\CML_System_Stack.clw
+		..\libsrc\CML_System_Stack.inc = ..\libsrc\CML_System_Stack.inc
+		..\libsrc\CML_System_StackNode.inc = ..\libsrc\CML_System_StackNode.inc
+		..\libsrc\CML_System_String.clw = ..\libsrc\CML_System_String.clw
+		..\libsrc\CML_System_String.inc = ..\libsrc\CML_System_String.inc
+		..\libsrc\CML_System_StringCollection.clw = ..\libsrc\CML_System_StringCollection.clw
+		..\libsrc\CML_System_StringCollection.inc = ..\libsrc\CML_System_StringCollection.inc
+		..\libsrc\CML_System_StringUtility.clw = ..\libsrc\CML_System_StringUtility.clw
+		..\libsrc\CML_System_StringUtility.inc = ..\libsrc\CML_System_StringUtility.inc
+		..\libsrc\CML_System_Threading_CriticalSection.clw = ..\libsrc\CML_System_Threading_CriticalSection.clw
+		..\libsrc\CML_System_Threading_CriticalSection.inc = ..\libsrc\CML_System_Threading_CriticalSection.inc
+		..\libsrc\CML_System_Threading_DisplayedThread.clw = ..\libsrc\CML_System_Threading_DisplayedThread.clw
+		..\libsrc\CML_System_Threading_DisplayedThread.inc = ..\libsrc\CML_System_Threading_DisplayedThread.inc
+		..\libsrc\CML_System_Threading_ICriticalSection.inc = ..\libsrc\CML_System_Threading_ICriticalSection.inc
+		..\libsrc\CML_System_Threading_Thread.clw = ..\libsrc\CML_System_Threading_Thread.clw
+		..\libsrc\CML_System_Threading_Thread.inc = ..\libsrc\CML_System_Threading_Thread.inc
+		..\libsrc\CML_Text_RTF.clw = ..\libsrc\CML_Text_RTF.clw
+		..\libsrc\CML_Text_RTF.inc = ..\libsrc\CML_Text_RTF.inc
+		..\libsrc\CML_UI_BackgroundProgressDisplay.clw = ..\libsrc\CML_UI_BackgroundProgressDisplay.clw
+		..\libsrc\CML_UI_BackgroundProgressDisplay.inc = ..\libsrc\CML_UI_BackgroundProgressDisplay.inc
+		..\libsrc\CML_UI_ListCheckbox.clw = ..\libsrc\CML_UI_ListCheckbox.clw
+		..\libsrc\CML_UI_ListCheckbox.inc = ..\libsrc\CML_UI_ListCheckbox.inc
+		..\libsrc\CML_Windows_API_Equates.inc = ..\libsrc\CML_Windows_API_Equates.inc
+		..\libsrc\CML_Windows_API_Functions.inc = ..\libsrc\CML_Windows_API_Functions.inc
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{0A308039-2BD9-4F7B-BBF6-41132B354446}"
+	ProjectSection(SolutionItems) = postProject
+		..\template\CML_ClarionMag.tpl = ..\template\CML_ClarionMag.tpl
+		..\template\CML_ClarionTest.tpw = ..\template\CML_ClarionTest.tpw
+		..\template\CML_ClarionTest_ABC.tpl = ..\template\CML_ClarionTest_ABC.tpl
+		..\template\CML_ClarionTest_Clarion.tpl = ..\template\CML_ClarionTest_Clarion.tpl
+		..\template\CML_ClarionTestSQLPlugin.tpl = ..\template\CML_ClarionTestSQLPlugin.tpl
+		..\template\CML_Profiler.TPL = ..\template\CML_Profiler.TPL
+		..\template\CML_Scratchpad.tpl = ..\template\CML_Scratchpad.tpl
+		..\template\CML_TemplateLogger.tpw = ..\template\CML_TemplateLogger.tpw
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{631666FC-E116-4DBD-AA21-53367CBC6EA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{631666FC-E116-4DBD-AA21-53367CBC6EA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{631666FC-E116-4DBD-AA21-53367CBC6EA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{631666FC-E116-4DBD-AA21-53367CBC6EA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AE64ABF-A0E3-4E37-BA48-3C84A7C4E7BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AE64ABF-A0E3-4E37-BA48-3C84A7C4E7BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AE64ABF-A0E3-4E37-BA48-3C84A7C4E7BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AE64ABF-A0E3-4E37-BA48-3C84A7C4E7BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+EndGlobal

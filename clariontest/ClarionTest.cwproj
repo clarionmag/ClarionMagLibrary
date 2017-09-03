@@ -33,10 +33,10 @@
     <Compile Include="ClarionTest.clw">
       <Generated>true</Generated>
     </Compile>
-    <Compile Include="clariontest_about.clw" />
-    <Compile Include="clariontest_main.clw" />
-    <Compile Include="clariontest_settings.clw" />
+    <Compile Include="About_ClarionTest.clw" />
+    <Compile Include="TestRunner_Window_ClarionTest.clw" />
     <Compile Include="CML_CallA.a" />
+    <Compile Include="TestRunner_CommandLine_ClarionTest.clw" />
   </ItemGroup>
   <ItemGroup>
     <FileDriver Include="ASCII" />

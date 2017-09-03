@@ -1,7 +1,25 @@
 !---------------------------------------------------------------------------------------------!
-! Copyright (c) 2013, CoveComm Inc.
-! All rights reserved.
+! Copyright (c) 2017, CoveComm Inc.
+!
+!Permission is hereby granted, free of charge, to any person obtaining a copy
+!of this software and associated documentation files (the "Software"), to deal
+!in the Software without restriction, including without limitation the rights
+!to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+!copies of the Software, and to permit persons to whom the Software is
+!furnished to do so, subject to the following conditions:
+!
+!The above copyright notice and this permission notice shall be included in all
+!copies or substantial portions of the Software.
+!
+!THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+!IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+!FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+!AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+!LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+!OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+!SOFTWARE.
 !---------------------------------------------------------------------------------------------!
+
 !region
 ! 
 ! Redistribution and use in source and binary forms, with or without
@@ -36,22 +54,22 @@
 !---------------------------------------------------------------------------------------------!
 ! endRegion
 
-	!include('CML_IncludeInAllClassHeaderFiles.inc'),once
-	include('CML_System_Runtime_Dll.inc'),once
-	include('CML_clariontest_testresult.inc'),once
-	include('CML_ClarionTest_TestProcedures.inc'),once
+   !include('CML_IncludeInAllClassHeaderFiles.inc'),once
+   include('CML_System_Runtime_Dll.inc'),once
+   include('CML_clariontest_testresult.inc'),once
+   include('CML_ClarionTest_TestProcedures.inc'),once
 
 
-CML_ClarionTest_TestRunner              class,type,module('CML_ClarionTest_TestRunner.clw'),link('CML_ClarionTest_TestRunner.clw')!,_CML_Classes_LinkMode_),DLL(_CML_Classes_DllMode_)
-Procedures                                  &CML_ClarionTest_TestProceduresQueue
-DllMgr                                      &CML_System_Runtime_Dll
-DllName                                     cstring(FILE:maxfilepath + FILE:maxfilename + 1)
-Construct                                   PROCEDURE
-Destruct                                    procedure
-GetFailedTest                               procedure(string errormsg),*CML_ClarionTest_TestResult
-GetTestProcedures                           procedure(*CML_ClarionTest_TestProceduresQueue q)
-Init                                        procedure(string dllname)
-Kill                                        procedure
-RunTest                                     procedure(long index),*CML_ClarionTest_TestResult
-RunTestByName                               procedure(string name),*CML_ClarionTest_TestResult
-										end
+CML_ClarionTest_TestRunner                         class,type,module('CML_ClarionTest_TestRunner.clw'),link('CML_ClarionTest_TestRunner.clw')!,_CML_Classes_LinkMode_),DLL(_CML_Classes_DllMode_)
+Procedures                                            &CML_ClarionTest_TestProceduresQueue
+DllMgr                                                &CML_System_Runtime_Dll
+DllName                                               cstring(FILE:maxfilepath + FILE:maxfilename + 1)
+Construct                                             PROCEDURE
+Destruct                                              procedure
+GetFailedTest                                         procedure(string errormsg),*CML_ClarionTest_TestResult
+GetTestProceduresFromDLL                              procedure(*CML_ClarionTest_TestProceduresQueue q)
+Init                                                  procedure(string dllname)
+Kill                                                  procedure
+RunTest                                               procedure(long index),*CML_ClarionTest_TestResult
+RunTestByName                                         procedure(string name),*CML_ClarionTest_TestResult
+                                                   end
