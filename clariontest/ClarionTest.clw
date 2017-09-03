@@ -22,8 +22,10 @@
 
                                                    PROGRAM
 
-   include('CML_clariontest_testrunner.inc'),once
-   include('CML_clariontest_testresult.inc'),once
+   include('CML_ClarionTest_TestRunner.inc'),once
+   include('CML_ClarionTest_TestResult.inc'),once
+   include('CML_ClarionTest_ListLoader.inc'),once
+   include('CML_ClarionTest_TestDLL.inc'),once
    Include('CML_System_Runtime_DirectoryWatcher.inc'),once
    include('CML_System_Diagnostics_Logger.inc'),once
    include('CML_System_String.inc'),once
@@ -41,7 +43,7 @@ Logger                                             CML_System_Diagnostics_Logger
                                                       Module('TestRunner_CommandLine_ClarionTest.clw')
                                                          TestRunner_CommandLine(String filename)
                                                       end
-                                                      Module('ClarionTest_About.clw')
+                                                      Module('About_ClarionTest.clw')
                                                          About()
                                                       End
                                                       !Module('ClarionTest_Settings.clw')
@@ -63,7 +65,7 @@ TestListFilename                                   cstring(100)
    Settings.Init(LongPath() & '\ClarionTest.INI', NVD_INI)  ! Configure INIManager to use INI file
    ProgramDirectory = longpath()
    TestListFilename = command('TestListFile')
-   if TestListFile <> ''
+   if TestListFilename <> ''
       TestRunner_CommandLine(TestListFilename)
    else
       TestRunner_Window()

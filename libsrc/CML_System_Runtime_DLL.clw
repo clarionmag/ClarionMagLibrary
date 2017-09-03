@@ -96,7 +96,7 @@
 
 logger                                      CML_System_Diagnostics_Logger
 !global data for this module
-Return:Benign                               equate(0)
+Return:Benign                                      equate(0)
 Return:Fatal                                equate(3)
 Return:Notify                               equate(5)
 

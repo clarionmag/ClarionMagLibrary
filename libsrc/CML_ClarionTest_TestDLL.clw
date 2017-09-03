@@ -42,63 +42,13 @@
                                                    MAP
                                                    END
 
-   include('CML_ClarionTest_TestRunner.inc'),once
-   include('CML_ClarionTest_TestResult.inc'),once
+   include('CML_ClarionTest_TestDLL.inc'),once
    include('CML_System_Diagnostics_Logger.inc'),once
 
-dbg                                             CML_System_Diagnostics_Logger
+!logger                                             CML_System_Diagnostics_Logger
 
-CML_ClarionTest_TestRunner.GetFailedTest           procedure(string errormsg)
-result                                                &CML_ClarionTest_TestResult
-   CODE
-   result &= new CML_ClarionTest_TestResult
-   result.status = CML_ClarionTest_Status_Fail
-   result.Message = errormsg
-   return result
-	
-	
-CML_ClarionTest_TestRunner.RunTest                 procedure(CML_ClarionTest_TestDLL testDLL,long index)!,CML_ClarionTest_TestResult	
-result                                                &CML_ClarionTest_TestResult
-lptr                                                  long
-KillDLL                                               bool
-   code
-   if testDLL &= NULL 
-      return self.GetFailedTest('The DLL manager object is null')
-   end
-   if testDLL.IsInitialized() = false
-      return self.GetFailedTest('The DLL was not initialized')
-   end
-   if self.TestProceduresQ &= null
-      return self.GetFailedTest('No tests exist (queue not assigned)')
-   end
-   get(self.TestProceduresQ,index)
-   if errorcode()
-      return self.GetFailedTest('Could not find the requested test (index ' & index & ') ' & error())
-   end
-   r# = TestDLL.Call(upper(clip(self.TestProceduresQ.testname)),address(lptr))
-   if r# <> 0
-      return self.GetFailedTest('Could not execute the test: ' & TestDLL.ErrorStr)
-   END
-   result &= (lptr)
-   return result
 
-	
-CML_ClarionTest_TestRunner.RunTestByName           procedure(CML_ClarionTest_TestDLL testDLL,string name)!,*CML_ClarionTest_TestResult	
-x                                                     long
-   CODE
-   if self.TestProceduresQ &= null 
-      return self.GetFailedTest('The test queue was not assigned')
-   end
-   loop x = 1 to records(self.TestProceduresQ)
-      dbg.write('Test ' & x & ' "' & self.TestProceduresQ.TestName & '"')
-      get(self.TestProceduresQ,x)
-      if lower(clip(self.TestProceduresQ.TestName)) = lower(clip(name))
-         return self.RunTest(testDLL,x)
-      END
-   END
-   return self.GetFailedTest('The test ' & clip(name) & ' could not be found')
-	
-CML_ClarionTest_TestRunner.SetTestProcedures       procedure(CML_ClarionTest_TestProceduresQueue TestProcedureQ)
+CML_ClarionTest_TestDLL.Init                       procedure(string pDllPath, byte pDebug=0)!,byte,proc,derived
    code
-   self.TestProceduresQ &= TestProcedureQ
-			
+   self.FullyQualifiedName = pDllPath
+   return parent.Init(pDllPath,pDebug)

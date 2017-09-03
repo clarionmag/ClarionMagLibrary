@@ -25,6 +25,23 @@
 
 TestRunner_CommandLine                                     procedure(string listName)
    code
+   !   
+!      ! Called as a command line utility
+!      ShowUI = false
+!      RunAllTests = true
+!      do PrepareProcedure
+!      if exists(TestDllPathAndName)
+!         StdOut.Write('##teamcity[testSuiteStarted name=<39>' & TestDllName & '<39>]]')
+!         do LoadTests
+!         do RunTests
+!         StdOut.Write('##teamcity[testSuiteFinished name=<39>' & TestDllName & '<39>]]')
+!      else
+!         StdOut.Write('##teamcity[testFailed message=<39>DLL not found<39> details=<39>' & TestDllPathAndName & '<39>]]')
+!      end
+!      !message('done')
+!      return
+!   end
+
    
    
 

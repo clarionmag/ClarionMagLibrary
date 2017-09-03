@@ -111,7 +111,7 @@ FormatErrMsg                                    procedure(*string msg,long EC),b
 GetAddress                                      Procedure(string procname),long! If procname is not found in the addressq, getprocaddress is called to find the address if a dll has been loaded
 GetExportedProcedures                           procedure(string filename,Queue q),long
 GetLastError                                    procedure(),ulong !wraps the formatmessage api
-Init                                            procedure(string pDllPath, byte pDebug=0),byte,proc
+Init                                            procedure(string pDllPath, byte pDebug=0),byte,proc,virtual
 IsInitialized                                   procedure,byte
 Kill                                            procedure()
 SetProcFailCode                                 procedure(long pFailcode),byte,proc !default is 0

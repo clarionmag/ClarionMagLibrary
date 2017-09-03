@@ -55,17 +55,11 @@
 ! endRegion
 
    !include('CML_IncludeInAllClassHeaderFiles.inc'),once
-   include('CML_clariontest_testresult.inc'),once
-   include('CML_ClarionTest_TestProcedures.inc'),once
+   include('CML_System_Runtime_Dll.inc'),once
    include('CML_ClarionTest_TestDLL.inc'),once
 
 
-CML_ClarionTest_TestRunner                         class,type,module('CML_ClarionTest_TestRunner.clw'),link('CML_ClarionTest_TestRunner.clw')!,_CML_Classes_LinkMode_),DLL(_CML_Classes_DllMode_)
-TestProceduresQ                                       &CML_ClarionTest_TestProceduresQueue,private
-!TestDLL                                               &CML_ClarionTest_TestDLL
-!DllName                                               cstring(FILE:maxfilepath + FILE:maxfilename + 1)
-GetFailedTest                                         procedure(string errormsg),*CML_ClarionTest_TestResult
-RunTest                                               procedure(CML_ClarionTest_TestDLL testDLL,long index),*CML_ClarionTest_TestResult
-RunTestByName                                         procedure(CML_ClarionTest_TestDLL testDLL,string name),*CML_ClarionTest_TestResult
-SetTestProcedures                                     procedure(CML_ClarionTest_TestProceduresQueue TestProcedureQ)
+CML_ClarionTest_TestDLL                            class(CML_System_Runtime_Dll),type,module('CML_ClarionTest_TestDLL.clw'),link('CML_ClarionTest_TestDLL.clw')!,_CML_Classes_LinkMode_),DLL(_CML_Classes_DllMode_)
+FullyQualifiedName                                    cstring(500)
+Init                                            procedure(string pDllPath, byte pDebug=0),byte,proc,derived
                                                    end

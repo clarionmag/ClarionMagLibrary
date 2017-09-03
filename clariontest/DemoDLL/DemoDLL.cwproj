@@ -8,7 +8,7 @@
     <AssemblyName>DemoDLL</AssemblyName>
     <OutputName>DemoDLL</OutputName>
     <CWOutputType>Exe</CWOutputType>
-    <DefineConstants>_ABCDllMode_=&gt;0%3b_ABCLinkMode_=&gt;1</DefineConstants>
+    <DefineConstants>_Compile_CML_Class_Source_=&gt;0%3b_ABCDllMode_=&gt;0%3b_ABCLinkMode_=&gt;1</DefineConstants>
     <Model>Dll</Model>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>

@@ -28,6 +28,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Classes", "Classes", "{36D5
 		clariontest_settings.clw = clariontest_settings.clw
 		..\libsrc\CML_ClarionTest_Procedures.clw = ..\libsrc\CML_ClarionTest_Procedures.clw
 		..\libsrc\CML_ClarionTest_Procedures.inc = ..\libsrc\CML_ClarionTest_Procedures.inc
+		..\libsrc\CML_ClarionTest_TestDLL.clw = ..\libsrc\CML_ClarionTest_TestDLL.clw
+		..\libsrc\CML_ClarionTest_TestDLL.inc = ..\libsrc\CML_ClarionTest_TestDLL.inc
+		..\libsrc\CML_ClarionTest_ListLoader.clw = ..\libsrc\CML_ClarionTest_ListLoader.clw
+		..\libsrc\CML_ClarionTest_ListLoader.inc = ..\libsrc\CML_ClarionTest_ListLoader.inc
 	EndProjectSection
 EndProject
 Global
