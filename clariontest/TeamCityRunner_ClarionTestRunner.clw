@@ -68,6 +68,7 @@ FailedTestCount                                       long
       dbg.write('TestResult.Status ' & TestResult.Status & ' ' & TestResult.Message)
       case TestResult.Status
       of CML_ClarionTest_Status_Pass
+         dbg.write('Test passed')
       of CML_ClarionTest_Status_Fail
          FailedTestCount += 1
          StdOut.WriteToCurrentConsole('##teamcity[testFailed name=<39>' & clip(TestProceduresQ.TestName) &|
