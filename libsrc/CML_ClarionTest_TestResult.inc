@@ -53,30 +53,34 @@
 ! by taking out a subscription to www.DevRoadmaps.com.
 !---------------------------------------------------------------------------------------------!
 !endregion
-	!include('CML_IncludeInAllClassHeaderFiles.inc'),once
+   !include('CML_IncludeInAllClassHeaderFiles.inc'),once
 
 
-CML_ClarionTest_UnitTestTypes           Itemize,pre()
-IsEqualTo                                   equate(1)
-IsNotEqualTo                                equate
-										end
-CML_ClarionTest_UnitTestVariableTypes   Itemize,pre()
-StringType                                  equate
-IntegerType                                 equate
-										end
+CML_ClarionTest_UnitTestTypes                      Itemize,pre()
+IsEqualTo                                             equate(1)
+IsNotEqualTo                                          equate
+                                                   end
+CML_ClarionTest_UnitTestVariableTypes              Itemize,pre()
+StringType                                            equate
+IntegerType                                           equate
+                                                   end
 
 
-CML_ClarionTest_TestResult              CLASS,type
-ProcedureName                               cstring(100)
-Description                                 cstring(1000)
-Status                                      long
-Message                                     cstring(1000)
-										END
+CML_ClarionTest_TestResult                         CLASS,type
+Description                                           cstring(1000)
+IsDisabled                                            bool
+IsIncomplete                                          bool
+Message                                               cstring(1000)
+ProcedureName                                         cstring(100)
+Status                                                long
+                                                   END
 !GlobalTestResultInstance	CML_ClarionTest_TestResult
 
-CML_ClarionTest_Status_Pass             equate(1)
-CML_ClarionTest_Status_Fail             equate(2)
-CML_ClarionTest_Status_Ignore             equate(3)
+CML_ClarionTest_Status_Pass                        equate(1)
+CML_ClarionTest_Status_Fail                        equate(2)
+CML_ClarionTest_Status_Ignore                      equate(3)
+CML_ClarionTest_Status_Disabled                    equate(3) ! Synonym for Ignore
+CML_ClarionTest_Status_Incomplete                  equate(4)
 
 
 

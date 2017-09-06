@@ -7,6 +7,9 @@
     <RootNamespace>ClarionTestRunner</RootNamespace>
     <AssemblyName>ClarionTestRunner</AssemblyName>
     <OutputName>ClarionTestRunner</OutputName>
+    <DefineConstants>_ABCDllMode_=&gt;0%3b_ABCLinkMode=&gt;1%3b_Compile_CML_Class_Source_=&gt;1</DefineConstants>
+    <stack_size>16384</stack_size>
+    <CopyCore>True</CopyCore>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>True</DebugSymbols>
@@ -21,9 +24,17 @@
     <vid>off</vid>
     <check_stack>False</check_stack>
     <check_index>False</check_index>
+    <warnings>on</warnings>
+    <GenerateMap>True</GenerateMap>
+    <line_numbers>False</line_numbers>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="ClarionTestRunner.clw" />
+    <Compile Include="TeamCityRunner_ClarionTestRunner.clw" />
+    <Compile Include="CML_CallA.a" />
+  </ItemGroup>
+  <ItemGroup>
+    <FileDriver Include="DOS" />
   </ItemGroup>
   <Import Project="$(ClarionBinPath)\SoftVelocity.Build.Clarion.targets" />
 </Project>

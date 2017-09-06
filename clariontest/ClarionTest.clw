@@ -30,6 +30,7 @@
    include('CML_System_Diagnostics_Logger.inc'),once
    include('CML_System_String.inc'),once
    include('CML_System_IO_Directory.inc'),once
+   include('CML_System_IO_AsciiFile.inc'),once
    Include('CML_System_IO_StdOut.inc'),Once
    INCLUDE('ABUTIL.INC'),ONCE
 
@@ -37,12 +38,9 @@ Logger                                             CML_System_Diagnostics_Logger
 
 
                                                    MAP
-                                                      Module('TestRunner_Window_ClarionTest.clw')
-                                                         TestRunner_Window()
+                                                      Module('Main_ClarionTest.clw')
+                                                         Main()
                                                       End
-                                                      Module('TestRunner_CommandLine_ClarionTest.clw')
-                                                         TestRunner_CommandLine(String filename)
-                                                      end
                                                       Module('About_ClarionTest.clw')
                                                          About()
                                                       End
@@ -59,15 +57,12 @@ dbg                                                CML_System_Diagnostics_Logger
 ProgramDirectory                                   cstring(File:MaxFilePath + 1)
 TestDllDirectory                                   cstring(File:MaxFilePath + 1)
 TestDllName                                        cstring(FILE:MaxFileName + 1)
+TestDllPathAndName                                 cstring(FILE:MaxFileName + 1)
 TestListFilename                                   cstring(100)
+
 
    CODE
    Settings.Init(LongPath() & '\ClarionTest.INI', NVD_INI)  ! Configure INIManager to use INI file
    ProgramDirectory = longpath()
-   TestListFilename = command('TestListFile')
-   if TestListFilename <> ''
-      TestRunner_CommandLine(TestListFilename)
-   else
-      TestRunner_Window()
-   end
+   Main()
    Settings.Kill                                            ! Destroy INI manager

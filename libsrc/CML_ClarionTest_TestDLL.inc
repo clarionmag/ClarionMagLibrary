@@ -61,5 +61,6 @@
 
 CML_ClarionTest_TestDLL                            class(CML_System_Runtime_Dll),type,module('CML_ClarionTest_TestDLL.clw'),link('CML_ClarionTest_TestDLL.clw')!,_CML_Classes_LinkMode_),DLL(_CML_Classes_DllMode_)
 FullyQualifiedName                                    cstring(500)
-Init                                            procedure(string pDllPath, byte pDebug=0),byte,proc,derived
+Init                                                  procedure(string fullyQualifiedName, byte debug=0),byte,proc,derived
+Init                                                  procedure,byte,proc
                                                    end

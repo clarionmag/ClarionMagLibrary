@@ -48,7 +48,13 @@
 !logger                                             CML_System_Diagnostics_Logger
 
 
-CML_ClarionTest_TestDLL.Init                       procedure(string pDllPath, byte pDebug=0)!,byte,proc,derived
+CML_ClarionTest_TestDLL.Init                       procedure(string fullyQualifiedName, byte debug=0)!,byte,proc,derived
    code
-   self.FullyQualifiedName = pDllPath
-   return parent.Init(pDllPath,pDebug)
+   self.FullyQualifiedName = FullyQualifiedName
+   self.Debug = debug
+   return parent.Init(self.FullyQualifiedName,self.Debug)
+   
+CML_ClarionTest_TestDLL.Init                       procedure!,byte,proc
+   code
+   return parent.Init(self.FullyQualifiedName,self.Debug)
+   

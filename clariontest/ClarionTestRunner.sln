@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Classes", "Classes", "{EC11
 		..\libsrc\CML_ClarionTest_TestResult.inc = ..\libsrc\CML_ClarionTest_TestResult.inc
 		..\libsrc\CML_ClarionTest_TestRunner.clw = ..\libsrc\CML_ClarionTest_TestRunner.clw
 		..\libsrc\CML_ClarionTest_TestRunner.inc = ..\libsrc\CML_ClarionTest_TestRunner.inc
+		..\libsrc\CML_System_IO_StdOut.clw = ..\libsrc\CML_System_IO_StdOut.clw
+		..\libsrc\CML_System_IO_StdOut.inc = ..\libsrc\CML_System_IO_StdOut.inc
 	EndProjectSection
 EndProject
 Global

@@ -44,11 +44,13 @@
 
    include('CML_ClarionTest_ListLoader.inc'),once
    include('CML_System_Diagnostics_Logger.inc'),once
+   include('CML_System_IO_AsciiFile.inc'),once
+   include('CML_System_String.inc'),once
 
-!logger                                             CML_System_Diagnostics_Logger
+dbg                                                CML_System_Diagnostics_Logger
 
 	
-CML_ClarionTest_ListLoader.GetTestProceduresFromDLL      procedure(CML_ClarionTest_TestDLL TestDLL,*CML_ClarionTest_TestProceduresQueue TestProceduresQ)
+CML_ClarionTest_ListLoader.GetTestProceduresFromDLL      procedure(CML_ClarionTest_TestDLL TestDLL,*CML_ClarionTest_TestProceduresQueue TestProceduresQ)!,long,proc
 DllProceduresQ                                                      QUEUE
 ProcName                                                       cstring(200)
                                                             end
@@ -65,8 +67,8 @@ DllInitialized                                              byte
    clear(TestProceduresQ)
    ! Close the DLL so the list of exported procedures can be extracted
    ! But save the current state so it can be restored
-   DllInitialized = TestDLL.IsInitialized()
-   if DllInitialized = true
+   if TestDLL.IsInitialized()
+      DllInitialized = true
       TestDLL.kill()
    end
    !logger.write('Calling TestDLL.GetExportedProcedures with dllname ' & TestDLL.FullyQualifiedName)
@@ -138,8 +140,29 @@ DllInitialized                                              byte
 !      add(q)
 !      !logger.write('Added procedure ' & q)
 !   END
-   TestDLL.Kill()
-!	if DllInitialized = true and TestDLL.IsInitialized() = FALSE
-!		TestDLL.Init(TestDLL.FullyQualifiedName)
-!	end
+   if DllInitialized = true and TestDLL.IsInitialized() = FALSE
+      TestDLL.Init(TestDLL.FullyQualifiedName)
+   end
+   if records(TestProceduresQ) then return level:benign end
+   return level:notify
 	
+   
+!CML_ClarionTest_ListLoader.GetTestProceduresFromList     procedure(string TestListFilename,*CML_ClarionTest_TestProceduresQueue TestProceduresQ)!,long,proc
+!TestListFile                                                CML_System_IO_AsciiFile
+!TestListFileRecord                                          cstring(500)
+!str                                                         CML_System_String
+!   code
+!   If not TestListFile.OpenFile(TestListFilename) = LEVEL:Benign then return level:notify end
+!   loop while TestListFile.Read(TestListFileRecord) = Level:Benign
+!      clear(TestProceduresQ)
+!      str.Assign(TestListFileRecord)
+!      str.Split(',')
+!      if 
+!      
+!   end
+!   TestListFile.CloseFile()
+!
+!   
+      
+
+   

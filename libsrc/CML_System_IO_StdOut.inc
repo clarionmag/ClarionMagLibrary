@@ -37,20 +37,23 @@
 !---------------------------------------------------------------------------------------------!
 !endregion
 
-    include('CML_IncludeInAllClassHeaderFiles.inc'),once
-    !include('CML_System_ErrorManager.inc'),once
+   include('CML_IncludeInAllClassHeaderFiles.inc'),once
+   !include('CML_System_ErrorManager.inc'),once
 
 
-CML_System_IO_StdOut                        Class,Type,Module('CML_System_IO_StdOut.CLW'),Link('CML_System_IO_StdOut.CLW',_CML_Classes_LinkMode_),Dll(_CML_Classes_DllMode_)
+CML_System_IO_StdOut                               Class,Type,Module('CML_System_IO_StdOut.CLW'),Link('CML_System_IO_StdOut.CLW',_CML_Classes_LinkMode_),Dll(_CML_Classes_DllMode_)
 !Errors                                          &CML_System_ErrorManager
-ConsoleOpen                                     bool,protected
-StdOutHandle                                    long,protected
-Construct                                       Procedure()
-Destruct                                        Procedure()
-CloseConsole                                    procedure
-OpenConsole                                     procedure
-Write                                           procedure(string msg)
-
-                                            End
+UseCurrentConsole                                     bool
+ConsoleOpen                                           bool,protected
+StdOutHandle                                          long,protected
+Construct                                             Procedure()
+Destruct                                              Procedure()
+CloseConsole                                          procedure
+CloseCurrentConsole                                   procedure
+OpenConsole                                           procedure
+OpenCurrentConsole                                    procedure
+Write                                                 procedure(string msg)
+WriteToCurrentConsole                                 procedure(string msg)
+                                                   End
 
 

@@ -87,7 +87,7 @@ SilentRunning        BYTE(0)                               ! Set true when appli
 
   include('CML_ClarionTest_GlobalCodeAndData.inc','GlobalData'),once
   include('CML_ClarionTest_TestProcedures.inc'),once
-ClarionTest_ctpl    CML_ClarionTest_TestProcedures
+ClarionTestProcedures    CML_ClarionTest_TestProcedures
 
 TestClass   CLASS
 Construct       PROCEDURE
@@ -132,43 +132,43 @@ DLLInitializer.Construct PROCEDURE
   INCLUDE('CML_ClarionTest_GlobalCodeAndData.inc','ProgramProcedures')
 ClarionTest_GetListOfTestProcedures PROCEDURE(*LONG Addr)
     CODE
-    Addr = ADDRESS(ClarionTest_ctpl)
-    FREE(ClarionTest_ctpl.List)
-    ClarionTest_ctpl.List.TestPriority       = 10
-    ClarionTest_ctpl.List.TestName       = 'CompareTwoStrings'
-    ClarionTest_ctpl.List.TestGroupName      = 'Group1'
-    ClarionTest_ctpl.List.TestGroupPriority = 0
-    ADD(ClarionTest_ctpl.List)
+    Addr = ADDRESS(ClarionTestProcedures)
+    FREE(ClarionTestProcedures.List)
+    ClarionTestProcedures.List.TestPriority       = 10
+    ClarionTestProcedures.List.TestName       = 'CompareTwoStrings'
+    ClarionTestProcedures.List.TestGroupName      = 'Group1'
+    ClarionTestProcedures.List.TestGroupPriority = 0
+    ADD(ClarionTestProcedures.List)
         
-    ClarionTest_ctpl.List.TestPriority       = 10
-    ClarionTest_ctpl.List.TestName       = 'CompareTruetoFalse_DeliberateTestFailure'
-    ClarionTest_ctpl.List.TestGroupName      = 'Group1'
-    ClarionTest_ctpl.List.TestGroupPriority = 0
-    ADD(ClarionTest_ctpl.List)
+    ClarionTestProcedures.List.TestPriority       = 10
+    ClarionTestProcedures.List.TestName       = 'CompareTruetoFalse_DeliberateTestFailure'
+    ClarionTestProcedures.List.TestGroupName      = 'Group1'
+    ClarionTestProcedures.List.TestGroupPriority = 0
+    ADD(ClarionTestProcedures.List)
         
-    ClarionTest_ctpl.List.TestPriority       = 10
-    ClarionTest_ctpl.List.TestName       = 'CompareTwoGroups_Verify'
-    ClarionTest_ctpl.List.TestGroupName      = 'Group1'
-    ClarionTest_ctpl.List.TestGroupPriority = 0
-    ADD(ClarionTest_ctpl.List)
+    ClarionTestProcedures.List.TestPriority       = 10
+    ClarionTestProcedures.List.TestName       = 'CompareTwoGroups_Verify'
+    ClarionTestProcedures.List.TestGroupName      = 'Group1'
+    ClarionTestProcedures.List.TestGroupPriority = 0
+    ADD(ClarionTestProcedures.List)
         
-    ClarionTest_ctpl.List.TestPriority       = 10
-    ClarionTest_ctpl.List.TestName       = 'CompareTwoStrings_Verify'
-    ClarionTest_ctpl.List.TestGroupName      = 'Group2'
-    ClarionTest_ctpl.List.TestGroupPriority = 0
-    ADD(ClarionTest_ctpl.List)
+    ClarionTestProcedures.List.TestPriority       = 10
+    ClarionTestProcedures.List.TestName       = 'CompareTwoStrings_Verify'
+    ClarionTestProcedures.List.TestGroupName      = 'Group2'
+    ClarionTestProcedures.List.TestGroupPriority = 0
+    ADD(ClarionTestProcedures.List)
         
-    ClarionTest_ctpl.List.TestPriority       = 10
-    ClarionTest_ctpl.List.TestName       = 'CompareTwoIntegers_Verify'
-    ClarionTest_ctpl.List.TestGroupName      = 'Group2'
-    ClarionTest_ctpl.List.TestGroupPriority = 0
-    ADD(ClarionTest_ctpl.List)
+    ClarionTestProcedures.List.TestPriority       = 10
+    ClarionTestProcedures.List.TestName       = 'CompareTwoIntegers_Verify'
+    ClarionTestProcedures.List.TestGroupName      = 'Group2'
+    ClarionTestProcedures.List.TestGroupPriority = 0
+    ADD(ClarionTestProcedures.List)
         
-    ClarionTest_ctpl.List.TestPriority       = 10
-    ClarionTest_ctpl.List.TestName       = 'CompareEmptyString'
-    ClarionTest_ctpl.List.TestGroupName      = '_000_Default'
-    ClarionTest_ctpl.List.TestGroupPriority = 0
-    ADD(ClarionTest_ctpl.List)
+    ClarionTestProcedures.List.TestPriority       = 10
+    ClarionTestProcedures.List.TestName       = 'CompareEmptyString'
+    ClarionTestProcedures.List.TestGroupName      = '_000_Default'
+    ClarionTestProcedures.List.TestGroupPriority = 0
+    ADD(ClarionTestProcedures.List)
         
     RETURN 0
 TestClass.Construct                     PROCEDURE

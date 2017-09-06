@@ -10,6 +10,21 @@
 #DISPLAY('You can enter an expression to be tested here, or you can use the embeditor.'),AT(10,,180,20)
 #DISPLAY('You should probably review the embeditor view first as it contains instructions on the test syntax'),AT(10,,180,32)
 #PROMPT('Test Code',EDIT),%TestCode
+#Display('')
+#Boxed('Execution flags')
+   #Display('')
+   #Display('If the Ignore flag is set the test will not be executed')
+   #Display('when run as part of an automated build process or when')
+   #Display('Run All is executed in the ClarionTest app')
+   #Prompt('Ignore',Check),%TestIsIgnored,At(10,,180)
+   #Enable(%TestIsIgnored = 0)
+      #Display('')
+      #Display('If the Incomplete flag is set the test will not be executed')
+      #Display('when run as part of an automated build process')
+      #Prompt('Incomplete',Check),%TestIsIncomplete,At(10,,180)
+      #Display('')
+   #EndEnable
+#EndBoxed   
 #!**********
 #ATEND
   #CALL(%Debug,'TestSupport ATSTART for procedure ' & %Procedure)
@@ -23,6 +38,15 @@
 #AT(%ProcessedCode),PRIORITY(1),FIRST,DESCRIPTION(%ActiveTemplateInstanceDescription)
   %AddressVar = address(UnitTestResult)
   BeginUnitTest('%Procedure')
+      #If(%TestIsIgnored)
+  SetUnitTestIgnored('Flagged as Ignored in the procedure template')
+  do ProcedureReturn
+      #Else
+         #If(%TestIsIncomplete)
+  SetUnitTestIncomplete('Flagged as Incomplete in the procedure template')
+  do ProcedureReturn
+         #EndIf
+      #EndIf
       #IF(%ShowHelpComments)
 !-------------------------------------------------------------------
 ! Write your code to test for a result, using the AssertThat syntax.
@@ -86,7 +110,7 @@
 #AT(%GlobalData),DESCRIPTION(%ApplicationTemplateInstanceDescription)
   include('CML_ClarionTest_GlobalCodeAndData.inc','GlobalData'),once
   include('CML_ClarionTest_TestProcedures.inc'),once
-ClarionTest_ctpl    CML_ClarionTest_TestProcedures
+ClarionTestProcedures    CML_ClarionTest_TestProcedures
 #ENDAT
 #!**********
 #AT(%GlobalMap),DESCRIPTION(%ApplicationTemplateInstanceDescription)
@@ -109,8 +133,8 @@ ClarionTest_GetListOfTestProcedures PROCEDURE(*LONG Addr),LONG,PASCAL
       #FREE(%GroupedProcedures)
 ClarionTest_GetListOfTestProcedures PROCEDURE(*LONG Addr)
     CODE
-    Addr = ADDRESS(ClarionTest_ctpl)
-    FREE(ClarionTest_ctpl.List)
+    Addr = ADDRESS(ClarionTestProcedures)
+    FREE(ClarionTestProcedures.List)
       #FOR(%Procedure)
         #IF(%ProcedureTemplate = 'GroupProcedure') 
           #SET(%GroupTemplateName,%Procedure)
@@ -143,18 +167,18 @@ ProcedureReturn   ROUTINE
     #FIX(%Procedure,%PassedProcedure)
     #IF(%Procedure)
       #IF(SUB(%Procedure,1,1) <> '_')
-ClarionTest_ctpl.List.TestPriority       = 10
+ClarionTestProcedures.List.TestPriority       = 10
       #ELSIF(SUB(%Procedure,1,1) = '_')
-ClarionTest_ctpl.List.TestPriority       = %(SUB(%Procedure,2,3)+0)
+ClarionTestProcedures.List.TestPriority       = %(SUB(%Procedure,2,3)+0)
       #ENDIF
-ClarionTest_ctpl.List.TestName       = '%Procedure'
+ClarionTestProcedures.List.TestName       = '%Procedure'
     #Else
-ClarionTest_ctpl.List.TestPriority       = 10
-ClarionTest_ctpl.List.TestName       = '%PassedProcedure'
+ClarionTestProcedures.List.TestPriority       = 10
+ClarionTestProcedures.List.TestName       = '%PassedProcedure'
     #EndIf
-ClarionTest_ctpl.List.TestGroupName      = '%PassedGroup'
-ClarionTest_ctpl.List.TestGroupPriority = %(SUB(%PassedGroup,2,3)+0)
-ADD(ClarionTest_ctpl.List)
+ClarionTestProcedures.List.TestGroupName      = '%PassedGroup'
+ClarionTestProcedures.List.TestGroupPriority = %(SUB(%PassedGroup,2,3)+0)
+ADD(ClarionTestProcedures.List)
     
 #!*****************************************************************************
 #! The following code could probably be handled nicely with a couple of

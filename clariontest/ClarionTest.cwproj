@@ -34,9 +34,8 @@
       <Generated>true</Generated>
     </Compile>
     <Compile Include="About_ClarionTest.clw" />
-    <Compile Include="TestRunner_Window_ClarionTest.clw" />
+    <Compile Include="Main_ClarionTest.clw" />
     <Compile Include="CML_CallA.a" />
-    <Compile Include="TestRunner_CommandLine_ClarionTest.clw" />
   </ItemGroup>
   <ItemGroup>
     <FileDriver Include="ASCII" />

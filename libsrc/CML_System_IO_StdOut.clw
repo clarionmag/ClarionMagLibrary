@@ -41,8 +41,9 @@
                                                 module('')
                                                     AllocConsole(),BOOL,PASCAL,proc
                                                     FreeConsole(),BOOL,PASCAL,Proc
-                                                    GetStdHandle(ulong HandleEquate),long,PASCAL,PROC,RAW
-                                                    !CloseHandle( ulong hObject ), short, raw, pascal
+                                                   !GetStdHandle(ulong HandleEquate),long,PASCAL,PROC,RAW
+                                                   GetStdHandle(LONG),LONG,PASCAL,PROC,RAW
+                                                    CloseHandle( ulong hObject ), short, raw, pascal
                                                     !WriteFile(handle,long,dword,long,long),bool,raw,pascal
                                                     WriteFile(long hFile, *cstring buffer, long nNumberOfButesToWrite, *long lpNumberOfBytesWritten, ulong lpOverlapped), short, raw, pascal,proc
                                                 end
@@ -72,20 +73,29 @@ CML_System_IO_StdOut.CloseConsole           procedure
     if self.ConsoleOpen
         FreeConsole()
     end
-    
+
+CML_System_IO_StdOut.CloseCurrentConsole                  procedure
+   code
+   dbg.write('Close returns: ' &  CloseHandle(self.StdOutHandle) )
+
 CML_System_IO_StdOut.OpenConsole            procedure
-    code
-    if not self.ConsoleOpen
-        AllocConsole()    
-        self.StdOutHandle = GetStdHandle(STD_OUTPUT_HANDLE)
-        dbg.write('self.StdOutHandle ' & self.StdOutHandle)
-        if self.StdOutHandle > 0
-            self.ConsoleOpen = TRUE
-        else
-            FreeConsole()
-            ! Should really log an error
-        end
-    end
+   code
+   if not self.ConsoleOpen
+      AllocConsole()    
+      self.StdOutHandle = GetStdHandle(STD_OUTPUT_HANDLE)
+      dbg.write('self.StdOutHandle ' & self.StdOutHandle)
+      if self.StdOutHandle > 0
+         self.ConsoleOpen = TRUE
+      else
+         FreeConsole()
+         ! Should really log an error
+      end
+   end
+      
+CML_System_IO_StdOut.OpenCurrentConsole                   procedure
+   code
+   self.StdOutHandle = GetStdHandle(STD_OUTPUT_HANDLE)
+   dbg.write('Using handle ' & self.StdOutHandle)
         
 CML_System_IO_StdOut.Write                  procedure(string pMsg)
 msg                                             &CString
@@ -108,9 +118,12 @@ BytesToWrite                                    long
     dispose(msg)
     
 
-
-    
-
-
-
-
+CML_System_IO_StdOut.WriteToCurrentConsole         procedure(string pMsg)
+msg                                                   &CString
+BytesWritten                                          long
+BytesToWrite                                          long
+   code
+   msg &= new Cstring(len(clip(pMsg)))
+   msg = clip(pMsg)! & '<13,10>'
+   dbg.write('Write returns: ' & WriteFile(self.StdOutHandle,msg,len(clip(msg)),BytesWritten,0))
+   dispose(msg)

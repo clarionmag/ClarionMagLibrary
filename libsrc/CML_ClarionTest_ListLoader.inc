@@ -62,6 +62,6 @@
 
 
 CML_ClarionTest_ListLoader                         class,type,module('CML_ClarionTest_ListLoader.clw'),link('CML_ClarionTest_ListLoader.clw')!,_CML_Classes_LinkMode_),DLL(_CML_Classes_DllMode_)
-!GetTestProceduresFromList                             procedure(string TestListFilename,*CML_ClarionTest_TestProceduresQueue TestProceduresQ)
-GetTestProceduresFromDLL                              procedure(CML_ClarionTest_TestDLL TestDLL,*CML_ClarionTest_TestProceduresQueue TestProceduresQ)
+!GetTestProceduresFromList                             procedure(string TestListFilename,*CML_ClarionTest_TestProceduresQueue TestProceduresQ),long,proc
+GetTestProceduresFromDLL                              procedure(CML_ClarionTest_TestDLL TestDLL,*CML_ClarionTest_TestProceduresQueue TestProceduresQ),long,proc
                                                    end

@@ -35,7 +35,7 @@
 
 
 
-TestRunner_Window                                  PROCEDURE 
+Main                                  PROCEDURE 
 
 Resizer                                               CLASS(WindowResizeClass)
 Init                                                     PROCEDURE(BYTE AppStrategy=AppStrategy:Resize,BYTE SetWindowMinSize=False,BYTE SetWindowMaxSize=False)
@@ -44,7 +44,6 @@ Init                                                     PROCEDURE(BYTE AppStrat
 DirectoryWatcher                                      class(CML_System_Runtime_DirectoryWatcher)
 DoTask                                                   procedure,VIRTUAL
                                                       end
-StdOut                                                CML_System_IO_StdOut
 
                                                       itemize(1),pre(Style)
 Default                                                  equate
@@ -56,8 +55,6 @@ NoResult                                                 equate
 
 FailedTestCount                                       long
 FirstFailedTest                                       long
-
-TestDllPathAndName                                    CSTRING(File:MaxFilePath + File:MaxFileName + 1)
 
 PreviousGroupOrTestName                               string(200)
 TestsQ                                                QUEUE,PRE(TestsQ)
@@ -324,9 +321,9 @@ RunTests                                           Procedure()
       if ~errorcode()
 !		!!dbg.write('Got record ' & TestsQ.qPointer & ', test ' & TestProceduresQ.TestName)
 !		!!dbg.write('Running test ' & TestProceduresQ.TestName)
-         if not ShowUI
-            StdOut.Write('##teamcity[testStarted name=<39>' & clip(TestsQ.GroupOrTestName) & '<39>]]')
-         end
+!         if not ShowUI
+!            StdOut.Write('##teamcity[testStarted name=<39>' & clip(TestsQ.GroupOrTestName) & '<39>]]')
+!         end
          TestResult &= TestRunner.RunTestByName(TestDLL,TestsQ.GroupOrTestName)
          CurrentTestIndex += 1
          if ShowUI
@@ -353,12 +350,12 @@ RunTests                                           Procedure()
             END
          END
          PUT(TestsQ)  
-         if not ShowUI
-            IF TestsQ.TestResultStyle = Style:Failed  
-               StdOut.Write('##teamcity[testFailed name=<39>' & clip(TestsQ.GroupOrTestName) & '<39> message=<39>' & clip(TestResult.Message) & '<39> details=<39>' & clip(TestResult.Message) & '<39>]]')
-            end  
-            StdOut.Write('##teamcity[testFinished name=<39>' & clip(TestsQ.GroupOrTestName) & '<39>]]')
-         end
+!         if not ShowUI
+!            IF TestsQ.TestResultStyle = Style:Failed  
+!               StdOut.Write('##teamcity[testFailed name=<39>' & clip(TestsQ.GroupOrTestName) & '<39> message=<39>' & clip(TestResult.Message) & '<39> details=<39>' & clip(TestResult.Message) & '<39>]]')
+!            end  
+!            StdOut.Write('##teamcity[testFinished name=<39>' & clip(TestsQ.GroupOrTestName) & '<39>]]')
+!         end
          IF TestsQ.TestResultStyle = Style:Failed |
             AND FirstFailedTest = 0
             FirstFailedTest = x

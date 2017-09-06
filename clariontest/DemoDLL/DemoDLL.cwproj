@@ -50,6 +50,6 @@
   </ItemGroup>
   <Import Project="$(ClarionBinPath)\SoftVelocity.Build.Clarion.targets" />
   <PropertyGroup>
-    <PostBuildEvent>..\ClarionTest.exe demodll.dll /run</PostBuildEvent>
+    <PostBuildEvent>..\ClarionTest.exe demodll.dll</PostBuildEvent>
   </PropertyGroup>
 </Project>
