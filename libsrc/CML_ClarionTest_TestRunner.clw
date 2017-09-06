@@ -58,10 +58,11 @@ result                                                &CML_ClarionTest_TestResul
 	
 	
 CML_ClarionTest_TestRunner.RunTest                 procedure(CML_ClarionTest_TestDLL testDLL,long index)!,CML_ClarionTest_TestResult	
-result                                                &CML_ClarionTest_TestResult
+TestResult                                                &CML_ClarionTest_TestResult
 lptr                                                  long
 KillDLL                                               bool
    code
+   dbg.write('CML_ClarionTest_TestRunner.RunTest')
    if testDLL &= NULL 
       return self.GetFailedTest('The DLL manager object is null')
    end
@@ -75,12 +76,16 @@ KillDLL                                               bool
    if errorcode()
       return self.GetFailedTest('Could not find the requested test (index ' & index & ') ' & error())
    end
+   dbg.write('This is a valid test, executing now')
    r# = TestDLL.Call(upper(clip(self.TestProceduresQ.testname)),address(lptr))
    if r# <> 0
       return self.GetFailedTest('Could not execute the test: ' & TestDLL.ErrorStr)
    END
-   result &= (lptr)
-   return result
+   TestResult &= (lptr)
+   dbg.write('address(TestResult) ' & address(TestResult))
+   dbg.write('TestResult.Status: ' & TestResult.Status)
+   dbg.write('TestResult.Message: ' & TestResult.Message)
+   return TestResult
 
 	
 CML_ClarionTest_TestRunner.RunTestByName           procedure(CML_ClarionTest_TestDLL testDLL,string name)!,*CML_ClarionTest_TestResult	
@@ -90,9 +95,10 @@ x                                                     long
       return self.GetFailedTest('The test queue was not assigned')
    end
    loop x = 1 to records(self.TestProceduresQ)
-      dbg.write('Test ' & x & ' "' & self.TestProceduresQ.TestName & '"')
+      !dbg.write('Test ' & x & ' "' & self.TestProceduresQ.TestName & '"')
       get(self.TestProceduresQ,x)
       if lower(clip(self.TestProceduresQ.TestName)) = lower(clip(name))
+         dbg.write('Found test ' & x & ' "' & self.TestProceduresQ.TestName & '"')
          return self.RunTest(testDLL,x)
       END
    END

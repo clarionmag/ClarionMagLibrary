@@ -25,19 +25,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Classes", "Classes", "{36D5
 		..\libsrc\CML_System_Runtime_DirectoryWatcher.inc = ..\libsrc\CML_System_Runtime_DirectoryWatcher.inc
 		..\libsrc\CML_System_Runtime_DLL.clw = ..\libsrc\CML_System_Runtime_DLL.clw
 		..\libsrc\CML_System_Runtime_DLL.inc = ..\libsrc\CML_System_Runtime_DLL.inc
-		clariontest_settings.clw = clariontest_settings.clw
-		..\libsrc\CML_ClarionTest_Procedures.clw = ..\libsrc\CML_ClarionTest_Procedures.clw
-		..\libsrc\CML_ClarionTest_Procedures.inc = ..\libsrc\CML_ClarionTest_Procedures.inc
-		..\libsrc\CML_ClarionTest_TestDLL.clw = ..\libsrc\CML_ClarionTest_TestDLL.clw
-		..\libsrc\CML_ClarionTest_TestDLL.inc = ..\libsrc\CML_ClarionTest_TestDLL.inc
-		..\libsrc\CML_ClarionTest_ListLoader.clw = ..\libsrc\CML_ClarionTest_ListLoader.clw
-		..\libsrc\CML_ClarionTest_ListLoader.inc = ..\libsrc\CML_ClarionTest_ListLoader.inc
-		..\libsrc\CML_System_IO_AsciiFile.clw = ..\libsrc\CML_System_IO_AsciiFile.clw
-		..\libsrc\CML_System_IO_AsciiFile.inc = ..\libsrc\CML_System_IO_AsciiFile.inc
-		..\libsrc\CML_System_IO_CaptureStdOutput.clw = ..\libsrc\CML_System_IO_CaptureStdOutput.clw
-		..\libsrc\CML_System_IO_CaptureStdOutput.inc = ..\libsrc\CML_System_IO_CaptureStdOutput.inc
-		..\libsrc\CML_System_IO_StdOut.clw = ..\libsrc\CML_System_IO_StdOut.clw
-		..\libsrc\CML_System_IO_StdOut.inc = ..\libsrc\CML_System_IO_StdOut.inc
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "New Folder", "New Folder", "{27AA41F0-34AD-48B9-978D-97EDB65B857E}"
+	ProjectSection(SolutionItems) = postProject
 	EndProjectSection
 EndProject
 Global
@@ -66,21 +57,5 @@ Global
 		{50C24EC2-2747-4BA9-8AF6-EBAEEE755667}.Debug|Win32.ActiveCfg = Debug|Win32
 		{50C24EC2-2747-4BA9-8AF6-EBAEEE755667}.Release|Win32.Build.0 = Release|Win32
 		{50C24EC2-2747-4BA9-8AF6-EBAEEE755667}.Release|Win32.ActiveCfg = Release|Win32
-		F0DE46D7-525C-4779-9E2C-C3F35B82A3E8.Debug|Win32.Build.0 = Debug|Win32
-		F0DE46D7-525C-4779-9E2C-C3F35B82A3E8.Debug|Win32.ActiveCfg = Debug|Win32
-		F0DE46D7-525C-4779-9E2C-C3F35B82A3E8.Release|Win32.Build.0 = Release|Win32
-		F0DE46D7-525C-4779-9E2C-C3F35B82A3E8.Release|Win32.ActiveCfg = Release|Win32
-		DE7BED26-9194-4BF9-B4F5-20D439D60CFA.Debug|Win32.Build.0 = Debug|Win32
-		DE7BED26-9194-4BF9-B4F5-20D439D60CFA.Debug|Win32.ActiveCfg = Debug|Win32
-		DE7BED26-9194-4BF9-B4F5-20D439D60CFA.Release|Win32.Build.0 = Release|Win32
-		DE7BED26-9194-4BF9-B4F5-20D439D60CFA.Release|Win32.ActiveCfg = Release|Win32
-		769C8000-BFAD-4230-9570-EC8A128A3F02.Debug|Win32.Build.0 = Debug|Win32
-		769C8000-BFAD-4230-9570-EC8A128A3F02.Debug|Win32.ActiveCfg = Debug|Win32
-		769C8000-BFAD-4230-9570-EC8A128A3F02.Release|Win32.Build.0 = Release|Win32
-		769C8000-BFAD-4230-9570-EC8A128A3F02.Release|Win32.ActiveCfg = Release|Win32
-		1D2F3211-1C49-4165-BBE8-0099CCA65167.Debug|Win32.Build.0 = Debug|Win32
-		1D2F3211-1C49-4165-BBE8-0099CCA65167.Debug|Win32.ActiveCfg = Debug|Win32
-		1D2F3211-1C49-4165-BBE8-0099CCA65167.Release|Win32.Build.0 = Release|Win32
-		1D2F3211-1C49-4165-BBE8-0099CCA65167.Release|Win32.ActiveCfg = Release|Win32
 	EndGlobalSection
 EndGlobal

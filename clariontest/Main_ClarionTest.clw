@@ -61,7 +61,7 @@ TestsQ                                                QUEUE,PRE(TestsQ)
 GroupOrTestName                                          STRING(200)                           
 GroupOrTestLevel                                         LONG                                  
 GroupOrTestStyle                                         LONG                                  
-TestResult                                               STRING(400)                           
+TestResultMessage                                        STRING(400)                           
 TestResultStyle                                          LONG                                  
 ! Following fields are not used for display
 TestDescription                                          STRING(100)                           
@@ -277,7 +277,7 @@ LoadTests                                          Procedure()
       TestsQ.GroupOrTestName = TestProceduresQ.TestName
       TestsQ.GroupOrTestLevel = 2
       TestsQ.ProcedureQIndex = x
-      TestsQ.TestResult = ''
+      TestsQ.TestResultMessage = ''
       TestsQ.TestResultStyle = Style:NoResult
       TestsQ.Mark = false
       Add(TestsQ)
@@ -311,7 +311,7 @@ RunTests                                           Procedure()
       get(TestsQ,x)
       if ~RunAllTests and TestsQ.mark = FALSE
          !!!dbg.Message('Skipping this item')
-         TestsQ.TestResult = ''
+         TestsQ.TestResultMessage = ''
          TestsQ.Mark = False
          PUT(TestsQ)
          CYCLE
@@ -336,14 +336,19 @@ RunTests                                           Procedure()
             TestsQ.TestStatus = CML_ClarionTest_Status_Fail
             FailedTestCount += 1
          else                
+            dbg.write('TestResult.Status ' & TestResult.Status)
             TestsQ.TestStatus = TestResult.Status
-            if TestResult.Status = CML_ClarionTest_Status_Pass
-               TestsQ.TestResult = 'Passed ' & TestResult.Description
+            case TestsQ.TestStatus
+            of CML_ClarionTest_Status_Pass
+               TestsQ.TestResultMessage = 'Passed ' & TestResult.Description
                TestsQ.TestResultStyle = Style:Passed
-            elsif TestResult.Status = CML_ClarionTest_Status_Ignore
-               TestsQ.TestResult = 'Ignored: ' & TestResult.Message
+            of CML_ClarionTest_Status_Ignore
+            orof CML_ClarionTest_Status_Disabled
+               TestsQ.TestResultMessage = 'Ignored'
+            of CML_ClarionTest_Status_Incomplete
+               TestsQ.TestResultMessage = 'Incomplete'
             else
-               TestsQ.TestResult = 'Failed: ' & TestResult.Message
+               TestsQ.TestResultMessage = 'Failed: ' & TestResult.Message
                TestsQ.TestResultStyle = Style:Failed
                FailedTestCount += 1 
                         
