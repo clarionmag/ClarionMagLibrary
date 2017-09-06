@@ -1,7 +1,26 @@
 !---------------------------------------------------------------------------------------------!
-! Copyright (c) 2012-2014, CoveComm Inc.
-! All rights reserved.
+! Copyright (c) 2017, CoveComm Inc.
+!
+!Permission is hereby granted, free of charge, to any person obtaining a copy
+!of this software and associated documentation files (the "Software"), to deal
+!in the Software without restriction, including without limitation the rights
+!to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+!copies of the Software, and to permit persons to whom the Software is
+!furnished to do so, subject to the following conditions:
+!
+!The above copyright notice and this permission notice shall be included in all
+!copies or substantial portions of the Software.
+!
+!THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+!IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+!FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+!AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+!LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+!OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+!SOFTWARE.
 !---------------------------------------------------------------------------------------------!
+
+
 !region
 ! 
 ! Redistribution and use in source and binary forms, with or without
@@ -41,148 +60,157 @@
 
 
 	
-    Section('GlobalData')
-    include('CML_ClarionTest_TestResult.inc'),once
-    include('CML_System_Diagnostics_logger.inc'),once
+   Section('GlobalData')
+   include('CML_ClarionTest_TestResult.inc'),once
+   include('CML_System_Diagnostics_logger.inc'),once
 
-!logger                                  CML_System_Diagnostics_Logger
-UnitTestResult                          CML_ClarionTest_TestResult
-UnitTestType                            long
-UnitTestVariableType                    long
-UnitTestExpectedString                  &string
-UnitTestExpectedLong                    Long
+logger                                  CML_System_Diagnostics_Logger
+UnitTestResult                                     CML_ClarionTest_TestResult
+UnitTestType                                       long
+UnitTestVariableType                               long
+UnitTestExpectedString                             &string
+UnitTestExpectedLong                               Long
 
 	
-    Section('GlobalMap')
+   Section('GlobalMap')
 !	MODULE('Winapi')
 !		ODS(*CSTRING),PASCAL,RAW,NAME('OutputDebugStringA')                   !32-bit only
 !	END
-BeginUnitTest                           Procedure(string testName)
-AssertThat                              procedure(string testResult,byte b,<string debugMessage>,<string successMessage>),byte,proc
-IsEmpty                                 procedure(*? object),byte
-IsEqualTo                               procedure(string expected),byte,proc
-IsNotEqualTo                            procedure(string expected),byte
-IsNull                                  procedure(*? object),byte
-SetUnitTestFailed                       procedure(string stdMessage,<string userMessage>)
-SetUnitTestIgnored                      procedure(string stdMessage,<string userMessage>)
-SetUnitTestStatus                       procedure(long status,string stdMessage,<string userMessage>)
+BeginUnitTest                                      Procedure(string testName)
+AssertThat                                         procedure(string testResult,byte b,<string debugMessage>,<string successMessage>),byte,proc
+IsEmpty                                            procedure(*? object),byte
+IsEqualTo                                          procedure(string expected),byte,proc
+IsNotEqualTo                                       procedure(string expected),byte
+IsNull                                             procedure(*? object),byte
+SetUnitTestFailed                                  procedure(string stdMessage,<string userMessage>)
+SetUnitTestIgnored                                 procedure(string stdMessage,<string userMessage>)
+SetUnitTestIncomplete                              procedure(string stdMessage,<string userMessage>)
+SetUnitTestStatus                                  procedure(long status,string stdMessage,<string userMessage>)
 
 
 
 
-    Section('ProgramProcedures')
+   Section('ProgramProcedures')
 
 !Debug                                   procedure(string s)
 !    CODE
 !    !gdbg.write('ClarionTest global code: ' & s)
 	
 
-BeginUnitTest                           procedure(string testName)
-    CODE
-    clear(UnitTestResult)
-    UnitTestResult.Status = CML_ClarionTest_Status_Pass
-    UnitTestResult.ProcedureName = testName
+BeginUnitTest                                      procedure(string testName)
+   CODE
+   clear(UnitTestResult)
+   UnitTestResult.Status = CML_ClarionTest_Status_Pass
+   UnitTestResult.ProcedureName = testName
 	
-AssertThat                              procedure(string testResult,byte b,<string userMessage>,<string successMessage>)
-Info                                        cstring(1000)
-singlequote                                 equate('''')
-    CODE
-    !logger.write('** AssertThat receives testresult ' & singlequote & testresult & singlequote)
-    !logger.write('** UnitTestExpectedString: ' & singlequote & UnitTestExpectedString & singlequote)
-    if not omitted(userMessage)
-        info = userMessage
-    end
-    if UnitTestResult.Status <> CML_ClarionTest_Status_Pass then return false.
+AssertThat                                         procedure(string testResult,byte b,<string userMessage>,<string successMessage>)
+Info                                                  cstring(1000)
+singlequote                                           equate('''')
+   CODE
+   logger.write('** AssertThat receives testresult ' & singlequote & testresult & singlequote)
+   logger.write('** UnitTestExpectedString: ' & singlequote & UnitTestExpectedString & singlequote)
+   if not omitted(userMessage)
+      info = userMessage
+   end
+   if UnitTestResult.Status <> CML_ClarionTest_Status_Pass then return false.
 !	if UnitTestVariableType <> CML_ClarionTest_UnitTestVariableTypes:StringType
 !		SetUnitTestFailed('Strings can only be compared with other strings')
 !	END
-    if UnitTestExpectedString &= null
-        SetUnitTestFailed('Expected string may not be null - use IsNull instead',info)
-        return false
-    end
-    case UnitTestType
-    of CML_ClarionTest_UnitTestTypes:IsEqualTo
-        !logger.write('CML_ClarionTest_UnitTestTypes:IsEqualTo - comparing ' & singlequote & clip(testResult) & singlequote & ' with ' & singlequote & clip(UnitTestExpectedString) & singlequote)
-        if testResult <> UnitTestExpectedString
-            SetUnitTestFailed('Expected ' & singlequote & UnitTestExpectedString & singlequote & ', received ' & singlequote & testResult & singlequote, info)
-            RETURN false
-        END
-    of CML_ClarionTest_UnitTestTypes:IsNotEqualTo
-        !logger.write('CML_ClarionTest_UnitTestTypes:IsNotEqualTo - comparing ' & singlequote & clip(testResult) & singlequote & ' with ' & singlequote & clip(UnitTestExpectedString) & singlequote)
-        if testResult = UnitTestExpectedString
-            SetUnitTestFailed('Values are identical', info)
-            RETURN false
-        END
-    ELSE
-        SetUnitTestFailed('Unknown test type')
-        return false
-    end
-    if not omitted(successMessage)
-        UnitTestResult.Description = successMessage
-    end
-    return true
+   if UnitTestExpectedString &= null
+      SetUnitTestFailed('Expected string may not be null - use IsNull instead',info)
+      return false
+   end
+   case UnitTestType
+   of CML_ClarionTest_UnitTestTypes:IsEqualTo
+      logger.write('CML_ClarionTest_UnitTestTypes:IsEqualTo - comparing ' & singlequote & clip(testResult) & singlequote & ' with ' & singlequote & clip(UnitTestExpectedString) & singlequote)
+      if testResult <> UnitTestExpectedString
+         SetUnitTestFailed('Expected ' & singlequote & UnitTestExpectedString & singlequote & ', received ' & singlequote & testResult & singlequote, info)
+         RETURN false
+      END
+   of CML_ClarionTest_UnitTestTypes:IsNotEqualTo
+      logger.write('CML_ClarionTest_UnitTestTypes:IsNotEqualTo - comparing ' & singlequote & clip(testResult) & singlequote & ' with ' & singlequote & clip(UnitTestExpectedString) & singlequote)
+      if testResult = UnitTestExpectedString
+         SetUnitTestFailed('Values are identical', info)
+         RETURN false
+      END
+   ELSE
+      SetUnitTestFailed('Unknown test type')
+      return false
+   end
+   if not omitted(successMessage)
+      UnitTestResult.Description = successMessage
+   end
+   return true
 
-IsEqualTo                               procedure(string s)
-    CODE
-    UnitTestType = CML_ClarionTest_UnitTestTypes:IsEqualTo
-    UnitTestVariableType = CML_ClarionTest_UnitTestVariableTypes:StringType
-    UnitTestExpectedString &= new string(len(clip(s)))
-    UnitTestExpectedString = s
-    !logger.write('IsEqualTo created new string(' & len(clip(s)) & '), value ''' & UnitTestExpectedString & '''')
-    return true
+IsEqualTo                                          procedure(string s)
+   CODE
+   UnitTestType = CML_ClarionTest_UnitTestTypes:IsEqualTo
+   UnitTestVariableType = CML_ClarionTest_UnitTestVariableTypes:StringType
+   UnitTestExpectedString &= new string(len(clip(s)))
+   UnitTestExpectedString = s
+   logger.write('IsEqualTo created new string(' & len(clip(s)) & '), value ''' & UnitTestExpectedString & '''')
+   return true
 	
-IsEmpty                                 procedure(*? object)!,byte
-    code
-    if IsNull(object) then return true.
-    if object = '' then return true.
-    return FALSE
+IsEmpty                                            procedure(*? object)!,byte
+   code
+   if IsNull(object) then return true.
+   if object = '' then return true.
+   return FALSE
     
-IsNull                                  procedure(*? object)
-    CODE
-    if object &= null
-        return true
-    end
-    return false
+IsNull                                             procedure(*? object)
+   CODE
+   if object &= null
+      return true
+   end
+   return false
 	
 
-IsNotEqualTo                            procedure(string s)
-    CODE
-    IsEqualTo(s)
-    UnitTestType = CML_ClarionTest_UnitTestTypes:IsNotEqualTo
-    return true
+IsNotEqualTo                                       procedure(string s)
+   CODE
+   IsEqualTo(s)
+   UnitTestType = CML_ClarionTest_UnitTestTypes:IsNotEqualTo
+   return true
 	
 	
 !SetUnitTestFailed                       procedure(string stdMessage)
 !    CODE
 !    SetUnitTestFailed(stdMessage,'')
 	
-SetUnitTestFailed                       procedure(string stdMessage,<string userMessage>)
-	CODE
-	!logger.write('calling SetUnitTestFailed')
-	if omitted(userMessage)
-		SetUnitTestStatus(CML_ClarionTest_Status_Fail,stdMessage)
-	else
-		SetUnitTestStatus(CML_ClarionTest_Status_Fail,stdMessage,userMessage)
-	end
+SetUnitTestFailed                                  procedure(string stdMessage,<string userMessage>)
+   CODE
+   logger.write('calling SetUnitTestFailed')
+   if omitted(userMessage)
+      SetUnitTestStatus(CML_ClarionTest_Status_Fail,stdMessage)
+   else
+      SetUnitTestStatus(CML_ClarionTest_Status_Fail,stdMessage,userMessage)
+   end
 		
-SetUnitTestIgnored                       procedure(string stdMessage,<string userMessage>)
-	CODE
-	if omitted(userMessage)
-		SetUnitTestStatus(CML_ClarionTest_Status_Ignore,stdMessage)
-	else
-		SetUnitTestStatus(CML_ClarionTest_Status_Ignore,stdMessage,userMessage)
-	end
+SetUnitTestIgnored                                 procedure(string stdMessage,<string userMessage>)
+   CODE
+   if omitted(userMessage)
+      SetUnitTestStatus(CML_ClarionTest_Status_Ignore,stdMessage)
+   else
+      SetUnitTestStatus(CML_ClarionTest_Status_Ignore,stdMessage,userMessage)
+   end
 	
-		
-SetUnitTestStatus                       procedure(long status,string stdMessage,<string userMessage>)
-	CODE
-	!logger.write('SetUnitTestStatus ' & stdMessage)
-	UnitTestResult.Status = status
-	!UnitTestResult.Message = stdMessage & ' ' & userMessage
-	if omitted(userMessage)  
-		UnitTestResult.Message = clip(stdMessage)
-	else
-		UnitTestResult.Message = clip(stdMessage) & ' (' & userMessage & ')'
-	end
-	!logger.write('Set UnitTestResult.Message to ' & UnitTestResult.Message)
+SetUnitTestIncomplete                              procedure(string stdMessage,<string userMessage>)
+   CODE
+   if omitted(userMessage)
+      SetUnitTestStatus(CML_ClarionTest_Status_Incomplete,stdMessage)
+   else
+      SetUnitTestStatus(CML_ClarionTest_Status_Incomplete,stdMessage,userMessage)
+   end
+
+   
+SetUnitTestStatus                                  procedure(long status,string stdMessage,<string userMessage>)
+   CODE
+   logger.write('SetUnitTestStatus ' & stdMessage)
+   UnitTestResult.Status = status
+   !UnitTestResult.Message = stdMessage & ' ' & userMessage
+   if omitted(userMessage)  
+      UnitTestResult.Message = clip(stdMessage)
+   else
+      UnitTestResult.Message = clip(stdMessage) & ' (' & userMessage & ')'
+   end
+   logger.write('Set UnitTestResult.Message to ' & UnitTestResult.Message)
 		

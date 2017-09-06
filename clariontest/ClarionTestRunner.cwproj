@@ -1,0 +1,40 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{4616D2A7-7DAF-48E3-ADDA-70EAD51613F0}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">Win32</Platform>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>ClarionTestRunner</RootNamespace>
+    <AssemblyName>ClarionTestRunner</AssemblyName>
+    <OutputName>ClarionTestRunner</OutputName>
+    <DefineConstants>_ABCDllMode_=&gt;0%3b_ABCLinkMode=&gt;1%3b_Compile_CML_Class_Source_=&gt;1</DefineConstants>
+    <stack_size>16384</stack_size>
+    <CopyCore>True</CopyCore>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <vid>full</vid>
+    <check_stack>True</check_stack>
+    <check_index>True</check_index>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <vid>off</vid>
+    <check_stack>False</check_stack>
+    <check_index>False</check_index>
+    <warnings>on</warnings>
+    <GenerateMap>True</GenerateMap>
+    <line_numbers>False</line_numbers>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="ClarionTestRunner.clw" />
+    <Compile Include="TeamCityRunner_ClarionTestRunner.clw" />
+    <Compile Include="CML_CallA.a" />
+  </ItemGroup>
+  <ItemGroup>
+    <FileDriver Include="DOS" />
+  </ItemGroup>
+  <Import Project="$(ClarionBinPath)\SoftVelocity.Build.Clarion.targets" />
+</Project>

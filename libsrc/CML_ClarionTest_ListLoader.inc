@@ -19,6 +19,7 @@
 !OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 !SOFTWARE.
 !---------------------------------------------------------------------------------------------!
+
 !region
 ! 
 ! Redistribution and use in source and binary forms, with or without
@@ -51,15 +52,16 @@
 ! If you find this software useful, please support its creation and maintenance
 ! by taking out a subscription to www.DevRoadmaps.com.
 !---------------------------------------------------------------------------------------------!
-!endregion
-					member()
+! endRegion
+
+   !include('CML_IncludeInAllClassHeaderFiles.inc'),once
+   include('CML_System_Runtime_Dll.inc'),once
+   include('CML_clariontest_testresult.inc'),once
+   include('CML_ClarionTest_TestProcedures.inc'),once
+   include('CML_ClarionTest_TestDLL.inc'),once
 
 
-					MAP
-					END
-
-	include('CML_ClarionTest_TestResult.inc'),once
-
-
-							
-	
+CML_ClarionTest_ListLoader                         class,type,module('CML_ClarionTest_ListLoader.clw'),link('CML_ClarionTest_ListLoader.clw')!,_CML_Classes_LinkMode_),DLL(_CML_Classes_DllMode_)
+!GetTestProceduresFromList                             procedure(string TestListFilename,*CML_ClarionTest_TestProceduresQueue TestProceduresQ),long,proc
+GetTestProceduresFromDLL                              procedure(CML_ClarionTest_TestDLL TestDLL,*CML_ClarionTest_TestProceduresQueue TestProceduresQ),long,proc
+                                                   end
