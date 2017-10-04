@@ -40,6 +40,9 @@
     <Compile Include="CML_Data_ManyToManyLinksTests004.clw">
       <Generated>true</Generated>
     </Compile>
+    <Compile Include="CML_Data_ManyToManyLinksTests005.clw">
+      <Generated>true</Generated>
+    </Compile>
     <Compile Include="CML_DATA_MANYTOMANYLINKSTESTS_BC.CLW">
       <Generated>true</Generated>
     </Compile>
@@ -49,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <FileDriver Include="ASCII" />
+    <FileDriver Include="MSSQL" />
     <FileDriver Include="TOPSPEED" />
   </ItemGroup>
   <Import Project="$(ClarionBinPath)\SoftVelocity.Build.Clarion.targets" />

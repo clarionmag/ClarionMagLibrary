@@ -4,6 +4,7 @@
 
    INCLUDE('ABASCII.INC'),ONCE
    INCLUDE('ABBROWSE.INC'),ONCE
+   INCLUDE('ABDOCK.INC'),ONCE
    INCLUDE('ABDROPS.INC'),ONCE
    INCLUDE('ABEIP.INC'),ONCE
    INCLUDE('ABERROR.INC'),ONCE
@@ -20,6 +21,8 @@
    INCLUDE('ABWINDOW.INC'),ONCE
    INCLUDE('ABWMFPAR.INC'),ONCE
    INCLUDE('CSIDLFOLDER.INC'),ONCE
+   INCLUDE('CWSYNCWT.INC'),ONCE
+   INCLUDE('CLAAWSS3.INC'),ONCE
    INCLUDE('CLAMAIL.INC'),ONCE
    INCLUDE('CLARUNEXT.INC'),ONCE
    INCLUDE('ERRORS.CLW'),ONCE
@@ -73,6 +76,9 @@ SaveAndLoadData        FUNCTION(*long addr),long,pascal   !
      MODULE('CML_DATA_MANYTOMANYLINKSTESTS004.CLW')
 SaveAndLoadDataUsingABCFile FUNCTION(*long addr),long,pascal   !
      END
+     MODULE('CML_DATA_MANYTOMANYLINKSTESTS005.CLW')
+SaveAndLoadDataUsingABCFileMSSQL FUNCTION(*long addr),long,pascal   !
+     END
        include('CML_ClarionTest_GlobalCodeAndData.inc','GlobalMap'),once
 ClarionTest_GetListOfTestProcedures PROCEDURE(*LONG Addr),LONG,PASCAL
     ! Declare functions defined in this DLL
@@ -91,13 +97,23 @@ RightRecordID               LONG                           !
                          END
                      END                       
 
+M2MLinkDataMSSql     FILE,DRIVER('MSSQL'),OWNER('COVECOMM1\SQLEXPRESS;Database=ClarionMagTests;Trusted_Connection=True;'),NAME('ClarionMagTests'),PRE(M2MS),CREATE,BINDABLE,THREAD !                    
+kLeftRecordIDRightRecordID KEY(M2MS:LeftRecordID,M2MS:RightRecordID),NOCASE !                    
+Record                   RECORD,PRE()
+LeftRecordID                LONG                           !                    
+RightRecordID               LONG                           !                    
+                         END
+                     END                       
+
 !endregion
 
   include('CML_ClarionTest_GlobalCodeAndData.inc','GlobalData'),once
   include('CML_ClarionTest_TestProcedures.inc'),once
-ClarionTest_ctpl    CML_ClarionTest_TestProcedures
+ClarionTestProcedures    CML_ClarionTest_TestProcedures
 Access:M2MLinkData   &FileManager,THREAD                   ! FileManager for M2MLinkData
 Relate:M2MLinkData   &RelationManager,THREAD               ! RelationManager for M2MLinkData
+Access:M2MLinkDataMSSql &FileManager,THREAD                ! FileManager for M2MLinkDataMSSql
+Relate:M2MLinkDataMSSql &RelationManager,THREAD            ! RelationManager for M2MLinkDataMSSql
 
 GlobalRequest        BYTE(0),THREAD                        ! Set when a browse calls a form, to let it know action to perform
 GlobalResponse       BYTE(0),THREAD                        ! Set to the response from the form
@@ -138,31 +154,37 @@ DLLInitializer.Construct PROCEDURE
   INCLUDE('CML_ClarionTest_GlobalCodeAndData.inc','ProgramProcedures')
 ClarionTest_GetListOfTestProcedures PROCEDURE(*LONG Addr)
     CODE
-    Addr = ADDRESS(ClarionTest_ctpl)
-    FREE(ClarionTest_ctpl.List)
-    ClarionTest_ctpl.List.TestPriority       = 10
-    ClarionTest_ctpl.List.TestName       = 'SaveAndLoadData'
-    ClarionTest_ctpl.List.TestGroupName      = '_000_Default'
-    ClarionTest_ctpl.List.TestGroupPriority = 0
-    ADD(ClarionTest_ctpl.List)
+    Addr = ADDRESS(ClarionTestProcedures)
+    FREE(ClarionTestProcedures.List)
+    ClarionTestProcedures.List.TestPriority       = 10
+    ClarionTestProcedures.List.TestName       = 'SaveAndLoadData'
+    ClarionTestProcedures.List.TestGroupName      = '_000_Default'
+    ClarionTestProcedures.List.TestGroupPriority = 0
+    ADD(ClarionTestProcedures.List)
         
-    ClarionTest_ctpl.List.TestPriority       = 10
-    ClarionTest_ctpl.List.TestName       = 'SetLinkBetweenVerifyLinkBetween'
-    ClarionTest_ctpl.List.TestGroupName      = '_000_Default'
-    ClarionTest_ctpl.List.TestGroupPriority = 0
-    ADD(ClarionTest_ctpl.List)
+    ClarionTestProcedures.List.TestPriority       = 10
+    ClarionTestProcedures.List.TestName       = 'SetLinkBetweenVerifyLinkBetween'
+    ClarionTestProcedures.List.TestGroupName      = '_000_Default'
+    ClarionTestProcedures.List.TestGroupPriority = 0
+    ADD(ClarionTestProcedures.List)
         
-    ClarionTest_ctpl.List.TestPriority       = 10
-    ClarionTest_ctpl.List.TestName       = 'SaveAndLoadDataUsingABCFile'
-    ClarionTest_ctpl.List.TestGroupName      = '_000_Default'
-    ClarionTest_ctpl.List.TestGroupPriority = 0
-    ADD(ClarionTest_ctpl.List)
+    ClarionTestProcedures.List.TestPriority       = 10
+    ClarionTestProcedures.List.TestName       = 'SaveAndLoadDataUsingABCFile'
+    ClarionTestProcedures.List.TestGroupName      = '_000_Default'
+    ClarionTestProcedures.List.TestGroupPriority = 0
+    ADD(ClarionTestProcedures.List)
         
-    ClarionTest_ctpl.List.TestPriority       = 10
-    ClarionTest_ctpl.List.TestName       = 'SetLinkToVerifyLinkTo'
-    ClarionTest_ctpl.List.TestGroupName      = '_000_Default'
-    ClarionTest_ctpl.List.TestGroupPriority = 0
-    ADD(ClarionTest_ctpl.List)
+    ClarionTestProcedures.List.TestPriority       = 10
+    ClarionTestProcedures.List.TestName       = 'SetLinkToVerifyLinkTo'
+    ClarionTestProcedures.List.TestGroupName      = '_000_Default'
+    ClarionTestProcedures.List.TestGroupPriority = 0
+    ADD(ClarionTestProcedures.List)
+        
+    ClarionTestProcedures.List.TestPriority       = 10
+    ClarionTestProcedures.List.TestName       = 'SaveAndLoadDataUsingABCFileMSSQL'
+    ClarionTestProcedures.List.TestGroupName      = '_000_Default'
+    ClarionTestProcedures.List.TestGroupPriority = 0
+    ADD(ClarionTestProcedures.List)
         
     RETURN 0
 !These procedures are used to initialize the DLL. It must be called by the main executable when it starts up
@@ -182,6 +204,7 @@ CML_Data_ManyToManyLinksTests:Init_Called    BYTE,STATIC
     INIMgr &= curINIMgr
   END
   Access:M2MLinkData.SetErrors(GlobalErrors)
+  Access:M2MLinkDataMSSql.SetErrors(GlobalErrors)
 
 !This procedure is used to shutdown the DLL. It must be called by the main executable before it closes down
 
