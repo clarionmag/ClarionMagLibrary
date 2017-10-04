@@ -25,7 +25,7 @@ Filename                    cstring(500)
   CODE
   addr = address(UnitTestResult)
   BeginUnitTest('SaveAndLoadData')
-    Filename = longpath() & '\CML_Data_ManyToManyLinksTests\LinksData.tps'
+    Filename = longpath() & '\LinksData.tps'
     
     Persister.SetFilename(Filename)
     ManytoMany.Persister &= Persister

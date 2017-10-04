@@ -5,6 +5,8 @@ EXPORTS
   $VCRREQUEST                                             @?
 
 ;Start of SoftVelocity ABC library exports
+  VMT$AWSS3DUMMYCLASS                                     @?
+  TYPE$AWSS3DUMMYCLASS                                    @?
   VMT$ASCIIFILECLASS                                      @?
   TYPE$ASCIIFILECLASS                                     @?
   FORMATLINE@F14ASCIIFILECLASSRsb                         @?
@@ -252,15 +254,47 @@ EXPORTS
   SETUP@F30CALENDARSMALLTOUCHREGIONSCLASS                 @?
   VMT$CLARUNEXTCLASS                                      @?
   TYPE$CLARUNEXTCLASS                                     @?
+  ALLOWPUBLICACCESS@F14CLARUNEXTCLASSlsbsblRsbRsb         @?
+  CANCELTRANSFER@F14CLARUNEXTCLASSlRsbRsb                 @?
+  CONNECTTOS3@F14CLARUNEXTCLASSsbsbPsbPsb                 @?
   CONSTRUCT@F14CLARUNEXTCLASS                             @?
+  CREATECONTAINER@F14CLARUNEXTCLASSlsbsbRsbRsb            @?
+  CREATEFOLDER@F14CLARUNEXTCLASSlsbsbRsbRsb               @?
+  DELETECONTAINER@F14CLARUNEXTCLASSlsbRsbRsb              @?
+  DELETEFILE@F14CLARUNEXTCLASSlsbsbRsbRsb                 @?
+  DELETEFOLDER@F14CLARUNEXTCLASSlsbsbRsbRsb               @?
   DESTRUCT@F14CLARUNEXTCLASS                              @?
+  DISCONNECTFROMS3@F14CLARUNEXTCLASSl                     @?
+  DOWNLOADFILE@F14CLARUNEXTCLASSlsbsbsbl15IAWSTRANSFERINGRsbRsb @?
+  FILEEXISTS@F14CLARUNEXTCLASSlsbsbRsbRsb                 @?
+  GETAWSREGION@F14CLARUNEXTCLASSRsbRsbPsbPsb              @?
+  GETCONTAINER@F14CLARUNEXTCLASSlRsbRsbRsbRsbRsb          @?
+  GETMETADATA@F14CLARUNEXTCLASSlsbsbsbRsbRsb              @?
+  GETMIMETYPE@F14CLARUNEXTCLASSsb                         @?
+  GETMIMETYPEFROMFILE@F14CLARUNEXTCLASSsb                 @?
+  GETNEXTFILE@F14CLARUNEXTCLASSlsbsbRsbRlRbdRbt5INT64RsbRsb @?
+  GETNEXTMETADATA@F14CLARUNEXTCLASSlsbsbRsbRsbRsbRsb      @?
+  GETPERMANENTURL@F14CLARUNEXTCLASSlsbsbRsbRsb            @?
+  GETTEMPORARYURL@F14CLARUNEXTCLASSlsbsblllRsbRsb         @?
+  HASPUBLICACCESS@F14CLARUNEXTCLASSlsbsbRsbRsb            @?
+  HTTPUPLOADFILE@F14CLARUNEXTCLASSRscRscRscRscRscRsc      @?
+  HTTPWEBREQUEST@F14CLARUNEXTCLASSRsclRscRscRsc           @?
+  HTTPWEBREQUEST@F14CLARUNEXTCLASSRsclRscRscRscRscRsc     @?
+  HTTPWEBREQUESTTOFILE@F14CLARUNEXTCLASSRsclRscRscRscRsc  @?
+  HTTPWEBREQUESTTOFILE@F14CLARUNEXTCLASSRsclRscRscRscRscRscRsc @?
   IMAGEROTATEFLIP@F14CLARUNEXTCLASSsbsbl                  @?
   IMAGESAVETHUMBNAIL@F14CLARUNEXTCLASSsbsbl               @?
   IMAGETOPNG@F14CLARUNEXTCLASSsb                          @?
   IMAGETOPNG@F14CLARUNEXTCLASSsbsb                        @?
-  INIT@F14CLARUNEXTCLASSl                                 @?
-  SENDMAIL@F14CLARUNEXTCLASSsbsbsbllllsbsbsbsbsbsbsbsbsbsbsb @?
-  SENDSMS@F14CLARUNEXTCLASSsbsbsblllsbsbsbsbsb            @?
+  IMAGETOPNG@F14CLARUNEXTCLASSsbsbUs                      @?
+  REMOVEMETADATA@F14CLARUNEXTCLASSlsbsbsbRsbRsb           @?
+  SENDMAIL@F14CLARUNEXTCLASSsbsbsblllllsbsbsbsbsbsbsbsbsbsbsbPsb @?
+  SENDMAIL@F14CLARUNEXTCLASSsbsbsbllllsbsbsbsbsbsbsbsbsbsbsbPsb @?
+  SENDSMS@F14CLARUNEXTCLASSsbsbsbllllsbsbsbsbsbPsb        @?
+  SENDSMS@F14CLARUNEXTCLASSsbsbsblllsbsbsbsbsbPsb         @?
+  SETMETADATA@F14CLARUNEXTCLASSlsbsbsbsbRsbRsb            @?
+  SETMETADATA@F14CLARUNEXTCLASSlsbsbsbRsbRsb              @?
+  UPLOADFILE@F14CLARUNEXTCLASSlsbsbsbll15IAWSTRANSFERINGRsbRsb @?
   VMT$CONSTANTCLASS                                       @?
   TYPE$CONSTANTCLASS                                      @?
   ADDITEM@F13CONSTANTCLASSUcRu                            @?
@@ -335,6 +369,51 @@ EXPORTS
   VMT$DBLOGFILEMANAGER                                    @?
   TYPE$DBLOGFILEMANAGER                                   @?
   INIT@F16DBLOGFILEMANAGER10ERRORCLASSsb                  @?
+  VMT$DOCKTOOLBAR                                         @?
+  TYPE$DOCKTOOLBAR                                        @?
+  ADDGAP@F11DOCKTOOLBAR                                   @?
+  ADDITEM@F11DOCKTOOLBARUcsblsbsbsbsbUc                   @?
+  ADDITEM@F11DOCKTOOLBARsbl                               @?
+  ADDSEPARATOR@F11DOCKTOOLBAR                             @?
+  CLOSE@F11DOCKTOOLBAR                                    @?
+  CONSTRUCT@F11DOCKTOOLBAR                                @?
+  DESTRUCT@F11DOCKTOOLBAR                                 @?
+  FINDCONTROLBYFEQ@F11DOCKTOOLBARl                        @?
+  FINDCONTROLBYID@F11DOCKTOOLBARl                         @?
+  FINDCONTROLBYNAME@F11DOCKTOOLBARsb                      @?
+  GETDISABLE@F11DOCKTOOLBAR                               @?
+  GETDISABLECONTROL@F11DOCKTOOLBARsb                      @?
+  GETGRADIENTSTYLE@F11DOCKTOOLBARUc                       @?
+  GETHIDE@F11DOCKTOOLBAR                                  @?
+  GETHIDECONTROL@F11DOCKTOOLBARsb                         @?
+  INIT@F11DOCKTOOLBARsbl                                  @?
+  ISOPEN@F11DOCKTOOLBAR                                   @?
+  KILL@F11DOCKTOOLBAR                                     @?
+  OPEN@F11DOCKTOOLBAR                                     @?
+  REFRESHTOOLBAR@F11DOCKTOOLBAR                           @?
+  REFRESHTOOLBAR@F11DOCKTOOLBARl                          @?
+  REMOVEITEM@F11DOCKTOOLBARsb                             @?
+  SETAUTOMATICCOLORS@F11DOCKTOOLBAR                       @?
+  SETCUSTOMTOOLBARSTYLE@F11DOCKTOOLBAR                    @?
+  SETCUSTOMTOOLBARSTYLE@F11DOCKTOOLBAR20DOCKTOOLBARTHEMETYPE @?
+  SETDISABLE@F11DOCKTOOLBARUc                             @?
+  SETDISABLECONTROL@F11DOCKTOOLBARsbUc                    @?
+  SETDOCKTYPE@F11DOCKTOOLBARl                             @?
+  SETHIDE@F11DOCKTOOLBARUc                                @?
+  SETHIDECONTROL@F11DOCKTOOLBARsbUc                       @?
+  SETITEMPROPERTY@F11DOCKTOOLBARsblsb                     @?
+  SETTOOLBARSTYLE@F11DOCKTOOLBAR                          @?
+  SETTOOLBARSTYLE@F11DOCKTOOLBARUc                        @?
+  TAKEACCEPTED@F11DOCKTOOLBARsb                           @?
+  TAKEEVENT@F11DOCKTOOLBAR                                @?
+  TOOLCREATECONTROLS@F11DOCKTOOLBAR                       @?
+  TOOLDRAWGRIP@F11DOCKTOOLBARllllUcll                     @?
+  TOOLMIXCOLORS@F11DOCKTOOLBARllUc                        @?
+  TOOLREFRESHALL@F11DOCKTOOLBAR                           @?
+  TOOLREFRESHCONTROL@F11DOCKTOOLBARl                      @?
+  TOOLREMOVECONTROLS@F11DOCKTOOLBAR                       @?
+  TOOLSETDISABLE@F11DOCKTOOLBARUc                         @?
+  TOOLSETSTYLE@F11DOCKTOOLBARUc                           @?
   VMT$DYNASTRINGCLASS                                     @?
   TYPE$DYNASTRINGCLASS                                    @?
   APPEND@F15DYNASTRINGCLASSsb                             @?
@@ -621,6 +700,7 @@ EXPORTS
   GETFIELDPICTURE@F11FILEMANAGERsa                        @?
   GETFIELDTYPE@F11FILEMANAGERsa                           @?
   GETFIELDS@F11FILEMANAGER                                @?
+  GETHASAUTOINC@F11FILEMANAGER                            @?
   GETMRPSIZE@F11FILEMANAGER                               @?
   GETNAME@F11FILEMANAGER                                  @?
   GETOPENMODE@F11FILEMANAGER                              @?
@@ -864,35 +944,81 @@ EXPORTS
   VMT$JSONDATACLASS                                       @?
   TYPE$JSONDATACLASS                                      @?
   ADDBOOL@F13JSONDATACLASSsbUc                            @?
+  ADDGROUP@F13JSONDATACLASSRg                             @?
   ADDGROUP@F13JSONDATACLASSsbRg                           @?
   ADDNUMBER@F13JSONDATACLASSsbl                           @?
   ADDNUMBER@F13JSONDATACLASSsblsb                         @?
   ADDQUEUE@F13JSONDATACLASSsbBq                           @?
   ADDSTRING@F13JSONDATACLASSsbsb                          @?
+  ADDSUBQUEUE@F13JSONDATACLASSsbBq                        @?
+  ASSIGNANY@F13JSONDATACLASSRsbRuUcsbRlRl                 @?
   ASSIGNGROUPFIELD@F13JSONDATACLASSRsbRgRlRlRlRl          @?
+  ASSIGNGROUPFIELDIDX@F13JSONDATACLASSRsbRgsblRlRl        @?
+  ASSIGNREFTMPSTRING@F13JSONDATACLASSRsb                  @?
   BOOLTOJSON@F13JSONDATACLASSsbUc                         @?
   CLEAROBJECT@F13JSONDATACLASS                            @?
   CLEAROBJECT@F13JSONDATACLASS18JSONDATAVALUEQUEUE        @?
+  CLEAROBJECTARRAY@F13JSONDATACLASS                       @?
+  CLEARSUBQUEUES@F13JSONDATACLASS                         @?
   CONSTRUCT@F13JSONDATACLASS                              @?
-  CREATENEWSTRING@F13JSONDATACLASSl                       @?
+  CREATENEWTMPSTRING@F13JSONDATACLASSl                    @?
   DECIMALTOJSON@F13JSONDATACLASSsbRe                      @?
-  DELETENUMBERFORMATER@F13JSONDATACLASSsb                 @?
+  DELETEALLEXTERNALNAMES@F13JSONDATACLASS                 @?
+  DELETEALLNUMBERFORMATTERS@F13JSONDATACLASS              @?
+  DELETEEXTERNALNAME@F13JSONDATACLASSsb                   @?
+  DELETENUMBERFORMATTER@F13JSONDATACLASSsb                @?
   DESTRUCT@F13JSONDATACLASS                               @?
   DISPOSEIT@F13JSONDATACLASS                              @?
+  DISPOSETMPSTRING@F13JSONDATACLASS                       @?
   ESCAPESTRING@F13JSONDATACLASSsb                         @?
+  FINDEXTERNALNAME@F13JSONDATACLASSsb                     @?
+  FINDNUMBERFORMATTER@F13JSONDATACLASSsb                  @?
+  FROMFILE@F13JSONDATACLASSsb                             @?
   FROMJSON@F13JSONDATACLASSRsbRg                          @?
   FROMJSON@F13JSONDATACLASSRsbBq                          @?
+  FROMJSON@F13JSONDATACLASSRsbBqsb                        @?
+  FROMJSON@F13JSONDATACLASSRsbBqsbll                      @?
+  FROMJSON@F13JSONDATACLASSsbRg                           @?
+  FROMJSON@F13JSONDATACLASSsbBq                           @?
+  FROMJSON@F13JSONDATACLASSsbBqsb                         @?
+  FROMJSONFILE@F13JSONDATACLASSsbRg                       @?
+  FROMJSONFILE@F13JSONDATACLASSsbBq                       @?
   GETCLIPVALUES@F13JSONDATACLASS                          @?
+  GETESCAPESTRING@F13JSONDATACLASS                        @?
+  GETEXTERNALNAME@F13JSONDATACLASSsb                      @?
+  GETFIELDNAME@F13JSONDATACLASSsb                         @?
+  GETFORMATTERPICTURE@F13JSONDATACLASSsb                  @?
+  GETGROUPMAXSIZE@F13JSONDATACLASSRg                      @?
+  GETGROUPNUMBEROFFIELDS@F13JSONDATACLASSRg               @?
   GETGROUPSIZE@F13JSONDATACLASSRg                         @?
   GETJSONOBJECTSIZE@F13JSONDATACLASS                      @?
-  GETNUMBERFORMATER@F13JSONDATACLASSsb                    @?
-  GETVALUETYPE@F13JSONDATACLASSRsbRlRl                    @?
-  GROUPTOJSON@F13JSONDATACLASSRg                          @?
+  GETLOSTARRAYDATA@F13JSONDATACLASS                       @?
+  GETLOSTARRAYDATAFIELD@F13JSONDATACLASS                  @?
+  GETOBJECTISARRAY@F13JSONDATACLASS                       @?
+  GETREMOVEFIELDPREFIX@F13JSONDATACLASS                   @?
+  GETSTRINGTYPE@F13JSONDATACLASSRsb                       @?
+  GETSUPPORTNULLSTRING@F13JSONDATACLASS                   @?
+  GETTMPSTRINGVALUE@F13JSONDATACLASS                      @?
+  GETVALUETYPE@F13JSONDATACLASSRsbll                      @?
+  GROUPTOJSON@F13JSONDATACLASSRgRsb                       @?
+  HIDEALLGROUPFIELDS@F13JSONDATACLASSRg                   @?
+  HIDEGROUPFIELD@F13JSONDATACLASSsb                       @?
+  ISHIDDENGROUPFIELD@F13JSONDATACLASSsb                   @?
+  ISSUBQUEUE@F13JSONDATACLASSsb                           @?
+  JSONTOGROUP@F13JSONDATACLASSRsbllRg                     @?
   LONGARRTOJSON@F13JSONDATACLASSRAl                       @?
+  NUMBERTOJSON@F13JSONDATACLASSsbRusb                     @?
   NUMBERTOJSON@F13JSONDATACLASSsbl                        @?
-  NUMBERTOJSON@F13JSONDATACLASSsblsb                      @?
+  PAIRTOJSON@F13JSONDATACLASSsbu                          @?
+  PAIRTOJSON@F13JSONDATACLASSsbusb                        @?
   SETCLIPVALUES@F13JSONDATACLASSUc                        @?
-  SETNUMBERFORMATER@F13JSONDATACLASSsbsb                  @?
+  SETESCAPESTRING@F13JSONDATACLASSUc                      @?
+  SETEXTERNALNAME@F13JSONDATACLASSsbsb                    @?
+  SETLOSTARRAYDATAFIELD@F13JSONDATACLASSsb                @?
+  SETNUMBERFORMATTER@F13JSONDATACLASSsbsb                 @?
+  SETREMOVEFIELDPREFIX@F13JSONDATACLASSUc                 @?
+  SETSUBQUEUE@F13JSONDATACLASSsbBq                        @?
+  SETSUPPORTNULLSTRING@F13JSONDATACLASSUc                 @?
   STRINGARRTOJSON@F13JSONDATACLASSRAsb                    @?
   STRINGTOJSON@F13JSONDATACLASSsbsb                       @?
   TOJSON@F13JSONDATACLASS                                 @?
@@ -900,9 +1026,12 @@ EXPORTS
   TOJSON@F13JSONDATACLASSRg                               @?
   TOJSON@F13JSONDATACLASSRAl                              @?
   TOJSON@F13JSONDATACLASSBq                               @?
+  TOJSON@F13JSONDATACLASSBqll                             @?
   TOJSON@F13JSONDATACLASSRAsb                             @?
   TOJSON@F13JSONDATACLASSsbBq                             @?
-  TRYGETFORMATERPICTURE@F13JSONDATACLASSsbRsb             @?
+  TOJSON@F13JSONDATACLASSsbBqll                           @?
+  TOJSONFILE@F13JSONDATACLASSsb                           @?
+  TRYGETFORMATTERPICTURE@F13JSONDATACLASSsbRsc            @?
   TRYGETNAME@F13JSONDATACLASSsbRsb                        @?
   TRYGETNAMEVALUE@F13JSONDATACLASSsbRsbRsb                @?
   TRYGETNAMEVALUEPOSITIONS@F13JSONDATACLASSRsbRlRlRlRl    @?
@@ -910,6 +1039,9 @@ EXPORTS
   TRYGETNEXTPAIRPOSITIONS@F13JSONDATACLASSRsbRlRlRlRlRlRl @?
   TRYGETNEXTPAIRPOSITIONS@F13JSONDATACLASSRsblRlRlRlRlRlRl @?
   TRYGETVALUE@F13JSONDATACLASSsbRsb                       @?
+  UNESCAPESTRING@F13JSONDATACLASSsb                       @?
+  UNHIDEALLGROUPFIELDS@F13JSONDATACLASSsb                 @?
+  UNHIDEGROUPFIELD@F13JSONDATACLASSsb                     @?
   VMT$LEVELMANAGERCLASS                                   @?
   TYPE$LEVELMANAGERCLASS                                  @?
   ADDFIELD@F17LEVELMANAGERCLASSRu                         @?
@@ -962,8 +1094,8 @@ EXPORTS
   CONSTRUCT@F10MAILCLIENT                                 @?
   DESTRUCT@F10MAILCLIENT                                  @?
   INIT@F10MAILCLIENTsbsbsbsblOl                           @?
-  SENDHTMLMAIL@F10MAILCLIENTsbsbsbOsbOsb16EMAILADDRESSLIST16EMAILADDRESSLIST @?
-  SENDMAIL@F10MAILCLIENTsbsbsbOsb16EMAILADDRESSLIST16EMAILADDRESSLIST @?
+  SENDHTMLMAIL@F10MAILCLIENTsbsbsbOsbOsb16EMAILADDRESSLIST16EMAILADDRESSLISTPsb @?
+  SENDMAIL@F10MAILCLIENTsbsbsbOsb16EMAILADDRESSLIST16EMAILADDRESSLISTPsb @?
   SETENCODING@F10MAILCLIENTsb                             @?
   SETRECEIVEDREQUEST@F10MAILCLIENTl                       @?
   SETREPLYTO@F10MAILCLIENTsb                              @?
@@ -1077,8 +1209,10 @@ EXPORTS
   CONSTRUCT@F18PDFREPORTGENERATOR                         @?
   DESTRUCT@F18PDFREPORTGENERATOR                          @?
   GETSCANCOPYMODE@F18PDFREPORTGENERATOR                   @?
+  GETSCANCOPYRESOLUTION@F18PDFREPORTGENERATOR             @?
   REMOVESCANCOPYFILES@F18PDFREPORTGENERATOR               @?
   SETSCANCOPYMODE@F18PDFREPORTGENERATORUc                 @?
+  SETSCANCOPYRESOLUTION@F18PDFREPORTGENERATORUs           @?
   ASKPROPERTIES_@_IREPORTGENERATOR_@_PDFREPORTGENERATOR@F22IOUTPUTGENERATORTARGETUc @?
   CLOSEDOCUMENT_@_IREPORTGENERATOR_@_PDFREPORTGENERATOR@F16IREPORTGENERATOR @?
   CLOSEPAGE_@_IREPORTGENERATOR_@_PDFREPORTGENERATOR@F16IREPORTGENERATOR @?
@@ -1486,7 +1620,9 @@ EXPORTS
   ASKPREVIEW@F13REPORTMANAGER                             @?
   CANCELPRINTREPORT@F13REPORTMANAGER                      @?
   ENDREPORT@F13REPORTMANAGER                              @?
+  FETCHPAGE@F13REPORTMANAGERl                             @?
   GETOPENOUTPUTWHENFINISH@F13REPORTMANAGER                @?
+  GETTOTALPAGES@F13REPORTMANAGER                          @?
   GETUSEMRP@F13REPORTMANAGER                              @?
   INIT@F13REPORTMANAGER12PROCESSCLASSBr17PRINTPREVIEWCLASS @?
   KILL@F13REPORTMANAGER                                   @?
@@ -1600,7 +1736,7 @@ EXPORTS
   VMT$SMSCLIENT                                           @?
   TYPE$SMSCLIENT                                          @?
   INIT@F9SMSCLIENTsbsbsbsblOl                             @?
-  SENDSMS@F9SMSCLIENTsbsbsbsb                             @?
+  SENDSMS@F9SMSCLIENTsbsbsbsbPsb                          @?
   VMT$SMSMAILCLIENT                                       @?
   TYPE$SMSMAILCLIENT                                      @?
   CONSTRUCT@F13SMSMAILCLIENT                              @?
@@ -2127,6 +2263,38 @@ EXPORTS
   SETSTRATEGY@F17WINDOWRESIZECLASSll                      @?
   WINDOWRESIZEBEGIN@F17WINDOWRESIZECLASS                  @?
   WINDOWRESIZEEND@F17WINDOWRESIZECLASS                    @?
+  VMT$WORKINGTHREADMANAGER                                @?
+  TYPE$WORKINGTHREADMANAGER                               @?
+  ASSIGNFROMCLASS@F20WORKINGTHREADMANAGERUc               @?
+  ASSIGNTOCLASS@F20WORKINGTHREADMANAGERUc                 @?
+  CANCELPROCESS@F20WORKINGTHREADMANAGER                   @?
+  CONSTRUCT@F20WORKINGTHREADMANAGER                       @?
+  DESTRUCT@F20WORKINGTHREADMANAGER                        @?
+  DOASSIGNFROMCLASSTMP@F20WORKINGTHREADMANAGERUc          @?
+  DOASSIGNTOCLASSTMP@F20WORKINGTHREADMANAGERUc            @?
+  DOREADFROMCLASSTMP@F20WORKINGTHREADMANAGERUc            @?
+  DOWRITETOCLASSTMP@F20WORKINGTHREADMANAGERUc             @?
+  GETSTACKSIZE@F20WORKINGTHREADMANAGER                    @?
+  GETWORKINGTHREADNUMBER@F20WORKINGTHREADMANAGER          @?
+  INITIALIZEPROCESS@F20WORKINGTHREADMANAGER               @?
+  ISCANCELLED@F20WORKINGTHREADMANAGER                     @?
+  ISPAUSED@F20WORKINGTHREADMANAGER                        @?
+  ISPROCESSFINISH@F20WORKINGTHREADMANAGER                 @?
+  ISSTARTED@F20WORKINGTHREADMANAGER                       @?
+  PAUSEPROCESS@F20WORKINGTHREADMANAGER                    @?
+  READFROMCLASSTMP@F20WORKINGTHREADMANAGERUc              @?
+  RESETPROCESS@F20WORKINGTHREADMANAGER                    @?
+  RESUMEPROCESS@F20WORKINGTHREADMANAGER                   @?
+  SETSTACKSIZE@F20WORKINGTHREADMANAGERl                   @?
+  STARTPROCESS@F20WORKINGTHREADMANAGERUc                  @?
+  STARTPROCESS@F20WORKINGTHREADMANAGERUclll               @?
+  STARTPROCESSTHREADED@F20WORKINGTHREADMANAGER            @?
+  TAKEEVENT@F20WORKINGTHREADMANAGER                       @?
+  UPDATECALLER@F20WORKINGTHREADMANAGER                    @?
+  UPDATINGCALLER@F20WORKINGTHREADMANAGER                  @?
+  WHENPROCESSFINISH@F20WORKINGTHREADMANAGER               @?
+  WORKINGTHREADPROCESS@F20WORKINGTHREADMANAGER            @?
+  WRITETOCLASSTMP@F20WORKINGTHREADMANAGERUc               @?
   VMT$XMLGENERATOR                                        @?
   TYPE$XMLGENERATOR                                       @?
   ADDTAG@F12XMLGENERATORsbsbUcOsb                         @?
@@ -2252,6 +2420,7 @@ EXPORTS
   LOAD_@_IFILTER_@_CFILTERLIST@F7IFILTERsb                @?
   SAVE_@_IFILTER_@_CFILTERLIST@F7IFILTERsb                @?
   SAVEAS_@_IFILTER_@_CFILTERLIST@F7IFILTERsb              @?
+  CONNECTTOS3@FsbsbPsb                                    @?
   CREATEEMAILLIST@F16EMAILADDRESSLIST17SYSTEMSTRINGCLASS  @?
   EXECUTESQL@FsbOsbBf10ERRORCLASS                         @?
   EXECUTESQLSCRIPT@FsbOsbBf10ERRORCLASS                   @?
@@ -2261,11 +2430,12 @@ EXPORTS
   GETFIELDVALUE@Fsasa                                     @?
   GETFILEFIELD@Fsasa                                      @?
   GETFILEMANAGER@Fsa                                      @?
+  LISTREGIONS@F10REGIONLISTPsb                            @?
   MAKEMAILCLIENT@FsbsbsbsblOl                             @?
   MAKESMSCLIENT@FsbsbsbsblOl                              @?
-  SENDHTMLMAIL@FlsbsbsbOsbOsb16EMAILADDRESSLIST16EMAILADDRESSLIST @?
-  SENDMAIL@FlsbsbsbOsb16EMAILADDRESSLIST16EMAILADDRESSLIST @?
-  SENDSMS@Flsbsbsbsb                                      @?
+  SENDHTMLMAIL@FlsbsbsbOsbOsb16EMAILADDRESSLIST16EMAILADDRESSLISTPsb @?
+  SENDMAIL@FlsbsbsbOsb16EMAILADDRESSLIST16EMAILADDRESSLISTPsb @?
+  SENDSMS@FlsbsbsbsbPsb                                   @?
   SETENCODING@Flsb                                        @?
   SETERRORREPORTING@Fll                                   @?
   SETFILEMANAGER@F11FILEMANAGERsa                         @?

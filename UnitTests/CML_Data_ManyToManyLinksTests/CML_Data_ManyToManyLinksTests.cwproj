@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <FileDriver Include="ASCII" />
+    <FileDriver Include="MSSQL" />
     <FileDriver Include="TOPSPEED" />
   </ItemGroup>
   <Import Project="$(ClarionBinPath)\SoftVelocity.Build.Clarion.targets" />

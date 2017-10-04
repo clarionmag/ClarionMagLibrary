@@ -24,6 +24,7 @@ ___  Executable Program:  CML_Data_ManyToManyLinksTests.DLL
      The following Clarion DLLs
 -------------------------------
 ___    ClaRUN.DLL - Clarion Runtime Library
+___    Clamss.dll - Microsoft SQL
 ___    Clatps.dll - TopSpeed (TPS)
 ___    Claasc.dll - ASCII (Text)
 
