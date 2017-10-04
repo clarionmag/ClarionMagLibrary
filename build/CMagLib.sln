@@ -18,6 +18,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{3B4D0D90-E85F-
 	ProjectSection(SolutionItems) = postProject
 		..\libsrc\CML_UI_BackgroundProgressDisplay.clw = ..\libsrc\CML_UI_BackgroundProgressDisplay.clw
 		..\libsrc\CML_UI_BackgroundProgressDisplay.inc = ..\libsrc\CML_UI_BackgroundProgressDisplay.inc
+		..\libsrc\CML_Data_ManyToManyLinks.clw = ..\libsrc\CML_Data_ManyToManyLinks.clw
+		..\libsrc\CML_Data_ManyToManyLinks.inc = ..\libsrc\CML_Data_ManyToManyLinks.inc
+		..\libsrc\CML_Data_ManyToManyLinksData.clw = ..\libsrc\CML_Data_ManyToManyLinksData.clw
+		..\libsrc\CML_Data_ManyToManyLinksData.inc = ..\libsrc\CML_Data_ManyToManyLinksData.inc
+		..\libsrc\CML_Data_ManyToManyLinksDataQ.inc = ..\libsrc\CML_Data_ManyToManyLinksDataQ.inc
+		..\libsrc\CML_Data_ManyToManyLinksPersister.clw = ..\libsrc\CML_Data_ManyToManyLinksPersister.clw
+		..\libsrc\CML_Data_ManyToManyLinksPersister.inc = ..\libsrc\CML_Data_ManyToManyLinksPersister.inc
+		..\libsrc\CML_Data_ManyToManyLinksPersisterForABC.clw = ..\libsrc\CML_Data_ManyToManyLinksPersisterForABC.clw
+		..\libsrc\CML_Data_ManyToManyLinksPersisterForABC.inc = ..\libsrc\CML_Data_ManyToManyLinksPersisterForABC.inc
+		..\libsrc\CML_Data_ManyToManyLinksPersisterForFile.clw = ..\libsrc\CML_Data_ManyToManyLinksPersisterForFile.clw
+		..\libsrc\CML_Data_ManyToManyLinksPersisterForFile.inc = ..\libsrc\CML_Data_ManyToManyLinksPersisterForFile.inc
+		..\libsrc\CML_Data_ManyToManyLinksPersisterForTPS.clw = ..\libsrc\CML_Data_ManyToManyLinksPersisterForTPS.clw
+		..\libsrc\CML_Data_ManyToManyLinksPersisterForTPS.inc = ..\libsrc\CML_Data_ManyToManyLinksPersisterForTPS.inc
+		..\libsrc\CML_UI_ListCheckbox.clw = ..\libsrc\CML_UI_ListCheckbox.clw
+		..\libsrc\CML_UI_ListCheckbox.inc = ..\libsrc\CML_UI_ListCheckbox.inc
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ClarionTest", "ClarionTest", "{B657FC8D-6553-4B17-B75E-8E97D7CDFACC}"

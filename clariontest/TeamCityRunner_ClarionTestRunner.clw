@@ -23,6 +23,8 @@
 
                                                    Member('ClarionTestRunner')
 
+include('CML_System_String.inc'),once
+
 TeamCityRunner                                     procedure()
 
 TestProceduresQ                                       queue(CML_ClarionTest_TestProceduresQueue)
@@ -34,6 +36,7 @@ TestDLL                                               CML_ClarionTest_TestDLL
 
 x                                                     Long
 FailedTestCount                                       long
+str                                                   CML_System_String
    code
    !TeamCityLogFilename = 'teamcity-info.xml'
    !If not TeamCityLog.CreateFile(TeamCityLogFilename) = LEVEL:Benign then return end
@@ -71,8 +74,10 @@ FailedTestCount                                       long
          dbg.write('Test passed')
       of CML_ClarionTest_Status_Fail
          FailedTestCount += 1
+         str.Assign(TestResult.Message)
+         str.Replace('''','|''')
          StdOut.WriteToCurrentConsole('##teamcity[testFailed name=<39>' & clip(TestProceduresQ.TestName) &|
-            '<39> message=<39>' & TestResult.Message & '<39>]]'& '<13,10>')
+            '<39> message=<39>' & str.Get() & '<39>]]'& '<13,10>')
       of CML_ClarionTest_Status_Ignore
       orof CML_ClarionTest_Status_Disabled
       of CML_ClarionTest_Status_Incomplete
